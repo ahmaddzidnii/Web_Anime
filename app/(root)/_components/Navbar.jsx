@@ -6,6 +6,7 @@ import { Logo } from "./logo";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
+import Link from "next/link";
 
 const Navbar = () => {
   const scrolled = useScrollTop();
@@ -14,7 +15,9 @@ const Navbar = () => {
       <div className="flex items-center gap-x-2">
         <Image className="dark:hidden" src="/logo.svg" height="40" width="40" alt="logo" />
         <Image className="hidden dark:block" src="/logo-dark.svg" height="40" width="40" alt="logo" />
-        <p className={cn("font-semibold")}>ahmadzidni.site</p>
+        <Link href="/anime">
+          <p className={cn("font-semibold")}>ahmadzidni.site</p>
+        </Link>
       </div>
       <div className="md:ml-auto justify-end w-full flex items-center gap-x-2">
         <ModeToggle />

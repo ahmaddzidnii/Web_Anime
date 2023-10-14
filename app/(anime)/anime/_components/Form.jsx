@@ -3,9 +3,8 @@ import { BiSearch } from "react-icons/bi";
 import { useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
-import { ToastAction } from "@/components/ui/toast";
 
-const Form = () => {
+const Form = ({ q}) => {
   const inputSearchRef = useRef();
   const router = useRouter();
   const { toast } = useToast();
@@ -29,8 +28,8 @@ const Form = () => {
   };
 
   return (
-    <div className="relative w-full sm:w-1/2 mt-2 sm:mt-0">
-      <input ref={inputSearchRef} placeholder="cari anime.." className="p-3 rounded-lg w-full bg-transparent border" type="text" onKeyDown={handleKeyPress} />
+    <div className="relative w-full lg:w-1/2 mt-2 sm:mt-0">
+      <input ref={inputSearchRef} placeholder={q ? q : "cari anime.."} className="p-3 rounded-lg w-full bg-transparent border" type="text" onKeyDown={handleKeyPress} />
       <button onClick={handleKeyPress}>
         <BiSearch className="text-3xl absolute top-3 right-1" />
       </button>
