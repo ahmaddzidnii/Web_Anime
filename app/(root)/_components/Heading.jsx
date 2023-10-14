@@ -18,9 +18,8 @@ const Heading = () => {
       </h3>
 
       <div className="flex justify-center gap-5">
-        <Button>
+        <Button asChild>
           <Link href="/anime">Temukan Sekarang</Link>
-          <ArrowRight className="w-4 h-5 ml-2" />
         </Button>
         <Button variant="outline">
           <a target="_blank" href="https://docs.api.jikan.moe/">

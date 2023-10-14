@@ -2,7 +2,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 
 const CardListAnime = ({ api }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-5">
+    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 p-1">
       {api &&
         api.map((data) => {
           return (
@@ -10,9 +10,13 @@ const CardListAnime = ({ api }) => {
               <div className="w-full h-[300px]  overflow-hidden">
                 <img loading="lazy" className="w-full h-full object-cover" src={data.images.webp.image_url} alt="" />
               </div>
-              <CardHeader>
-                <CardTitle>{data.title}</CardTitle>
-                <CardDescription>Jumlah Episode : {data.episodes}</CardDescription>
+              <CardHeader className="flex flex-col justify-between">
+                <div className="h-28 md:h-20 lg:h-15">
+                  <CardTitle className="text-xl">{data.title}</CardTitle>
+                </div>
+                <div className="mt-auto">
+                  <CardDescription>Jumlah Episode: {data.episodes}</CardDescription>
+                </div>
               </CardHeader>
             </Card>
           );
