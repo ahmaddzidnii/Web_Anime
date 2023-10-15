@@ -1,4 +1,3 @@
-import Navbar from "@/app/(root)/_components/Navbar";
 import { getAnimeAnak, getAnimePopular } from "@/services/api";
 import CardListAnime from "./_components/cardListAnime";
 import HeadingAnime from "./_components/headingAnime";
@@ -14,7 +13,7 @@ const Page = async () => {
   const animeAnak = await getAnimeAnak();
   return (
     <>
-      <div className="px-5">
+      <div className="px-10">
         <HeroSectionAnime />
         {/* Paling Popular */}
         <section>

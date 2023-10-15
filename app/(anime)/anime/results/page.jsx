@@ -20,13 +20,15 @@ const Page = async ({ searchParams }) => {
 
   return (
     <>
-      <div className="px-5">
+      <div className="px-10">
         <HeroSectionAnime q={q} />
-        <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold  tracking-wide mb-5">
+        <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold  tracking-wide mb-5 mt-20">
           Terdapat {pagination?.items.total} hasil pencarian untuk kata kunci &quot;{searchParams.q}&quot; :
         </h1>
         <CardListAnime api={data} />
-        <Halaman lastVisiblePage={pagination?.last_visible_page} currentPage={pagination?.current_page} q={q} />
+        <div className="my-10">
+          <Halaman lastVisiblePage={pagination?.last_visible_page} currentPage={pagination?.current_page} q={q} />
+        </div>
       </div>
       <Footer />
     </>

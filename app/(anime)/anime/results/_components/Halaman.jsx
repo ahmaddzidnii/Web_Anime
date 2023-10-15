@@ -7,16 +7,14 @@ const Halaman = ({ lastVisiblePage, currentPage, q }) => {
     i.push(index);
   }
   return (
-    <div className="mt-5">
-      <h1>Halaman</h1>
-      <div className="flex flex-row gap-5">
-        {i.map((i, index) => {
-          return (
-            <Button variant={currentPage === i ? "" : "outline"} key={index} asChild>
-              <Link href={`/anime/results?q=${q}&page=${i}`}>{i}</Link>
-            </Button>
-          );
-        })}
+    <div className="container mx-auto p-4">
+      <h1 className="mb-2">Halaman</h1>
+      <div className="flex flex-wrap gap-0 lg:gap-5">
+        {i.map((i, index) => (
+          <Button variant={currentPage === i ? "" : "outline"} key={index} asChild className="mb-2">
+            <Link href={`/anime/results?q=${q}&page=${i}`}>{i}</Link>
+          </Button>
+        ))}
       </div>
     </div>
   );
