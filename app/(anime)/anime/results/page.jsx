@@ -2,7 +2,6 @@ import { getAnimeQuery } from "@/services/api";
 import CardListAnime from "../_components/cardListAnime";
 import Footer from "@/app/(root)/_components/Footer";
 import Halaman from "./_components/Halaman";
-import HeroSectionAnime from "../_components/HeroSectionAnime";
 
 export async function generateMetadata({ searchParams }) {
   return {
@@ -21,8 +20,7 @@ const Page = async ({ searchParams }) => {
   return (
     <>
       <div className="px-10">
-        <HeroSectionAnime q={q} />
-        <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold  tracking-wide mb-5 mt-20">
+        <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold  tracking-wide mb-5">
           Terdapat {pagination?.items.total} hasil pencarian untuk kata kunci &quot;{searchParams.q}&quot; :
         </h1>
         <CardListAnime api={data} />

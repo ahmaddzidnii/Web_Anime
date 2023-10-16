@@ -4,7 +4,7 @@ const HomePageLayout = ({ children }) => {
   return (
     <div className="h-full">
       <Navbar />
-      <main className="h-full pt-40">{children}</main>
+      <main className="h-full pt-36">{children}</main>
     </div>
   );
 };

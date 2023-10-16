@@ -14,7 +14,7 @@ const Page = async () => {
   return (
     <>
       <div className="px-10">
-        <HeroSectionAnime />
+        {/* <HeroSectionAnime /> */}
         {/* Paling Popular */}
         <section>
           <HeadingAnime title="Paling Popular" href="/top" />

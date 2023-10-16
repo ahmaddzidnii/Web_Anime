@@ -17,7 +17,7 @@ export const getAnimeAnak = async (limit) => {
     return data;
   } catch (error) {
     console.error("Error fetching popular anime:", error.message);
-    throw new Error("Failed to fetch popular anime anak. Please try again later.");
+    return [];
   }
 };
 
@@ -28,6 +28,6 @@ export const getAnimeQuery = async (q, page) => {
     return data;
   } catch (error) {
     console.error("Error fetching popular anime:", error.message);
-    throw new Error("Failed to fetch popular anime search. Please try again later.");
+    return [];
   }
 };
