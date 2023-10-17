@@ -4,7 +4,7 @@ import { HeadingSkeleton } from "./_components/SkeletonComponen/HeadingSkeleton"
 const Loading = () => {
   return (
     <>
-      <div className="px-10">
+      <div className="px-3 sm:px-4 md:px-5 lg:px-10 ">
         <HeadingSkeleton />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-5">
           {[...Array(8)].map((_, index) => (

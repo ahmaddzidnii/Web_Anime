@@ -1,29 +1,27 @@
 import { getAnimeAnak, getAnimePopular } from "@/services/api";
-import CardListAnime from "./_components/cardListAnime";
 import HeadingAnime from "./_components/headingAnime";
 import Footer from "@/app/(root)/_components/Footer";
-import HeroSectionAnime from "./_components/HeroSectionAnime";
+import { AnakAnak, PalingPopular } from "./_components/Kategori";
 
 export const metadata = {
   title: "List Anime",
 };
 
 const Page = async () => {
-  const animePopular = await getAnimePopular(8);
-  const animeAnak = await getAnimeAnak();
+  const animePopular = await getAnimePopular(10);
+  const animeAnak = await getAnimeAnak(10);
   return (
     <>
-      <div className="px-10">
-        {/* <HeroSectionAnime /> */}
+      <div className="px-3 sm:px-4 md:px-5 lg:px-10">
         {/* Paling Popular */}
         <section>
           <HeadingAnime title="Paling Popular" href="/top" />
-          <CardListAnime api={animePopular} />
+          <PalingPopular data={animePopular} />
         </section>
-        {/* Paling Popular */}
+        {/* Anak Anak */}
         <section className="mt-5">
           <HeadingAnime title="Anak Anak" href="/children" />
-          <CardListAnime api={animeAnak} />
+          <AnakAnak data={animeAnak} />
         </section>
       </div>
       <Footer />

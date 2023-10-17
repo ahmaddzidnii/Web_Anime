@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
@@ -6,7 +7,7 @@ import Image from "next/image";
 
 const CardListAnime = ({ api }) => {
   return (
-    <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 p-1">
+    <div className="grid grid-cols-1  sm:grid-cols-2  lg:grid-cols-4 gap-6 p-1">
       {api &&
         api.map((data) => {
           return (
@@ -17,8 +18,8 @@ const CardListAnime = ({ api }) => {
               </div>
 
               <CardHeader className="flex flex-col justify-between">
-                <div className="h-28 md:h-20 lg:h-15">
-                  <CardTitle className="text-lg text-justify">{data.title}</CardTitle>
+                <div className="h-10 sm:h-20">
+                  <CardTitle className="text-sm xl:text-lg text-justify">{data.title}</CardTitle>
                 </div>
                 <Button asChild size="sm">
                   <Link href={`/anime/details/${data.mal_id}`}>Lihat Deskripsi</Link>

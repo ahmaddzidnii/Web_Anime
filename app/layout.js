@@ -1,6 +1,11 @@
 import { ThemeProvider } from "@/components/ui/providers/theme-provider";
-import "./globals.css";
 import { Poppins } from "next/font/google";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+
+import "./globals.css";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["200", "300", "400", "500", "600", "700"] });
 

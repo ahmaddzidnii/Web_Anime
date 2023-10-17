@@ -12,7 +12,7 @@ export const getAnimePopular = async (limit) => {
 };
 export const getAnimeAnak = async (limit) => {
   try {
-    const response = await axiosInstance.get(`anime?sfw=true&rating=pg&limit=8&order_by=popularity`);
+    const response = await axiosInstance.get(`anime?sfw=true&rating=pg&limit=${limit}&order_by=popularity`);
     const data = response.data.data;
     return data;
   } catch (error) {

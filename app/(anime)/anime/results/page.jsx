@@ -19,7 +19,7 @@ const Page = async ({ searchParams }) => {
 
   return (
     <>
-      <div className="px-10">
+      <div className="px-3 sm:px-4 md:px-5 lg:px-10">
         <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold  tracking-wide mb-5">
           Terdapat {pagination?.items.total} hasil pencarian untuk kata kunci &quot;{searchParams.q}&quot; :
         </h1>
