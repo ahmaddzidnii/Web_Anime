@@ -12,8 +12,10 @@ export async function generateMetadata({ searchParams }) {
 }
 
 const Page = async ({ searchParams }) => {
-  const { q, page } = searchParams;
-  // console.log(page);
+  let { q, page } = searchParams;
+  if (parseInt(page) < 1 || isNaN(page)) {
+    page = 1;
+  }
   const resutsSearch = await getAnimeQuery(q, page);
   const { data, pagination } = resutsSearch;
 

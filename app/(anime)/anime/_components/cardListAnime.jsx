@@ -14,7 +14,7 @@ const CardListAnime = ({ api }) => {
             <Card key={data.mal_id} className="shadow-lg">
               <div className="relative w-[full] h-[300px]">
                 <SkeletonLoaderImage />
-                <Image loading="lazy" quality={100} className="w-full h-full object-cover" src={data.images.webp.image_url} fill alt={data.title} />
+                <Image loading="lazy" quality={100} className="w-full h-full object-cover" src={data.images.jpg.large_image_url} fill alt={data.title} />
               </div>
 
               <CardHeader className="flex flex-col justify-between">

@@ -4,6 +4,7 @@ import { Poppins } from "next/font/google";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/effect-cards";
 
 import "./globals.css";
 

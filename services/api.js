@@ -31,3 +31,14 @@ export const getAnimeQuery = async (q, page) => {
     return [];
   }
 };
+
+export const getDetailAnimeById = async (id) => {
+  try {
+    const response = await axiosInstance.get(`/anime/${id}/full`);
+    const data = response.data.data;
+    return data;
+  } catch (error) {
+    console.error("Error fetching popular anime:", error.message);
+    return [];
+  }
+};
