@@ -1,12 +1,14 @@
 import { getDetailAnimeById } from "@/services/api";
-import SlideNavigation from "./_components/SlideNavigation";
+import SideBarDetailAnime from "./_components/SideBarDetailAnime";
+import DetailAnimePage from "./DetailAnimePage";
 
 const Page = async ({ params }) => {
-  const detailsAnime = await getDetailAnimeById(params.id);
+  // const detailsAnime = await getDetailAnimeById(params.id);
   return (
     <>
-      <div className="w-full h-full  flex justify-center">
-        <SlideNavigation data={detailsAnime} />
+      <div className="h-full flex">
+        <SideBarDetailAnime />
+        <DetailAnimePage />
       </div>
     </>
   );
