@@ -52,7 +52,7 @@ const SideBarDetailAnime = () => {
 
   return (
     <div className={`max-h-screen border-e-2 relative  p-5 ${open ? "w-72" : "w-20"} duration-300`}>
-      <BsArrowLeftShort className={`bg-white text-3xl rounded-full text-slate-500 absolute -right-4 top-0 border border-slate-500 cursor-pointer ${!open && "rotate-180"}`} onClick={() => setOpen(!open)} />
+      <BsArrowLeftShort className={`bg-white text-3xl rounded-full text-slate-500 absolute -right-4 top-0 border border-slate-500 cursor-pointer ${!open && "rotate-180"} hidden md:block`} onClick={() => setOpen(!open)} />
 
       <ul>
         {dataSideBar.map((d, index) => {
