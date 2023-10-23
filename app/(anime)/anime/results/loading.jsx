@@ -1,5 +1,8 @@
+// import { Card, CardHeader } from "@/components/ui/card";
+// import { HeadingSkeleton } from "./_components/SkeletonComponen/HeadingSkeleton";
+
 import { Card, CardHeader } from "@/components/ui/card";
-import { HeadingSkeleton } from "./_components/SkeletonComponen/HeadingSkeleton";
+import { HeadingSkeleton } from "../_components/SkeletonComponen/HeadingSkeleton";
 
 const Loading = () => {
   return (
