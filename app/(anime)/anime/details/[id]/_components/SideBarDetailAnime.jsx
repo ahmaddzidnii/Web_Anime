@@ -4,6 +4,7 @@ import { BsArrowLeftShort, BsFilePersonFill } from "react-icons/bs";
 import { BiSolidUserDetail, BiSolidMoviePlay, BiSolidLike } from "react-icons/bi";
 import { MdReviews } from "react-icons/md";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 const SideBarDetailAnime = () => {
   // Membuat fungsi untuk menangani perubahan ukuran layar
   const handleResize = () => {
@@ -19,22 +20,27 @@ const SideBarDetailAnime = () => {
     {
       text: "Details",
       icon: <BiSolidUserDetail />,
+      href: "?tab=details",
     },
     {
       text: "Characters",
       icon: <BsFilePersonFill />,
+      href: "?tab=characters",
     },
     {
       text: "Episodes",
       icon: <BiSolidMoviePlay />,
+      href: "?tab=episodes",
     },
     {
       text: "Recommendations",
       icon: <BiSolidLike />,
+      href: "?tab=recommendations",
     },
     {
       text: "Reviews",
       icon: <MdReviews />,
+      href: "?tab=reviews",
     },
   ];
 
@@ -57,10 +63,10 @@ const SideBarDetailAnime = () => {
       <ul>
         {dataSideBar.map((d, index) => {
           return (
-            <li key={index} className="flex gap-x-4 p-2 items-center cursor-pointer mb-4 rounded-sm text-sm hover:bg-slate-300 dark:hover:text-slate-900">
+            <Link href={d.href} key={index} className="flex gap-x-4 p-2 items-center cursor-pointer mb-4 rounded-sm text-sm hover:bg-slate-300 dark:hover:text-slate-900">
               <span className="text-2xl block float-left">{d.icon}</span>
               <span className={`text-base font-medium flex-1 duration-300 ${!open && "hidden"}`}>{d.text}</span>
-            </li>
+            </Link>
           );
         })}
       </ul>

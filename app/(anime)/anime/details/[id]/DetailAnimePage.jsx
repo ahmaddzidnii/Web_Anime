@@ -1,13 +1,61 @@
 import Image from "next/image";
-import { FcStatistics } from "react-icons/fc";
-import { BiSolidUserDetail } from "react-icons/bi";
+import { BsFilePersonFill } from "react-icons/bs";
+import { BiSolidUserDetail, BiSolidMoviePlay, BiSolidLike } from "react-icons/bi";
+import { MdReviews } from "react-icons/md";
+import DetailComponents from "./_components/DetailComponents";
+import CharactersComponents from "./_components/CharactersComponents";
+import EpisodesComponent from "./_components/EpisodesComponent";
 
-const DetailAnimePage = ({ api }) => {
+const DetailAnimePage = ({ api, searchParams }) => {
+  const { tab } = searchParams;
+
+  let detail;
+
+  switch (tab) {
+    case "details":
+      detail = true;
+      break;
+    case undefined:
+      detail = true;
+      break;
+    case "":
+      detail = true;
+      break;
+    case "characters":
+      detail = false;
+      break;
+    case "episodes":
+      detail = false;
+      break;
+    case "recommendations":
+      detail = false;
+      break;
+    case "reviews":
+      detail = false;
+      break;
+
+    default:
+      detail = true;
+      break;
+  }
+
+  const tabInfo = {
+    details: { title: "Details", icon: <BiSolidUserDetail /> },
+    characters: { title: "Characters", icon: <BsFilePersonFill /> },
+    episodes: { title: "Episodes", icon: <BiSolidMoviePlay /> },
+    recommendations: { title: "Recommendations", icon: <BiSolidLike /> },
+    reviews: { title: "Reviews", icon: <MdReviews /> },
+  };
+
+  // Judul tab dan ikon berdasarkan tab
+  const tabTitle = tabInfo[tab] ? tabInfo[tab].title : "Details";
+  const tabIcon = tabInfo[tab] ? tabInfo[tab].icon : <BiSolidUserDetail />;
+
   return (
     <main className="p-4 md:p-7 overflow-y-scroll h-full w-full">
       <div className="flex gap-x-5 -mt-5 mb-5 text-4xl">
-        <BiSolidUserDetail />
-        <h1 className="font-bold">Details</h1>
+        {tabIcon}
+        <h1 className="font-bold">{tabTitle}</h1>
       </div>
       <div className="flex flex-col lg:flex-row gap-5 justify-center">
         <div className="mx-auto w-full lg:w-[350px]  h-[400px] relative">
@@ -19,48 +67,15 @@ const DetailAnimePage = ({ api }) => {
             {api.title} <span className="italic">{api.title_japanese}</span>
           </h1>
 
-          {/* Card */}
-          <div className="w-full bg-slate-300 py-5 rounded-lg">
-            <div className="flex">
-              <div className="flex flex-col px-4 justify-center items-center text-center border-e-2 border-slate-600">
-                <span className="bg-gray-600 text-slate-100 w-full px-3  rounded-lg">Score</span>
-                <h1 className="text-2xl font-bold text-slate-800">{api.score}</h1>
-                <p className="text-xs text-slate-800">{api.scored_by} users</p>
-              </div>
-              <div className="grid grid-rows-3 sm:grid-cols-3 w-3/4 text-center sm:items-center text-sm lg:text-lg text-slate-800">
-                <h1>
-                  Ranked <span className="font-bold"> #{api.rank}</span>
-                </h1>
-                <h1>
-                  Popularity <span className="font-bold">#{api.popularity}</span>
-                </h1>
-                <h1>
-                  Members <span className="font-bold">{api.members}</span>
-                </h1>
-              </div>
-            </div>
-          </div>
+          {/* Section Tab */}
 
-          <div className="flex gap-5 flex-col md:flex-row mt-5 ">
-            <div className="w-full  bg-slate-300 p-5 rounded-lg">
-              <h1 className="text-xl font-bold mb-3  text-slate-800">Genre:</h1>
-              <div className="grid grid-rows-1  gap-4 w-full ">
-                {api.genres &&
-                  api.genres.map((data) => {
-                    return (
-                      <span key={data.mal_id} className="bg-gray-600 text-slate-100 text-lg  px-3  rounded-lg">
-                        {data.name}
-                      </span>
-                    );
-                  })}
-              </div>
-            </div>
-            <iframe className="w-full h-[300px] rounded-lg" src={api.trailer.embed_url} title={api.title} />
-          </div>
-          <div className="w-full bg-slate-300 p-5 rounded-lg mt-5  text-slate-800">
-            <h1 className="text-xl font-bold">Sinopsis :</h1>
-            <p className="text-justify">{api.synopsis}</p>
-          </div>
+          {detail ? <DetailComponents api={api} /> : null}
+          {tab === "characters" && <CharactersComponents />}
+          {tab === "episodes" && <EpisodesComponent />}
+          {tab === "recommendations" && <EpisodesComponent />}
+          {tab === "reviews" && <EpisodesComponent />}
+
+          {/* Section Tab */}
         </div>
       </div>
     </main>
