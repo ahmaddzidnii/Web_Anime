@@ -9,18 +9,17 @@ const Form = ({ q }) => {
   const router = useRouter();
   const { toast } = useToast();
 
-  const Alert = () => {
-    toast({
-      variant: "destructive",
-      title: "Uh oh! Something went wrong.",
-      description: "Kolom pencarian tidak boleh kosong",
-    });
-  };
+  const Alert = () => {};
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter" || event.type === "click") {
-      if (!inputSearchRef.current.value) {
-        Alert();
+      const removeSpace = inputSearchRef.current.value.trim();
+      if (!inputSearchRef.current.value || removeSpace.length === 0) {
+        toast({
+          variant: "destructive",
+          title: "Uh oh! Something went wrong.",
+          description: "Kolom pencarian tidak boleh kosong",
+        });
       } else {
         router.push(`/anime/results?q=${inputSearchRef.current.value}&page=1`);
       }

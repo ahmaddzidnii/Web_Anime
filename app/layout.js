@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 import "swiper/css/effect-cards";
 
 import "./globals.css";
+import { Toaster } from "@/components/ui/toaster";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["200", "300", "400", "500", "600", "700"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body className={poppins.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange storageKey="this theme?">
+          <Toaster />
           {children}
         </ThemeProvider>
       </body>
