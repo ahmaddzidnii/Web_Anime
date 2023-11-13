@@ -9,8 +9,6 @@ const Form = ({ q }) => {
   const router = useRouter();
   const { toast } = useToast();
 
-  const Alert = () => {};
-
   const handleKeyPress = (event) => {
     if (event.key === "Enter" || event.type === "click") {
       const removeSpace = inputSearchRef.current.value.trim();

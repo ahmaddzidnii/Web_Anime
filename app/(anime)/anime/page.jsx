@@ -10,12 +10,14 @@ export const metadata = {
 const Page = async () => {
   const animePopular = await getAnimePopular(10);
   const animeAnak = await getAnimeAnak(10);
+
   return (
     <>
       <div className="px-3 sm:px-4 md:px-5 lg:px-10">
         {/* Paling Popular */}
         <section>
           <HeadingAnime title="Paling Popular" href="/top" />
+
           <PalingPopular data={animePopular} />
         </section>
         {/* Anak Anak */}

@@ -5,6 +5,7 @@ import { MdReviews } from "react-icons/md";
 import DetailComponents from "./_components/DetailComponents";
 import CharactersComponents from "./_components/CharactersComponents";
 import EpisodesComponent from "./_components/EpisodesComponent";
+import SkeletonLoaderImage from "../../_components/SkeletonLoaderImage";
 
 const DetailAnimePage = ({ api, searchParams }) => {
   const { tab } = searchParams;
@@ -59,7 +60,8 @@ const DetailAnimePage = ({ api, searchParams }) => {
       </div>
       <div className="flex flex-col lg:flex-row gap-5 justify-center">
         <div className="mx-auto w-full lg:w-[350px]  h-[400px] relative">
-          <Image src={api.images.jpg.large_image_url} fill className="object-cover" alt={api.title} />
+          <SkeletonLoaderImage />
+          <Image src={api?.images.jpg.large_image_url} fill className="object-cover" alt={api.title} />
         </div>
 
         <div className=" w-full h-auto">
