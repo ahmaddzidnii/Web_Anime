@@ -10,10 +10,10 @@ export const getAnimePopular = async (limit) => {
     throw new Error("Failed to fetch popular anime. Please try again later.");
   }
 };
-export const getAnimeAnak = async (limit) => {
+export const getAnimeAnak = async (limit, page = 1) => {
   try {
-    const response = await axiosInstance.get(`anime?sfw=true&rating=pg&limit=${limit}&order_by=popularity`);
-    const data = response.data.data;
+    const response = await axiosInstance.get(`anime?sfw=true&rating=pg&limit=${limit}&page=${page}&order_by=popularity`);
+    const data = response.data;
     return data;
   } catch (error) {
     console.error("Error fetching popular anime:", error.message);

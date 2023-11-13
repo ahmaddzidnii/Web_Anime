@@ -16,14 +16,14 @@ const Page = async () => {
       <div className="px-3 sm:px-4 md:px-5 lg:px-10">
         {/* Paling Popular */}
         <section>
-          <HeadingAnime title="Paling Popular" href="/top" />
+          <HeadingAnime title="Paling Popular" href="/anime/top" />
 
           <PalingPopular data={animePopular} />
         </section>
         {/* Anak Anak */}
         <section className="mt-5">
-          <HeadingAnime title="Anak Anak" href="/children" />
-          <AnakAnak data={animeAnak} />
+          <HeadingAnime title="Anak Anak" href="/anime/children" />
+          <AnakAnak data={animeAnak?.data} />
         </section>
       </div>
       <Footer />

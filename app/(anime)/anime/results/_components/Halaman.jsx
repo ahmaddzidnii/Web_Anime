@@ -8,11 +8,11 @@ const Halaman = ({ lastVisiblePage, currentPage, q }) => {
   }
   return (
     <div className="container mx-auto p-4">
-      <h1 className="mb-2">Halaman</h1>
-      <div className="flex flex-wrap gap-0 lg:gap-5">
+      {/* <h1 className="mb-2 text-center">Halaman</h1> */}
+      <div className="flex flex-wrap gap-3 lg:gap-5 justify-center">
         {i.map((i, index) => (
           <Button variant={currentPage === i ? "" : "outline"} key={index} asChild className="mb-2">
-            <Link href={`/anime/results?q=${q}&page=${i}`}>{i}</Link>
+            <Link href={q == undefined ? `?page=${i}` : `/anime/results?q=${q}&page=${i}`}>{i}</Link>
           </Button>
         ))}
       </div>

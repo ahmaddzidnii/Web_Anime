@@ -11,12 +11,18 @@ const Form = ({ q }) => {
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter" || event.type === "click") {
-      const removeSpace = inputSearchRef.current.value.trim();
-      if (!inputSearchRef.current.value || removeSpace.length === 0) {
+      const inputValue = inputSearchRef.current.value.trim();
+      if (!inputValue) {
         toast({
           variant: "destructive",
           title: "Uh oh! Something went wrong.",
           description: "Kolom pencarian tidak boleh kosong",
+        });
+      } else if (inputValue.length < 2) {
+        toast({
+          variant: "destructive",
+          title: "Uh oh! Something went wrong.",
+          description: "Kolom pencarian harus berisi minimal 2 karakter",
         });
       } else {
         router.push(`/anime/results?q=${inputSearchRef.current.value}&page=1`);
