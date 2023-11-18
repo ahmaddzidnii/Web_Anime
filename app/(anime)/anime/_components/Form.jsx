@@ -24,6 +24,12 @@ const Form = ({ q }) => {
           title: "Uh oh! Something went wrong.",
           description: "Kolom pencarian harus berisi minimal 2 karakter",
         });
+      } else if (inputValue.includes("/")) {
+        toast({
+          variant: "destructive",
+          title: "Uh oh! Something went wrong.",
+          description: "Kolom pencarian tidak boleh mengandung karakter '/'",
+        });
       } else {
         router.push(`/anime/results?q=${inputSearchRef.current.value}&page=1`);
       }

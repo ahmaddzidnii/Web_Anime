@@ -38,7 +38,10 @@ export const getDetailAnimeById = async (id) => {
     const data = response.data.data;
     return data;
   } catch (error) {
-    console.error("Error fetching popular anime:", error.message);
-    return [];
+    const errorCode = error.response.status;
+
+    if (errorCode === 404) {
+      return null;
+    }
   }
 };

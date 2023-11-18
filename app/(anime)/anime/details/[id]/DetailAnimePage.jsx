@@ -61,12 +61,12 @@ const DetailAnimePage = ({ api, searchParams }) => {
       <div className="flex flex-col lg:flex-row gap-5 justify-center">
         <div className="mx-auto w-full lg:w-[350px]  h-[400px] relative">
           <SkeletonLoaderImage />
-          <Image src={api?.images.jpg.large_image_url} fill className="object-cover" alt={api.title} />
+          <Image src={api?.images.jpg.large_image_url} fill className="object-cover" alt={api?.title} />
         </div>
 
         <div className=" w-full h-auto">
           <h1 className="text-sm md:text-lg lg:text-xl xl:text-2xl font-bold mb-5">
-            {api.title} <span className="italic">{api.title_japanese}</span>
+            {api?.title} <span className="italic">{api?.title_japanese}</span>
           </h1>
 
           {/* Section Tab */}

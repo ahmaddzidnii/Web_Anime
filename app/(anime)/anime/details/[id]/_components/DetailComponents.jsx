@@ -40,8 +40,7 @@ const DetailComponents = ({ api }) => {
               })}
           </div>
         </div>
-        <LiteYouTubeEmbed id={api?.trailer.youtube_id} title={api?.title_japanese} poster="maxresdefault" />
-        {/* <iframe className="w-full h-[300px] rounded-lg" src={api.trailer.embed_url} title={api.title} /> */}
+        {api?.trailer.youtube_id && <LiteYouTubeEmbed id={api?.trailer.youtube_id} title={api?.title_japanese} poster="maxresdefault" />}
       </div>
       <div className="w-full bg-slate-300 p-5 rounded-lg mt-5  text-slate-800">
         <h1 className="text-xl font-bold">Sinopsis :</h1>

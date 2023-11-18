@@ -1,8 +1,8 @@
 import { getAnimeQuery } from "@/services/api";
 import CardListAnime from "../_components/cardListAnime";
 import Footer from "@/app/(root)/_components/Footer";
-import Halaman from "./_components/Halaman";
 import { GiPeriscope } from "react-icons/gi";
+import Halaman from "@/components/Halaman";
 
 export async function generateMetadata({ searchParams }) {
   return {

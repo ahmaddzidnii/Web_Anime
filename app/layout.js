@@ -1,5 +1,6 @@
 import { ThemeProvider } from "@/components/ui/providers/theme-provider";
 import { Poppins } from "next/font/google";
+import NextTopLoader from "nextjs-toploader";
 
 // Import Swiper styles
 import "swiper/css";
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body className={poppins.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange storageKey="this theme?">
+          <NextTopLoader showSpinner={false} height={4} />
           <Toaster />
           {children}
         </ThemeProvider>

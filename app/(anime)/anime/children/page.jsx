@@ -1,6 +1,6 @@
 import { getAnimeAnak } from "@/services/api";
 import CardListAnime from "../_components/cardListAnime";
-import Halaman from "../results/_components/Halaman";
+import Halaman from "@/components/Halaman";
 
 const Page = async ({ searchParams }) => {
   let { page } = searchParams;

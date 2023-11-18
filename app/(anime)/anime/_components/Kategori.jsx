@@ -12,7 +12,7 @@ export const PalingPopular = ({ data }) => {
   return (
     <>
       <Swiper
-        slidesPerView={1}
+        slidesPerView={3}
         spaceBetween={30}
         navigation={true}
         pagination={{
