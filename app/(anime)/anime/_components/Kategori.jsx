@@ -12,7 +12,6 @@ export const PalingPopular = ({ data }) => {
   return (
     <>
       <Swiper
-        slidesPerView={3}
         spaceBetween={30}
         navigation={true}
         pagination={{
@@ -21,6 +20,9 @@ export const PalingPopular = ({ data }) => {
         modules={[Pagination, Navigation]}
         className="mySwiper"
         breakpoints={{
+          0: {
+            slidesPerView: 1,
+          },
           576: {
             slidesPerView: 2,
           },
