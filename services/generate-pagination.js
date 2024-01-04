@@ -27,6 +27,7 @@ export function generatePagination({
       for (let i = 1; i <= Math.min(maxPagesToShow, totalPages); i++) {
         addPage(i);
       }
+      addElipsis();
       addPage(totalPages);
     } else if (currentPage >= totalPages - halfMaxPagesToShow) {
       addPage(1);

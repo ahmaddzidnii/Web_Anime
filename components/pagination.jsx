@@ -1,32 +1,48 @@
-export const Pagination = ({currentPage, }) => {
-    return (
-        <div className="px-3 sm:px-4 md:px-5 lg:px-10">
-        <CardListAnime api={data} />
-        <div className="my-10">
-          <Pagination>
-            <PaginationContent>
-              {page > 1 && (
-                <PaginationPrevious href={`?page=${parseInt(page) - 1}`} />
-              )}
-  
-              {listPageToShow.map((idxPage, idx) => {
-                if (idxPage === "...") {
-                  return <PaginationEllipsis key={idx} />;
-                }
-                return (
-                  <PaginationLink
-                    key={idx}
-                    href={`?page=${idxPage}`}
-                    isActive={page == idxPage}
-                  >
-                    {idxPage}
-                  </PaginationLink>
-                );
-              })}
-              <PaginationNext href={`?page=${parseInt(page) + 1}`} />
-            </PaginationContent>
-          </Pagination>
-        </div>
-      </div>
-    )
-}
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import { generatePagination } from "@/services/generate-pagination";
+
+export const PaginationCustom = ({
+  currentPage,
+  maxPagesToShow,
+  totalPages,
+}) => {
+  const listPageToShow = generatePagination({
+    currentPage: parseInt(currentPage),
+    maxPagesToShow,
+    totalPages,
+  });
+  return (
+    <Pagination>
+      <PaginationContent>
+        {currentPage > 1 && (
+          <PaginationPrevious href={`?page=${parseInt(currentPage) - 1}`} />
+        )}
+
+        {listPageToShow.map((idxPage, idx) => {
+          if (idxPage === "...") {
+            return <PaginationEllipsis key={idx} />;
+          }
+          return (
+            <PaginationLink
+              key={idx}
+              href={`?page=${idxPage}`}
+              isActive={currentPage == idxPage}
+            >
+              {idxPage}
+            </PaginationLink>
+          );
+        })}
+        {currentPage < totalPages ? (
+          <PaginationNext href={`?page=${parseInt(currentPage) + 1}`} />
+        ) : null}
+      </PaginationContent>
+    </Pagination>
+  );
+};
