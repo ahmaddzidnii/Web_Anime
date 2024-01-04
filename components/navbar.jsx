@@ -1,11 +1,12 @@
 "use client";
 
+import Link from "next/link";
+import Image from "next/image";
+
 import { useScrollTop } from "@/hooks/use-scroll-navbar";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 import { ModeToggle } from "@/components/mode-toggle";
 import Form from "@/app/(anime)/anime/_components/Form";
-import Link from "next/link";
 
 export const Navbar = () => {
   const scrolled = useScrollTop();
