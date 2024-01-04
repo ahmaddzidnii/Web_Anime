@@ -1,7 +1,7 @@
+import { GiPeriscope } from "react-icons/gi";
+
 import { getAnimeQuery } from "@/services/api";
 import CardListAnime from "../_components/cardListAnime";
-import { GiPeriscope } from "react-icons/gi";
-import Halaman from "@/components/Halaman";
 import { PaginationCustom } from "@/components/pagination";
 
 export async function generateMetadata({ searchParams }) {

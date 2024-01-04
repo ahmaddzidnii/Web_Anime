@@ -7,7 +7,7 @@ import { ModeToggle } from "@/components/mode-toggle";
 import Form from "@/app/(anime)/anime/_components/Form";
 import Link from "next/link";
 
-const Navbar = () => {
+export const Navbar = () => {
   const scrolled = useScrollTop();
   return (
     <nav
@@ -47,5 +47,3 @@ const Navbar = () => {
     </nav>
   );
 };
-
-export default Navbar;

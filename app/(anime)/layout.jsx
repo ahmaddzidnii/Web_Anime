@@ -1,5 +1,5 @@
-import Navbar from "@/app/(root)/_components/navbar";
-import { Footer } from "../(root)/_components/footer";
+import { Footer } from "@/app/(root)/_components/footer";
+import { Navbar } from "@/app/(root)/_components/navbar";
 
 const HomePageLayout = ({ children }) => {
   return (
