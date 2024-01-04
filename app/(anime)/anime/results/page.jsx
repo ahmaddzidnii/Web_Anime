@@ -2,6 +2,7 @@ import { getAnimeQuery } from "@/services/api";
 import CardListAnime from "../_components/cardListAnime";
 import { GiPeriscope } from "react-icons/gi";
 import Halaman from "@/components/Halaman";
+import { PaginationCustom } from "@/components/pagination";
 
 export async function generateMetadata({ searchParams }) {
   return {
@@ -38,11 +39,16 @@ const Page = async ({ searchParams }) => {
           </h1>
           <CardListAnime api={data} />
           <div className="my-10">
-            <Halaman
+            <PaginationCustom
+              currentPage={page}
+              maxPagesToShow={5}
+              totalPages={pagination?.last_visible_page}
+            />
+            {/* <Halaman
               lastVisiblePage={pagination?.last_visible_page}
               currentPage={pagination?.current_page}
               q={q}
-            />
+            /> */}
           </div>
         </div>
       )}

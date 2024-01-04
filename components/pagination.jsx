@@ -1,3 +1,7 @@
+"use client";
+import { useCallback } from "react";
+import { useSearchParams } from "next/navigation";
+
 import {
   Pagination,
   PaginationContent,
@@ -18,11 +22,25 @@ export const PaginationCustom = ({
     maxPagesToShow,
     totalPages,
   });
+
+  const searchParams = useSearchParams();
+
+  const createQueryString = useCallback(
+    (name, value) => {
+      const params = new URLSearchParams(searchParams);
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
   return (
     <Pagination>
       <PaginationContent>
         {currentPage > 1 && (
-          <PaginationPrevious href={`?page=${parseInt(currentPage) - 1}`} />
+          <PaginationPrevious
+            href={`?${createQueryString("page", parseInt(currentPage) - 1)}`}
+          />
         )}
 
         {listPageToShow.map((idxPage, idx) => {
@@ -32,7 +50,7 @@ export const PaginationCustom = ({
           return (
             <PaginationLink
               key={idx}
-              href={`?page=${idxPage}`}
+              href={`?${createQueryString("page", idxPage)}`}
               isActive={currentPage == idxPage}
             >
               {idxPage}
@@ -40,7 +58,9 @@ export const PaginationCustom = ({
           );
         })}
         {currentPage < totalPages ? (
-          <PaginationNext href={`?page=${parseInt(currentPage) + 1}`} />
+          <PaginationNext
+            href={`?${createQueryString("page", parseInt(currentPage) + 1)}`}
+          />
         ) : null}
       </PaginationContent>
     </Pagination>
