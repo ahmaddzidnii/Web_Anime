@@ -2,16 +2,17 @@
 // import { HeadingSkeleton } from "./_components/SkeletonComponen/HeadingSkeleton";
 
 import { Card, CardHeader } from "@/components/ui/card";
-import { HeadingSkeleton } from "../_components/SkeletonComponen/HeadingSkeleton";
 
 const Loading = () => {
   return (
     <>
       <div className="px-3 sm:px-4 md:px-5 lg:px-10 ">
-        <HeadingSkeleton />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-5">
           {[...Array(8)].map((_, index) => (
-            <Card key={index} className="shadow-lg">
+            <Card
+              key={index}
+              className="shadow-lg"
+            >
               <div className="relative w-full h-[300px]">
                 {/* Skeleton */}
                 <div className="absolute inset-0 bg-gradient-to-r from-gray-300 via-gray-200 to-gray-300 opacity-50 animate-pulse"></div>

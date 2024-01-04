@@ -7,8 +7,34 @@ import { Navigation, Pagination } from "swiper/modules";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import SkeletonLoaderImage from "./SkeletonLoaderImage";
+import { useEffect, useState } from "react";
+import { CardSkeleton } from "@/components/skeleton";
+import { TextTruncation } from "@/components/text-truncate";
 
 export const PalingPopular = ({ data }) => {
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return (
+      <div className="grid grid-cols-12 gap-x-5">
+        <div className="col-span-3">
+          <CardSkeleton />
+        </div>
+        <div className="col-span-3">
+          <CardSkeleton />
+        </div>
+        <div className="col-span-3">
+          <CardSkeleton />
+        </div>
+        <div className="col-span-3">
+          <CardSkeleton />
+        </div>
+      </div>
+    );
+  }
   return (
     <>
       <Swiper
@@ -41,15 +67,32 @@ export const PalingPopular = ({ data }) => {
                 <Card className="shadow-lg">
                   <div className="relative w-[full] h-[300px]">
                     <SkeletonLoaderImage />
-                    <Image loading="lazy" quality={100} className="w-full h-full object-cover" src={data.images.jpg.large_image_url} fill alt={data.title} />
+                    <Image
+                      loading="lazy"
+                      quality={100}
+                      className="w-full h-full object-cover"
+                      src={data.images.jpg.large_image_url}
+                      fill
+                      alt={data.title}
+                    />
                   </div>
 
                   <CardHeader className="flex flex-col justify-between">
                     <div className="h-10 sm:h-20">
-                      <CardTitle className="text-sm xl:text-lg text-justify">{data.title}</CardTitle>
+                      <CardTitle className="text-sm xl:text-lg ">
+                        <TextTruncation
+                          originalText={data?.title}
+                          maxLength={40}
+                        />
+                      </CardTitle>
                     </div>
-                    <Button asChild size="sm">
-                      <Link href={`/anime/details/${data.mal_id}`}>Lihat Deskripsi</Link>
+                    <Button
+                      asChild
+                      size="sm"
+                    >
+                      <Link href={`/anime/details/${data.mal_id}`}>
+                        Lihat Deskripsi
+                      </Link>
                     </Button>
                   </CardHeader>
                 </Card>
@@ -62,55 +105,93 @@ export const PalingPopular = ({ data }) => {
 };
 
 export const AnakAnak = ({ data }) => {
-  return (
-    <>
-      <Swiper
-        slidesPerView={3}
-        spaceBetween={30}
-        navigation={true}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[Pagination, Navigation]}
-        className="mySwiper"
-        breakpoints={{
-          0: {
-            slidesPerView: 1,
-          },
-          576: {
-            slidesPerView: 2,
-          },
-          768: {
-            slidesPerView: 3,
-          },
-          1024: {
-            slidesPerView: 4,
-          },
-        }}
-      >
-        {data &&
-          data.map((data) => {
-            return (
-              <SwiperSlide key={data.mal_id}>
-                <Card className="shadow-lg">
-                  <div className="relative w-[full] h-[300px]">
-                    <SkeletonLoaderImage />
-                    <Image loading="lazy" quality={100} className="w-full h-full object-cover" src={data.images.jpg.large_image_url} fill alt={data.title} />
-                  </div>
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
-                  <CardHeader className="flex flex-col justify-between">
-                    <div className="h-10 sm:h-20">
-                      <CardTitle className="text-sm xl:text-lg text-justify">{data.title}</CardTitle>
-                    </div>
-                    <Button asChild size="sm">
-                      <Link href={`/anime/details/${data.mal_id}`}>Lihat Deskripsi</Link>
-                    </Button>
-                  </CardHeader>
-                </Card>
-              </SwiperSlide>
-            );
-          })}
-      </Swiper>
-    </>
+  if (!isMounted) {
+    return (
+      <div className="grid grid-cols-12 gap-x-5">
+        <div className="col-span-3">
+          <CardSkeleton />
+        </div>
+        <div className="col-span-3">
+          <CardSkeleton />
+        </div>
+        <div className="col-span-3">
+          <CardSkeleton />
+        </div>
+        <div className="col-span-3">
+          <CardSkeleton />
+        </div>
+      </div>
+    );
+  }
+  return (
+    <Swiper
+      slidesPerView={3}
+      spaceBetween={30}
+      navigation={true}
+      pagination={{
+        clickable: true,
+      }}
+      modules={[Pagination, Navigation]}
+      className="mySwiper"
+      breakpoints={{
+        0: {
+          slidesPerView: 1,
+        },
+        576: {
+          slidesPerView: 2,
+        },
+        768: {
+          slidesPerView: 3,
+        },
+        1024: {
+          slidesPerView: 4,
+        },
+      }}
+    >
+      {data &&
+        data.map((data) => {
+          return (
+            <SwiperSlide key={data.mal_id}>
+              <Card className="shadow-lg">
+                <div className="relative w-[full] h-[300px]">
+                  <SkeletonLoaderImage />
+                  <Image
+                    loading="lazy"
+                    quality={100}
+                    className="w-full h-full object-cover"
+                    src={data.images.jpg.large_image_url}
+                    fill
+                    alt={data.title}
+                  />
+                </div>
+
+                <CardHeader className="flex flex-col justify-between">
+                  <div className="h-10 sm:h-20">
+                    <CardTitle className="text-sm xl:text-lg">
+                      <TextTruncation
+                        originalText={data.title}
+                        maxLength={40}
+                      />
+                    </CardTitle>
+                  </div>
+                  <Button
+                    asChild
+                    size="sm"
+                  >
+                    <Link href={`/anime/details/${data.mal_id}`}>
+                      Lihat Deskripsi
+                    </Link>
+                  </Button>
+                </CardHeader>
+              </Card>
+            </SwiperSlide>
+          );
+        })}
+    </Swiper>
   );
 };
