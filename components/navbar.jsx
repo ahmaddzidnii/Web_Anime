@@ -1,22 +1,13 @@
-"use client";
-
 import Image from "next/image";
 
-import { useScrollTop } from "@/hooks/use-scroll-navbar";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "@/components/mode-toggle";
-import { Form } from "@/components/form";
+import { DialogSearch } from "./dialog-search";
 
 export const Navbar = () => {
-  const scrolled = useScrollTop();
   return (
-    <nav
-      className={cn(
-        "z-50 bg-background dark:bg-[#1f1f1f] fixed top-0  w-full p-6",
-        scrolled && "border-b shadow-sm"
-      )}
-    >
-      <div className="container flex items-center justify-between">
+    <header className="max-w-screen z-50 bg-background dark:bg-[#1f1f1f] sticky top-0  w-full p-6 border-b shadow-sm backdrop-blur supports-[backdrop-filter]:bg-background/60 dark:supports-[backdrop-filter]:bg-[#1f1f1f]/60">
+      <nav className="container flex items-center justify-between">
         <a href="/anime">
           <div className="flex  items-center gap-x-2">
             <Image
@@ -40,10 +31,11 @@ export const Navbar = () => {
             </p>
           </div>
         </a>
-
-        <Form />
-        <ModeToggle />
-      </div>
-    </nav>
+        <div className="flex items-center gap-x-4">
+          <DialogSearch />
+          <ModeToggle />
+        </div>
+      </nav>
+    </header>
   );
 };

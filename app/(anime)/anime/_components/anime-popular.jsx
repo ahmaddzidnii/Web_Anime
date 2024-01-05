@@ -14,7 +14,7 @@ export const PopularAnime = async () => {
         href="/anime/top"
       />
 
-      <PalingPopular data={animePopular.data} />
+      <PalingPopular data={animePopular?.data} />
     </section>
   );
 };
