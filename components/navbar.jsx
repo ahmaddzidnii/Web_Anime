@@ -1,12 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 
 import { useScrollTop } from "@/hooks/use-scroll-navbar";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "@/components/mode-toggle";
-import Form from "@/app/(anime)/anime/_components/Form";
+import { Form } from "@/components/form";
 
 export const Navbar = () => {
   const scrolled = useScrollTop();
@@ -18,7 +17,7 @@ export const Navbar = () => {
       )}
     >
       <div className="container flex items-center justify-between">
-        <Link href="/anime">
+        <a href="/anime">
           <div className="flex  items-center gap-x-2">
             <Image
               priority
@@ -40,7 +39,7 @@ export const Navbar = () => {
               ahmadzidni.site
             </p>
           </div>
-        </Link>
+        </a>
 
         <Form />
         <ModeToggle />
