@@ -1,6 +1,6 @@
 import { getAnimeTop } from "@/services/anime.service";
 import { PalingPopular } from "./Kategori";
-import HeadingAnime from "./headingAnime";
+import { HeadingAnime } from "@/components/heading-anime";
 
 export const PopularAnime = async () => {
   const animePopular = await getAnimeTop({

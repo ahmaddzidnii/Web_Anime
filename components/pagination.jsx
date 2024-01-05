@@ -40,16 +40,23 @@ export const PaginationCustom = ({
       <PaginationContent>
         {currentPage > 1 && (
           <PaginationPrevious
+            className="text-xs"
             href={`?${createQueryString("page", parseInt(currentPage) - 1)}`}
           />
         )}
 
         {listPageToShow.map((idxPage, idx) => {
           if (idxPage === "...") {
-            return <PaginationEllipsis key={idx} />;
+            return (
+              <PaginationEllipsis
+                className="text-xs"
+                key={idx}
+              />
+            );
           }
           return (
             <PaginationLink
+              className="text-xs"
               key={idx}
               href={`?${createQueryString("page", idxPage)}`}
               isActive={currentPage == idxPage}
@@ -60,6 +67,7 @@ export const PaginationCustom = ({
         })}
         {currentPage < totalPages ? (
           <PaginationNext
+            className="text-xs"
             href={`?${createQueryString("page", parseInt(currentPage) + 1)}`}
           />
         ) : null}

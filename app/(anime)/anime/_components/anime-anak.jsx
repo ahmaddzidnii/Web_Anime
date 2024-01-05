@@ -1,14 +1,9 @@
-import { getAnimeAnak } from "@/services/api";
-import HeadingAnime from "./headingAnime";
+import { getAnimeAnak } from "@/services/anime.service";
 import { AnakAnak } from "./Kategori";
-import { getAnimeTop } from "@/services/anime.service";
+import { HeadingAnime } from "@/components/heading-anime";
 
 export const AnimeAnak = async () => {
-  const animeAnak = await getAnimeTop({
-    resource: "/top/anime",
-    sfw: true,
-    query: "&rating=pg",
-  });
+  const animeAnak = await getAnimeAnak(10, 1);
 
   return (
     <div className="mt-5">
@@ -16,7 +11,7 @@ export const AnimeAnak = async () => {
         title="Anak Anak"
         href="/anime/children"
       />
-      <AnakAnak data={animeAnak} />
+      <AnakAnak data={animeAnak.data} />
     </div>
   );
 };

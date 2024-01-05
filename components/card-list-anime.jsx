@@ -1,19 +1,19 @@
-"use client";
+import Image from "next/image";
+import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
-import Link from "next/link";
-import SkeletonLoaderImage from "./SkeletonLoaderImage";
-import Image from "next/image";
+import SkeletonLoaderImage from "@/app/(anime)/anime/_components/SkeletonLoaderImage"; 
 import { TextTruncation } from "@/components/text-truncate";
 
-const CardListAnime = ({ api }) => {
+export const CardListAnime = ({ data }) => {
   return (
     <div className="grid grid-cols-1  sm:grid-cols-2  lg:grid-cols-4 gap-6 p-1">
-      {api &&
-        api.map((data) => {
+      {data &&
+        data.map((item) => {
           return (
             <Card
-              key={data.mal_id}
+              key={item.mal_id}
               className="shadow-lg"
             >
               <div className="relative w-[full] h-[300px]">
@@ -22,9 +22,9 @@ const CardListAnime = ({ api }) => {
                   loading="lazy"
                   quality={100}
                   className="w-full h-full object-cover"
-                  src={data.images.jpg.large_image_url}
+                  src={item.images.jpg.large_image_url}
                   fill
-                  alt={data.title}
+                  alt={item.title}
                 />
               </div>
 
@@ -32,7 +32,7 @@ const CardListAnime = ({ api }) => {
                 <div className="h-10 sm:h-20">
                   <CardTitle className="text-sm xl:text-lg">
                     <TextTruncation
-                      originalText={data.title}
+                      originalText={item.title}
                       maxLength={40}
                     />
                   </CardTitle>
@@ -41,7 +41,7 @@ const CardListAnime = ({ api }) => {
                   asChild
                   size="sm"
                 >
-                  <Link href={`/anime/details/${data.mal_id}`}>
+                  <Link href={`/anime/details/${item.mal_id}`}>
                     Lihat Deskripsi
                   </Link>
                 </Button>
@@ -52,5 +52,3 @@ const CardListAnime = ({ api }) => {
     </div>
   );
 };
-
-export default CardListAnime;

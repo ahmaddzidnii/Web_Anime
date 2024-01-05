@@ -20,16 +20,16 @@ export const PalingPopular = ({ data }) => {
   if (!isMounted) {
     return (
       <div className="grid grid-cols-12 gap-x-5">
-        <div className="col-span-3">
+        <div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3">
           <CardSkeleton />
         </div>
-        <div className="col-span-3">
+        <div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 hidden sm:block ">
           <CardSkeleton />
         </div>
-        <div className="col-span-3">
+        <div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 hidden md:block">
           <CardSkeleton />
         </div>
-        <div className="col-span-3">
+        <div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 hidden lg:block">
           <CardSkeleton />
         </div>
       </div>
@@ -113,16 +113,16 @@ export const AnakAnak = ({ data }) => {
   if (!isMounted) {
     return (
       <div className="grid grid-cols-12 gap-x-5">
-        <div className="col-span-3">
+        <div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3">
           <CardSkeleton />
         </div>
-        <div className="col-span-3">
+        <div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 hidden sm:block ">
           <CardSkeleton />
         </div>
-        <div className="col-span-3">
+        <div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 hidden md:block">
           <CardSkeleton />
         </div>
-        <div className="col-span-3">
+        <div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 hidden lg:block">
           <CardSkeleton />
         </div>
       </div>

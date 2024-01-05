@@ -1,6 +1,6 @@
-import { getAnimeAnak } from "@/services/api";
-import CardListAnime from "../_components/cardListAnime";
+import { getAnimeAnak } from "@/services/anime.service";
 import { PaginationCustom } from "@/components/pagination";
+import { CardListAnime } from "@/components/card-list-anime";
 
 const Page = async ({ searchParams }) => {
   let { page } = searchParams;
@@ -11,8 +11,8 @@ const Page = async ({ searchParams }) => {
   const { data, pagination } = animeAnak;
 
   return (
-    <div className="px-3 sm:px-4 md:px-5 lg:px-10">
-      <CardListAnime api={data} />
+    <>
+      <CardListAnime data={data} />
       <div className="my-10">
         <PaginationCustom
           currentPage={page}
@@ -20,7 +20,7 @@ const Page = async ({ searchParams }) => {
           totalPages={pagination.last_visible_page}
         />
       </div>
-    </div>
+    </>
   );
 };
 
