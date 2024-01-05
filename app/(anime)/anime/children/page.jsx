@@ -2,7 +2,10 @@ import { getAnimeAnak } from "@/services/anime.service";
 import { PaginationCustom } from "@/components/pagination";
 import { CardListAnime } from "@/components/card-list-anime";
 
-const Page = async ({ searchParams }) => {
+export const metadata = {
+  title: "Anime for Children",
+};
+const AnimeChildrenPage = async ({ searchParams }) => {
   let { page } = searchParams;
   if (parseInt(page) < 1 || isNaN(page) || !page) {
     page = 1;
@@ -24,4 +27,4 @@ const Page = async ({ searchParams }) => {
   );
 };
 
-export default Page;
+export default AnimeChildrenPage;

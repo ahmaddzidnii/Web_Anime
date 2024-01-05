@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
-import SkeletonLoaderImage from "@/app/(anime)/anime/_components/SkeletonLoaderImage"; 
+import SkeletonLoaderImage from "@/app/(anime)/anime/_components/SkeletonLoaderImage";
 import { TextTruncation } from "@/components/text-truncate";
 
 export const CardListAnime = ({ data }) => {
@@ -14,7 +14,7 @@ export const CardListAnime = ({ data }) => {
           return (
             <Card
               key={item.mal_id}
-              className="shadow-lg"
+              className="shadow-lg hover:-translate-y-[1px] transition"
             >
               <div className="relative w-[full] h-[300px]">
                 <SkeletonLoaderImage />

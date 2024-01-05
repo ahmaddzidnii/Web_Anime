@@ -5,7 +5,7 @@ export const metadata = {
   title: "List Anime",
 };
 
-const Page = async () => {
+const AnimePage = async () => {
   return (
     <div className="w-full">
       <PopularAnime />
@@ -14,4 +14,4 @@ const Page = async () => {
   );
 };
 
-export default Page;
+export default AnimePage;

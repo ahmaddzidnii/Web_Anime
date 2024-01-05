@@ -6,9 +6,7 @@ import { CardListAnime } from "@/components/card-list-anime";
 
 export async function generateMetadata({ searchParams }) {
   return {
-    title: {
-      absolute: `Result of ${searchParams.q}`,
-    },
+    title: ` ${searchParams.q}`,
   };
 }
 
@@ -19,6 +17,19 @@ const Page = async ({ searchParams }) => {
   }
   const resutsSearch = await getAnimeQuery(q, page);
   const { data, pagination } = resutsSearch;
+
+  if (data.length === 0) {
+    return (
+      <div className="-mt-20">
+        <div className=" min-h-screen flex justify-center items-center gap-5">
+          <GiPeriscope className="text-4xl" />
+          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold  tracking-wide mb-5">
+            Tidak ada anime yang ditemukan.
+          </h1>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>

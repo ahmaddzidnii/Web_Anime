@@ -1,6 +1,3 @@
-// import { Card, CardHeader } from "@/components/ui/card";
-// import { HeadingSkeleton } from "./_components/SkeletonComponen/HeadingSkeleton";
-
 import { Card, CardHeader } from "@/components/ui/card";
 
 const Loading = () => {

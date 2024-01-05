@@ -2,7 +2,11 @@ import { getAnimeTop } from "@/services/anime.service";
 import { PaginationCustom } from "@/components/pagination";
 import { CardListAnime } from "@/components/card-list-anime";
 
-const TopPage = async ({ searchParams }) => {
+export const metadata = {
+  title: "Top Anime",
+};
+
+const TopAnimePage = async ({ searchParams }) => {
   let { page } = searchParams;
   if (parseInt(page) < 1 || isNaN(page) || !page) {
     page = 1;
@@ -12,7 +16,7 @@ const TopPage = async ({ searchParams }) => {
     limit: 24,
     query: `&page=${page}`,
   });
-
+  
   const { data, pagination } = animePopular;
   return (
     <div className="min-h-screen">
@@ -28,4 +32,4 @@ const TopPage = async ({ searchParams }) => {
   );
 };
 
-export default TopPage;
+export default TopAnimePage;

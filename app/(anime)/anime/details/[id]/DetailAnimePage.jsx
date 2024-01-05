@@ -1,6 +1,10 @@
 import Image from "next/image";
 import { BsFilePersonFill } from "react-icons/bs";
-import { BiSolidUserDetail, BiSolidMoviePlay, BiSolidLike } from "react-icons/bi";
+import {
+  BiSolidUserDetail,
+  BiSolidMoviePlay,
+  BiSolidLike,
+} from "react-icons/bi";
 import { MdReviews } from "react-icons/md";
 import DetailComponents from "./_components/DetailComponents";
 import CharactersComponents from "./_components/CharactersComponents";
@@ -53,7 +57,7 @@ const DetailAnimePage = ({ api, searchParams }) => {
   const tabIcon = tabInfo[tab] ? tabInfo[tab].icon : <BiSolidUserDetail />;
 
   return (
-    <main className="p-4 md:p-7 overflow-y-scroll h-full w-full">
+    <main className="p-4 md:p-7 overflow-y-scroll max-h-screen w-full">
       <div className="flex gap-x-5 -mt-5 mb-5 text-4xl">
         {tabIcon}
         <h1 className="font-bold">{tabTitle}</h1>
@@ -61,7 +65,12 @@ const DetailAnimePage = ({ api, searchParams }) => {
       <div className="flex flex-col lg:flex-row gap-5 justify-center">
         <div className="mx-auto w-full lg:w-[350px]  h-[400px] relative">
           <SkeletonLoaderImage />
-          <Image src={api?.images.jpg.large_image_url} fill className="object-cover" alt={api?.title} />
+          <Image
+            src={api?.images.jpg.large_image_url}
+            fill
+            className="object-cover"
+            alt={api?.title}
+          />
         </div>
 
         <div className=" w-full h-auto">

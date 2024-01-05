@@ -6,7 +6,7 @@ import { GiPeriscope } from "react-icons/gi";
 export async function generateMetadata({ params }) {
   const detailsAnime = await getDetailAnimeById(params.id);
   return {
-    title: { absolute: detailsAnime ? `Details of ${detailsAnime?.title_english}` : "Tidak Ditemukan" },
+    title: detailsAnime ? `${detailsAnime?.title_english}` : "Tidak Ditemukan",
   };
 }
 const Page = async ({ params, searchParams }) => {
@@ -16,7 +16,9 @@ const Page = async ({ params, searchParams }) => {
       <div className="px-3 sm:px-4 md:px-5 lg:px-10 -mt-20">
         <div className=" min-h-screen flex justify-center items-center gap-5">
           <GiPeriscope className="text-4xl" />
-          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold  tracking-wide mb-5">Tidak ada hasil untuk kata kunci ini.</h1>
+          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold  tracking-wide mb-5">
+            Tidak ada hasil untuk kata kunci ini.
+          </h1>
         </div>
       </div>
     );
@@ -25,7 +27,10 @@ const Page = async ({ params, searchParams }) => {
     <>
       <div className="h-full flex">
         <SideBarDetailAnime />
-        <DetailAnimePage api={detailsAnime} searchParams={searchParams} />
+        <DetailAnimePage
+          api={detailsAnime}
+          searchParams={searchParams}
+        />
       </div>
     </>
   );
