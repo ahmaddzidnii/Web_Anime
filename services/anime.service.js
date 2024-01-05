@@ -10,7 +10,7 @@ export async function getAnimeTop({
     const response = await axiosInstance.get(
       `${resource}?sfw=${sfw}&limit=${limit}${query}`
     );
-    return response.data.data;
+    return response.data;
   } catch (error) {}
 }
 
@@ -19,7 +19,7 @@ export const getAnimeAnak = async (limit, page = 1) => {
     const response = await axiosInstance.get(
       `anime?sfw=true&rating=pg&limit=${limit}&page=${page}&order_by=popularity`
     );
-    const data = response.data;
+    const { data } = response;
     return data;
   } catch (error) {
     console.error("Error fetching popular anime:", error.message);

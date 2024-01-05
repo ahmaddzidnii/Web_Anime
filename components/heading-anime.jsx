@@ -11,7 +11,7 @@ import {
 export const HeadingAnime = ({ title, href }) => {
   return (
     <div className="flex flex-row  justify-between items-center  mb-5">
-      <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold  tracking-wide">
+      <h1 className="text-sm sm:text-lg md:text-2xl lg:text-3xl font-bold  tracking-wide">
         {title}
       </h1>
 
