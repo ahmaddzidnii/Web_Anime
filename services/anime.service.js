@@ -35,3 +35,12 @@ export const getCharacterById = async (id) => {
     return [];
   }
 };
+
+export const getEpisodesAnimeById = async (id) => {
+  try {
+    const response = await axiosInstance.get(`/anime/${id}/videos`);
+    return response.data.data;
+  } catch (error) {
+    return [];
+  }
+};

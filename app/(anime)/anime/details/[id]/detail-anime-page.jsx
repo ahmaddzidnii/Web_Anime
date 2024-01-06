@@ -59,9 +59,13 @@ export const DetailAnimePage = ({ api, searchParams, params }) => {
               <CharactersComponent params={params} />
             </Suspense>
           )}
-          {tab === "episodes" && <EpisodesComponent />}
-          {tab === "recommendations" && <EpisodesComponent />}
-          {tab === "reviews" && <EpisodesComponent />}
+          {tab === "episodes" && (
+            <Suspense fallback={<div>Loading...</div>}>
+              <EpisodesComponent params={params} />
+            </Suspense>
+          )}
+          {/* {tab === "recommendations" && <EpisodesComponent />}
+          {tab === "reviews" && <EpisodesComponent />} */}
         </div>
       </div>
     </main>
