@@ -1,6 +1,6 @@
 # List Anime
 
-![List Anime Logo](link/to/logo.png)
+<!-- ![List Anime Logo](link/to/logo.png) -->
 
 Selamat datang di List Anime! Proyek ini bertujuan menyediakan platform yang menyenangkan untuk menjelajahi dan menemukan informasi tentang anime favorit Anda. Temukan ratusan judul anime, lihat detail, karakter, episode, dan nikmati pengalaman menonton yang lebih baik.
 
@@ -21,8 +21,8 @@ Selamat datang di List Anime! Proyek ini bertujuan menyediakan platform yang men
 Jika Anda ingin menjalankan List Anime secara lokal:
 
 ```bash
-git clone https://github.com/your-username/list-anime.git
-cd list-anime
+git clone https://github.com/ahmaddzidnii/Web_Anime.git
+cd Web_Anime
 npm install
 npm start
 ```
