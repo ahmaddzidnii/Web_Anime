@@ -1,6 +1,6 @@
 import { YtIframe } from "@/components/iframe/yt";
 
-export const DetailComponents = ({ api }) => {
+export const DetailComponent = ({ api }) => {
   return (
     <>
       <div className="w-full bg-slate-300 py-5 rounded-lg">

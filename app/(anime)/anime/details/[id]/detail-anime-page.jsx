@@ -7,43 +7,18 @@ import {
   BiSolidLike,
 } from "react-icons/bi";
 
-import { DetailComponents } from "./_components/DetailComponents";
-import { CharactersComponents } from "./_components/CharactersComponents";
-import { EpisodesComponent } from "./_components/EpisodesComponent";
+import { DetailComponent } from "./_components/detail-component";
+import { CharactersComponent } from "./_components/characther-component";
+import { EpisodesComponent } from "./_components/episode-component";
 import SkeletonLoaderImage from "../../_components/SkeletonLoaderImage";
 
 export const DetailAnimePage = ({ api, searchParams }) => {
   const { tab } = searchParams;
 
-  let detail;
-
-  switch (tab) {
-    case "details":
-      detail = true;
-      break;
-    case undefined:
-      detail = true;
-      break;
-    case "":
-      detail = true;
-      break;
-    case "characters":
-      detail = false;
-      break;
-    case "episodes":
-      detail = false;
-      break;
-    case "recommendations":
-      detail = false;
-      break;
-    case "reviews":
-      detail = false;
-      break;
-
-    default:
-      detail = true;
-      break;
-  }
+  const detailTabs = ["details", undefined, ""];
+  const isdetail =
+    detailTabs.includes(tab) ||
+    !["characters", "episodes", "recommendations", "reviews"].includes(tab);
 
   const tabInfo = {
     details: { title: "Details", icon: <BiSolidUserDetail /> },
@@ -52,8 +27,6 @@ export const DetailAnimePage = ({ api, searchParams }) => {
     recommendations: { title: "Recommendations", icon: <BiSolidLike /> },
     reviews: { title: "Reviews", icon: <MdReviews /> },
   };
-
-  // Judul tab dan ikon berdasarkan tab
   const tabTitle = tabInfo[tab] ? tabInfo[tab].title : "Details";
   const tabIcon = tabInfo[tab] ? tabInfo[tab].icon : <BiSolidUserDetail />;
 
@@ -79,15 +52,11 @@ export const DetailAnimePage = ({ api, searchParams }) => {
             {api?.title} <span className="italic">{api?.title_japanese}</span>
           </h1>
 
-          {/* Section Tab */}
-
-          {detail ? <DetailComponents api={api} /> : null}
-          {tab === "characters" && <CharactersComponents />}
+          {isdetail && <DetailComponent api={api} />}
+          {tab === "characters" && <CharactersComponent />}
           {tab === "episodes" && <EpisodesComponent />}
           {tab === "recommendations" && <EpisodesComponent />}
           {tab === "reviews" && <EpisodesComponent />}
-
-          {/* Section Tab */}
         </div>
       </div>
     </main>

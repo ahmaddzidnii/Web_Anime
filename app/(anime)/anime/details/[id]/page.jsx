@@ -1,8 +1,8 @@
 import { GiPeriscope } from "react-icons/gi";
 
 import { getDetailAnimeById } from "@/services/api";
-import SideBarDetailAnime from "./_components/SideBarDetailAnime";
 import { DetailAnimePage } from "./detail-anime-page";
+import { SideBarDetailAnime } from "./_components/sidebar-detail-anime";
 
 export async function generateMetadata({ params }) {
   const detailsAnime = await getDetailAnimeById(params.id);

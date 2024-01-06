@@ -10,9 +10,10 @@ import {
   BiSolidMoviePlay,
   BiSolidLike,
 } from "react-icons/bi";
+
 import { Skeleton } from "@/components/ui/skeleton";
 
-const SideBarDetailAnime = () => {
+export const SideBarDetailAnime = () => {
   const searchParams = useSearchParams();
   const tab = searchParams.get("tab");
 
@@ -31,7 +32,11 @@ const SideBarDetailAnime = () => {
       text: "Details",
       icon: <BiSolidUserDetail />,
       href: "?tab=details",
-      isActive: tab == null || tab == "details" ? true : false,
+      isActive:
+        tab == null ||
+        !["characters", "episodes", "recommendations", "reviews"].includes(tab)
+          ? true
+          : false,
     },
     {
       text: "Characters",
@@ -63,13 +68,11 @@ const SideBarDetailAnime = () => {
     setIsMounted(true);
   }, []);
 
-  // Menambahkan event listener untuk event resize saat komponen dimuat
   useEffect(() => {
-    handleResize(); // Panggil fungsi handleResize saat komponen dimuat untuk mengatur state awal
+    handleResize();
 
     window.addEventListener("resize", handleResize);
 
-    // Membersihkan event listener saat komponen tidak lagi digunakan
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -131,4 +134,3 @@ const SidebarSkeleton = () => {
     </div>
   );
 };
-export default SideBarDetailAnime;
