@@ -5,7 +5,7 @@ const HomePageLayout = ({ children }) => {
   return (
     <div className="h-auto">
       <Navbar />
-      <main className="h-full pt-14 container">{children}</main>
+      <main className="h-full pt-14 container-custom">{children}</main>
       <Footer />
     </div>
   );

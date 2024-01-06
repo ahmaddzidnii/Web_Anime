@@ -2,6 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+.container-custom {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 2rem;
+  padding-left: 2rem;
+}
+@media (min-width: 1400px) {
+  .container-custom {
+    max-width: 1400px;
+  }
+}
+@media (max-width: 640px) {
+  .container-custom {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -81,4 +100,3 @@ body,
     @apply bg-background text-foreground;
   }
 }
-

@@ -1,17 +1,18 @@
 import Image from "next/image";
 import { BsFilePersonFill } from "react-icons/bs";
+import { MdReviews } from "react-icons/md";
 import {
   BiSolidUserDetail,
   BiSolidMoviePlay,
   BiSolidLike,
 } from "react-icons/bi";
-import { MdReviews } from "react-icons/md";
-import DetailComponents from "./_components/DetailComponents";
-import CharactersComponents from "./_components/CharactersComponents";
-import EpisodesComponent from "./_components/EpisodesComponent";
+
+import { DetailComponents } from "./_components/DetailComponents";
+import { CharactersComponents } from "./_components/CharactersComponents";
+import { EpisodesComponent } from "./_components/EpisodesComponent";
 import SkeletonLoaderImage from "../../_components/SkeletonLoaderImage";
 
-const DetailAnimePage = ({ api, searchParams }) => {
+export const DetailAnimePage = ({ api, searchParams }) => {
   const { tab } = searchParams;
 
   let detail;
@@ -92,5 +93,3 @@ const DetailAnimePage = ({ api, searchParams }) => {
     </main>
   );
 };
-
-export default DetailAnimePage;

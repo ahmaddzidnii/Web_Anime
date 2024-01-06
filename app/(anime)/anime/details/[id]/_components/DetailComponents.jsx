@@ -1,14 +1,14 @@
-"use client";
-import LiteYouTubeEmbed from "react-lite-youtube-embed";
-import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
+import { YtIframe } from "@/components/iframe/yt";
 
-const DetailComponents = ({ api }) => {
+export const DetailComponents = ({ api }) => {
   return (
     <>
       <div className="w-full bg-slate-300 py-5 rounded-lg">
         <div className="flex">
           <div className="flex flex-col px-4 justify-center items-center text-center border-e-2 border-slate-600">
-            <span className="bg-gray-600 text-slate-100 w-full px-3  rounded-lg">Score</span>
+            <span className="bg-gray-600 text-slate-100 w-full px-3  rounded-lg">
+              Score
+            </span>
             <h1 className="text-2xl font-bold text-slate-800">{api.score}</h1>
             <p className="text-xs text-slate-800">{api.scored_by} users</p>
           </div>
@@ -33,14 +33,22 @@ const DetailComponents = ({ api }) => {
             {api.genres &&
               api.genres.map((data) => {
                 return (
-                  <span key={data.mal_id} className="bg-gray-600 text-slate-100 text-lg  px-3  rounded-lg">
+                  <span
+                    key={data.mal_id}
+                    className="bg-gray-600 text-slate-100 text-lg  px-3  rounded-lg"
+                  >
                     {data.name}
                   </span>
                 );
               })}
           </div>
         </div>
-        {api?.trailer.youtube_id && <LiteYouTubeEmbed id={api?.trailer.youtube_id} title={api?.title_japanese} poster="maxresdefault" />}
+        {api?.trailer.youtube_id && (
+          <YtIframe
+            id={api?.trailer.youtube_id}
+            title={api?.title_japanese}
+          />
+        )}
       </div>
       <div className="w-full bg-slate-300 p-5 rounded-lg mt-5  text-slate-800">
         <h1 className="text-xl font-bold">Sinopsis :</h1>
@@ -49,5 +57,3 @@ const DetailComponents = ({ api }) => {
     </>
   );
 };
-
-export default DetailComponents;
