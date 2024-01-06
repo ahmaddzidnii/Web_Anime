@@ -6,13 +6,14 @@ import {
   BiSolidMoviePlay,
   BiSolidLike,
 } from "react-icons/bi";
+import { Suspense } from "react";
 
 import { DetailComponent } from "./_components/detail-component";
 import { CharactersComponent } from "./_components/characther-component";
 import { EpisodesComponent } from "./_components/episode-component";
 import SkeletonLoaderImage from "../../_components/SkeletonLoaderImage";
 
-export const DetailAnimePage = ({ api, searchParams }) => {
+export const DetailAnimePage = ({ api, searchParams, params }) => {
   const { tab } = searchParams;
 
   const detailTabs = ["details", undefined, ""];
@@ -53,7 +54,11 @@ export const DetailAnimePage = ({ api, searchParams }) => {
           </h1>
 
           {isdetail && <DetailComponent api={api} />}
-          {tab === "characters" && <CharactersComponent />}
+          {tab === "characters" && (
+            <Suspense fallback={<div>Loading...</div>}>
+              <CharactersComponent params={params} />
+            </Suspense>
+          )}
           {tab === "episodes" && <EpisodesComponent />}
           {tab === "recommendations" && <EpisodesComponent />}
           {tab === "reviews" && <EpisodesComponent />}

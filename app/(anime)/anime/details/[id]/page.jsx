@@ -31,6 +31,7 @@ const Page = async ({ params, searchParams }) => {
         <DetailAnimePage
           api={detailsAnime}
           searchParams={searchParams}
+          params={params}
         />
       </div>
     </>

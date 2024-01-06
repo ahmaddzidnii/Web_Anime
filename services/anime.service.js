@@ -26,3 +26,12 @@ export const getAnimeAnak = async (limit, page = 1) => {
     return [];
   }
 };
+
+export const getCharacterById = async (id) => {
+  try {
+    const response = await axiosInstance.get(`/anime/${id}/characters`);
+    return response.data.data;
+  } catch (error) {
+    return [];
+  }
+};
