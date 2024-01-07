@@ -1,11 +1,12 @@
 import Image from "next/image";
 import { FaGithub } from "react-icons/fa";
-import { FaCircleUser } from "react-icons/fa6";
 import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "@/components/mode-toggle";
 import { DialogSearch } from "./dialog-search";
+import { ProfileUser } from "@/components/auth/profile-user";
+import { Suspense } from "react";
 
 export const Navbar = () => {
   return (
@@ -39,7 +40,7 @@ export const Navbar = () => {
               <FaGithub className="h-[1.2rem] w-[1.2rem] md:w-6 md:h-6" />
             </Link>
             <ModeToggle />
-            <FaCircleUser className="h-[1.2rem] w-[1.2rem] md:w-6 md:h-6" />
+            <ProfileUser />
           </nav>
         </div>
       </div>

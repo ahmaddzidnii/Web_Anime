@@ -1,14 +1,14 @@
-import { ThemeProvider } from "@/components/ui/providers/theme-provider";
 import { Poppins } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-cards";
 
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "@/components/ui/providers/theme-provider";
+import { ClerkCustomProvider } from "@/components/ui/providers/clerk-provider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -34,14 +34,16 @@ export default function RootLayout({ children }) {
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
-          storageKey="this theme?"
+          storageKey="theme"
         >
-          <NextTopLoader
-            showSpinner={false}
-            height={4}
-          />
-          <Toaster />
-          {children}
+          <ClerkCustomProvider>
+            <NextTopLoader
+              showSpinner={false}
+              height={4}
+            />
+            <Toaster />
+            {children}
+          </ClerkCustomProvider>
         </ThemeProvider>
       </body>
     </html>
