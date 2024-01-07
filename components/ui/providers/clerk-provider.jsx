@@ -1,7 +1,7 @@
 "use client";
 
 import { ClerkProvider } from "@clerk/nextjs";
-import { dark } from "@clerk/themes";
+import { shadesOfPurple } from "@clerk/themes";
 import { useTheme } from "next-themes";
 
 export const ClerkCustomProvider = ({ children, ...props }) => {
@@ -10,7 +10,8 @@ export const ClerkCustomProvider = ({ children, ...props }) => {
   return (
     <ClerkProvider
       {...props}
-      appearance={{ baseTheme: theme === "dark" ? dark : null }}
+      
+      appearance={{ baseTheme: theme === "dark" ? shadesOfPurple : null }}
     >
       {children}
     </ClerkProvider>

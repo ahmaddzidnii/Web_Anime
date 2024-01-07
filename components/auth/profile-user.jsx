@@ -30,7 +30,9 @@ export const ProfileUser = () => {
         />
       </SignedIn>
       <SignedOut>
-        <SignInButton children={<Button variant="outline">Login</Button>} />
+        <SignInButton>
+          <Button variant="outline">Login</Button>
+        </SignInButton>
       </SignedOut>
     </>
   );
