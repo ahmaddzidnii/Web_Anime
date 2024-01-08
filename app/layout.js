@@ -9,7 +9,6 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/ui/providers/theme-provider";
 import { ClerkCustomProvider } from "@/components/ui/providers/clerk-provider";
-import { Suspense } from "react";
 
 const poppins = Poppins({
   subsets: ["latin"],

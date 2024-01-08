@@ -4,6 +4,7 @@ import React from "react";
 import useSWR from "swr";
 import { useRouter } from "next/navigation";
 import { SearchCheck } from "lucide-react";
+import Image from "next/image";
 
 import { fetcher } from "@/lib/fetcher";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -33,10 +34,13 @@ export const SearchList = ({ query, buttonRef }) => {
             buttonRef?.current?.click();
           }}
         >
-          <img
+          <Image
             src={item.images.jpg.image_url}
             alt={item.title}
-            className="w-12 h-16 object-cover"
+            className="rounded-sm"
+            width={48}
+            height={64}
+            quality={100}
           />
           <span>{item.title}</span>
         </div>

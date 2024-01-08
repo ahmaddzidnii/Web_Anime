@@ -1,4 +1,5 @@
 import { GiPeriscope } from "react-icons/gi";
+import { Suspense } from "react";
 
 import { getAnimeQuery } from "@/services/api";
 import { PaginationCustom } from "@/components/pagination";
@@ -50,11 +51,13 @@ const Page = async ({ searchParams }) => {
           </h1>
           <CardListAnime data={data} />
           <div className="my-10">
-            <PaginationCustom
-              currentPage={page}
-              maxPagesToShow={5}
-              totalPages={pagination?.last_visible_page}
-            />
+            <Suspense fallback={null}>
+              <PaginationCustom
+                currentPage={page}
+                maxPagesToShow={5}
+                totalPages={pagination?.last_visible_page}
+              />
+            </Suspense>
           </div>
         </div>
       )}

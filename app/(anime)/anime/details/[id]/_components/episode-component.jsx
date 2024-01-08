@@ -18,7 +18,7 @@ export const EpisodesComponent = async ({ params }) => {
           </div>
         ))}
       </div>
-      <div className="w-full bg-slate-300 py-5 rounded-lg p-2">
+      {/* <div className="w-full bg-slate-300 py-5 rounded-lg p-2">
         {episodes?.episodes.length === 0 && (
           <div className="min-h-[400px] flex justify-center items-center">
             <h1 className="text-2xl text-slate-800 font-bold">
@@ -54,7 +54,7 @@ export const EpisodesComponent = async ({ params }) => {
             </Link>
           ))}
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

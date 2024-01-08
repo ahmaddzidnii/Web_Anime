@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import { getAnimeAnak } from "@/services/anime.service";
 import { PaginationCustom } from "@/components/pagination";
 import { CardListAnime } from "@/components/card-list-anime";
@@ -17,11 +19,13 @@ const AnimeChildrenPage = async ({ searchParams }) => {
     <>
       <CardListAnime data={data} />
       <div className="my-10">
-        <PaginationCustom
-          currentPage={page}
-          maxPagesToShow={5}
-          totalPages={pagination.last_visible_page}
-        />
+        <Suspense fallback={null}>
+          <PaginationCustom
+            currentPage={page}
+            maxPagesToShow={5}
+            totalPages={pagination.last_visible_page}
+          />
+        </Suspense>
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { getCharacterById } from "@/services/anime.service";
+import Image from "next/image";
 
 export const CharactersComponent = async ({ params }) => {
   const characters = await getCharacterById(params.id);
@@ -14,10 +15,13 @@ export const CharactersComponent = async ({ params }) => {
               className="h-auto flex justify-between items-start bordert-t border-b py-2"
             >
               <div className="flex items-center gap-x-3">
-                <img
+                <Image
                   src={character?.character.images.jpg.image_url}
                   alt={character?.character.name}
-                  className="w-[50px] h-[76px] rounded-sm"
+                  className="rounded-sm"
+                  width={50}
+                  height={76}
+                  quality={100}
                 />
                 <div className="flex flex-col justify-between">
                   <Link
@@ -52,10 +56,13 @@ export const CharactersComponent = async ({ params }) => {
                         {voice?.language}
                       </span>
                     </div>
-                    <img
+                    <Image
                       src={voice?.person.images.jpg.image_url}
                       alt={voice?.person.name}
-                      className="w-[50px] h-[76px] rounded-sm"
+                      className="rounded-sm"
+                      width={50}
+                      height={76}
+                      quality={100}
                     />
                   </div>
                 ))}
@@ -81,10 +88,13 @@ const MobileCharacterComponent = ({ characters }) => {
             className="h-auto bordert-t border-b py-2"
           >
             <div className="flex items-center gap-x-3">
-              <img
+              <Image
                 src={character?.character.images.jpg.image_url}
                 alt={character?.character.name}
-                className="w-[50px] h-[76px] rounded-sm"
+                className="rounded-sm"
+                width={50}
+                height={76}
+                quality={100}
               />
               <div className="flex flex-col justify-between">
                 <Link

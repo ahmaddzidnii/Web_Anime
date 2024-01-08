@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+
 import { getAnimeTop } from "@/services/anime.service";
 import { PaginationCustom } from "@/components/pagination";
 import { CardListAnime } from "@/components/card-list-anime";
@@ -16,17 +18,19 @@ const TopAnimePage = async ({ searchParams }) => {
     limit: 24,
     query: `&page=${page}`,
   });
-  
+
   const { data, pagination } = animePopular;
   return (
     <div className="min-h-screen">
       <CardListAnime data={data} />
       <div className="my-10">
-        <PaginationCustom
-          currentPage={page}
-          maxPagesToShow={5}
-          totalPages={pagination.last_visible_page}
-        />
+        <Suspense fallback={null}>
+          <PaginationCustom
+            currentPage={page}
+            maxPagesToShow={5}
+            totalPages={pagination.last_visible_page}
+          />
+        </Suspense>
       </div>
     </div>
   );
