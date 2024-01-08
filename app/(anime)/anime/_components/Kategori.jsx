@@ -11,6 +11,7 @@ import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import SkeletonLoaderImage from "./SkeletonLoaderImage";
 import { CardSkeleton } from "@/components/skeleton";
 import { TextTruncation } from "@/components/text-truncate";
+import { AddList } from "@/components/list/add-list";
 
 export const PalingPopular = ({ data }) => {
   const [isMounted, setIsMounted] = useState(false);
@@ -80,6 +81,7 @@ export const PalingPopular = ({ data }) => {
                         Lihat Deskripsi
                       </Link>
                     </Button>
+                    <AddList data={data} />
                   </CardHeader>
                 </Card>
               </SwiperSlide>
@@ -158,6 +160,7 @@ export const AnakAnak = ({ data }) => {
                       Lihat Deskripsi
                     </Link>
                   </Button>
+                  <AddList data={data} />
                 </CardHeader>
               </Card>
             </SwiperSlide>

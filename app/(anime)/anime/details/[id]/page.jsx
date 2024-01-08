@@ -1,4 +1,5 @@
 import { GiPeriscope } from "react-icons/gi";
+import { Suspense } from "react";
 
 import { getDetailAnimeById } from "@/services/api";
 import { DetailAnimePage } from "./detail-anime-page";
@@ -27,7 +28,9 @@ const Page = async ({ params, searchParams }) => {
   return (
     <>
       <div className="h-full flex">
-        <SideBarDetailAnime />
+        <Suspense fallback={null}>
+          <SideBarDetailAnime />
+        </Suspense>
         <DetailAnimePage
           api={detailsAnime}
           searchParams={searchParams}

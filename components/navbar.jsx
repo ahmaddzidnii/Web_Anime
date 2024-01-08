@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { ModeToggle } from "@/components/mode-toggle";
 import { DialogSearch } from "./dialog-search";
 import { ProfileUser } from "@/components/auth/profile-user";
-import { Suspense } from "react";
+import { ListAnime } from "@/components/list-anime";
 
 export const Navbar = () => {
   return (
@@ -40,6 +40,7 @@ export const Navbar = () => {
               <FaGithub className="h-[1.2rem] w-[1.2rem] md:w-6 md:h-6" />
             </Link>
             <ModeToggle />
+            <ListAnime />
             <ProfileUser />
           </nav>
         </div>

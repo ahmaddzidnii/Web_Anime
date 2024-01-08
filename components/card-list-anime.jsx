@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import SkeletonLoaderImage from "@/app/(anime)/anime/_components/SkeletonLoaderImage";
 import { TextTruncation } from "@/components/text-truncate";
+import { AddList } from "./list/add-list";
 
 export const CardListAnime = ({ data }) => {
   return (
@@ -45,6 +46,7 @@ export const CardListAnime = ({ data }) => {
                     Lihat Deskripsi
                   </Link>
                 </Button>
+                <AddList data={item} />
               </CardHeader>
             </Card>
           );
