@@ -11,6 +11,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { Button } from "@/components/ui/button";
 import { generatePagination } from "@/services/generate-pagination";
 
 export const PaginationCustom = ({
@@ -36,38 +37,73 @@ export const PaginationCustom = ({
     [searchParams]
   );
   return (
-    <Pagination>
+    <div className={totalPages == 1 ? "hidden" : ""}>
+      <PaginationMobile
+        currentPage={currentPage}
+        totalPages={totalPages}
+        createQueryString={createQueryString}
+      />
+      <Pagination className="hidden md:flex">
+        <PaginationContent>
+          {currentPage > 1 && (
+            <PaginationPrevious
+              className="text-sm"
+              href={`?${createQueryString("page", parseInt(currentPage) - 1)}`}
+            />
+          )}
+
+          {listPageToShow.map((idxPage, idx) => {
+            if (idxPage === "...") {
+              return (
+                <PaginationEllipsis
+                  className="text-sm"
+                  key={idx}
+                />
+              );
+            }
+            return (
+              <PaginationLink
+                className="text-sm"
+                key={idx}
+                href={`?${createQueryString("page", idxPage)}`}
+                isActive={currentPage == idxPage}
+              >
+                {idxPage}
+              </PaginationLink>
+            );
+          })}
+          {currentPage < totalPages ? (
+            <PaginationNext
+              className="text-sm"
+              href={`?${createQueryString("page", parseInt(currentPage) + 1)}`}
+            />
+          ) : null}
+        </PaginationContent>
+      </Pagination>
+    </div>
+  );
+};
+
+const PaginationMobile = ({ currentPage, totalPages, createQueryString }) => {
+  return (
+    <Pagination className="md:hidden">
       <PaginationContent>
         {currentPage > 1 && (
           <PaginationPrevious
-            className="text-xs"
+            className="text-sm"
             href={`?${createQueryString("page", parseInt(currentPage) - 1)}`}
           />
         )}
-
-        {listPageToShow.map((idxPage, idx) => {
-          if (idxPage === "...") {
-            return (
-              <PaginationEllipsis
-                className="text-xs"
-                key={idx}
-              />
-            );
-          }
-          return (
-            <PaginationLink
-              className="text-xs"
-              key={idx}
-              href={`?${createQueryString("page", idxPage)}`}
-              isActive={currentPage == idxPage}
-            >
-              {idxPage}
-            </PaginationLink>
-          );
-        })}
+        <Button
+          disabled
+          variant="ghost"
+          className="text-sm"
+        >
+          {currentPage}
+        </Button>
         {currentPage < totalPages ? (
           <PaginationNext
-            className="text-xs"
+            className="text-sm"
             href={`?${createQueryString("page", parseInt(currentPage) + 1)}`}
           />
         ) : null}

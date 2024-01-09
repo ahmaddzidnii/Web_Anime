@@ -8,11 +8,13 @@ import Image from "next/image";
 
 import { fetcher } from "@/lib/fetcher";
 import { Skeleton } from "@/components/ui/skeleton";
+import { TextTruncation } from "./text-truncate";
 
 export const SearchList = ({ query, buttonRef }) => {
   const router = useRouter();
 
   const { data, isLoading, error } = useSWR(query ? query : null, fetcher);
+
   if (error) return <div>failed to load</div>;
   if (isLoading) return <ListSkeleton />;
   return (
@@ -42,7 +44,14 @@ export const SearchList = ({ query, buttonRef }) => {
             height={64}
             quality={100}
           />
-          <span>{item.title}</span>
+          <div className="flex flex-col">
+            <TextTruncation
+              originalText={item.title}
+              maxLength={40}
+            />
+            <span>&#40;{item.type}&#41;</span>
+            <span>{item.duration}</span>
+          </div>
         </div>
       ))}
       {query && (

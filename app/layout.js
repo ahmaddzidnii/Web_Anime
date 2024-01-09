@@ -1,5 +1,6 @@
 import { Poppins } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
+import { Suspense } from "react";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -29,22 +30,24 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
     >
       <body className={poppins.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-          storageKey="theme"
-        >
-          <ClerkCustomProvider>
-            <NextTopLoader
-              showSpinner={false}
-              height={4}
-            />
-            <Toaster />
-            {children}
-          </ClerkCustomProvider>
-        </ThemeProvider>
+        <Suspense fallback={<></>}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+            storageKey="theme"
+          >
+            <ClerkCustomProvider>
+              <NextTopLoader
+                showSpinner={false}
+                height={4}
+              />
+              <Toaster />
+              {children}
+            </ClerkCustomProvider>
+          </ThemeProvider>
+        </Suspense>
       </body>
     </html>
   );

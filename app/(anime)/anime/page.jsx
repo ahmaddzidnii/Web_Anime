@@ -2,7 +2,7 @@ import { PopularAnime } from "./_components/anime-popular";
 import { AnimeAnak } from "./_components/anime-anak";
 
 export const metadata = {
-  title: "List Anime",
+  title: "Anime",
 };
 
 const AnimePage = async () => {
