@@ -1,9 +1,20 @@
-import { getAnimeAnak } from "@/services/anime.service";
-import { AnakAnak } from "./Kategori";
-import { HeadingAnime } from "@/components/heading-anime";
+"use client";
 
-export const AnimeAnak = async () => {
-  const animeAnak = await getAnimeAnak(10, 1);
+import { useQuery } from "@tanstack/react-query";
+
+import { HeadingAnime } from "@/components/heading-anime";
+import { SwiperComponent } from "@/components/swiper-component";
+import { fetchAnimeAnakTop } from "@/services/anime.service";
+
+export const AnimeAnak = () => {
+  const {
+    data: animeAnak,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["anakAnak"],
+    queryFn: fetchAnimeAnakTop,
+  });
 
   return (
     <div className="mt-5">
@@ -11,7 +22,11 @@ export const AnimeAnak = async () => {
         title="Anak Anak"
         href="/anime/children"
       />
-      <AnakAnak data={animeAnak.data} />
+      <SwiperComponent
+        data={animeAnak?.data}
+        isLoading={isLoading}
+        isError={isError}
+      />
     </div>
   );
 };

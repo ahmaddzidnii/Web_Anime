@@ -8,10 +8,10 @@ import "swiper/css/effect-cards";
 
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
-import { ThemeProvider } from "@/components/ui/providers/theme-provider";
-import { ClerkCustomProvider } from "@/components/ui/providers/clerk-provider";
-import { TanstackProvider } from "@/components/ui/providers/tanstack-provider";
 import { ModalProvider } from "@/providers/modal-provider";
+import { ThemeProvider } from "@/providers/theme-provider";
+import { ClerkCustomProvider } from "@/providers/clerk-provider";
+import { TanstackProvider } from "@/providers/tanstack-provider";
 
 const poppins = Poppins({
   subsets: ["latin"],

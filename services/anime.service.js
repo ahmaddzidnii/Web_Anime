@@ -1,4 +1,5 @@
 import { axiosInstance } from "@/lib/axios/axiosInstance";
+import axios from "axios";
 
 export async function getAnimeTop({
   resource,
@@ -43,4 +44,18 @@ export const getEpisodesAnimeById = async (id) => {
   } catch (error) {
     return [];
   }
+};
+
+export const fetchAnimeTop = async () => {
+  const { data } = await axios.get(
+    "https://api.jikan.moe/v4/top/anime?limit=10"
+  );
+  return data;
+};
+
+export const fetchAnimeAnakTop = async () => {
+  const { data } = await axios.get(
+    "https://api.jikan.moe/v4/anime?sfw=true&rating=pg&limit=10&order_by=popularity"
+  );
+  return data;
 };

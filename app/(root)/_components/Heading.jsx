@@ -1,11 +1,13 @@
-import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+
+import { Button } from "@/components/ui/button";
 
 const Heading = () => {
   return (
     <div className="max-w-3xl space-y-4">
       <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold">
-        Temukan anime favorit Anda, Welcome to{" "}
+        Temukan anime favorit Anda, Welcome to
         <span className="font-bold">ahmadzidni.site</span>
       </h1>
       <h3 className="text-base sm:text-xl md:text-2xl font-medium">
@@ -21,7 +23,7 @@ const Heading = () => {
 
       <div className="flex justify-center gap-5">
         <Button asChild>
-          <a href="/anime">Temukan Sekarang</a>
+          <Link href="/anime">Temukan Sekarang</Link>
         </Button>
         <Button variant="outline">
           <a

@@ -1,12 +1,21 @@
-import { getAnimeTop } from "@/services/anime.service";
-import { PalingPopular } from "./Kategori";
-import { HeadingAnime } from "@/components/heading-anime";
+"use client";
 
-export const PopularAnime = async () => {
-  const animePopular = await getAnimeTop({
-    resource: "/top/anime",
-    limit: 10,
+import { useQuery } from "@tanstack/react-query";
+
+import { HeadingAnime } from "@/components/heading-anime";
+import { SwiperComponent } from "@/components/swiper-component";
+import { fetchAnimeTop } from "@/services/anime.service";
+
+export const PopularAnime = () => {
+  const {
+    data: animePopular,
+    isError,
+    isLoading,
+  } = useQuery({
+    queryKey: ["popularAnime"],
+    queryFn: fetchAnimeTop,
   });
+
   return (
     <section>
       <HeadingAnime
@@ -14,7 +23,11 @@ export const PopularAnime = async () => {
         href="/anime/top"
       />
 
-      <PalingPopular data={animePopular?.data} />
+      <SwiperComponent
+        data={animePopular?.data}
+        isLoading={isLoading}
+        isError={isError}
+      />
     </section>
   );
 };

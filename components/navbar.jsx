@@ -12,7 +12,7 @@ export const Navbar = () => {
   return (
     <header className="max-w-screen z-50 bg-background dark:bg-[#1f1f1f] sticky top-0  w-full p-6 border-b shadow-sm backdrop-blur supports-[backdrop-filter]:bg-background/60 dark:supports-[backdrop-filter]:bg-[#1f1f1f]/60">
       <div className=" container-custom flex h-10  max-w-screen-2xl items-center">
-        <a href="/anime">
+        <Link href="/anime">
           <div className="flex items-center">
             <Image
               className="dark:hidden"
@@ -32,7 +32,7 @@ export const Navbar = () => {
               ahmadzidni.site
             </p>
           </div>
-        </a>
+        </Link>
         <div className="ml-4 md:ml-0 flex flex-1 items-center justify-between gap-x-5 md:justify-end">
           <ButtonModalSearch />
           <nav className="flex items-center gap-x-3">
