@@ -9,10 +9,12 @@ import { fetcher } from "@/lib/fetcher";
 import { Skeleton } from "@/components/ui/skeleton";
 import { TextTruncation } from "@/components/text-truncate";
 import { ImageComponent } from "@/components/image";
+import { useSearchModal } from "@/hooks/use-search-modal";
 
-export const SearchList = ({ query, buttonRef }) => {
+export const SearchList = ({ query }) => {
   const router = useRouter();
-  console.log(query);
+
+  const searchModal = useSearchModal();
 
   const { data, isLoading, error } = useQuery({
     queryKey: [query ? query : null],
@@ -42,7 +44,7 @@ export const SearchList = ({ query, buttonRef }) => {
           className="flex gap-x-5 items-center  hover:bg-slate-200 dark:hover:bg-slate-600 hover:rounded-sm p-2"
           onClick={() => {
             router.push(`/anime/details/${item.mal_id}`);
-            buttonRef?.current?.click();
+            searchModal.onClose();
           }}
         >
           <ImageComponent
@@ -66,7 +68,7 @@ export const SearchList = ({ query, buttonRef }) => {
           className="flex gap-x-5 items-center hover:bg-slate-200 dark:hover:bg-slate-600 hover:rounded-sm p-2"
           onClick={() => {
             router.push(`/anime/results?q=${query}`);
-            buttonRef?.current?.click();
+            searchModal.onClose();
           }}
         >
           <SearchCheck className="w-12 h-16" />

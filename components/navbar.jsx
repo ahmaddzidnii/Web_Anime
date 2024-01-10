@@ -4,9 +4,9 @@ import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "@/components/mode-toggle";
-import { DialogSearch } from "./dialog-search";
 import { ProfileUser } from "@/components/auth/profile-user";
 import { ListAnime } from "@/components/list-anime";
+import { ButtonModalSearch } from "./modal/modal-search/button-modal-search";
 
 export const Navbar = () => {
   return (
@@ -34,7 +34,7 @@ export const Navbar = () => {
           </div>
         </a>
         <div className="ml-4 md:ml-0 flex flex-1 items-center justify-between gap-x-5 md:justify-end">
-          <DialogSearch />
+          <ButtonModalSearch />
           <nav className="flex items-center gap-x-3">
             <Link href="https://github.com/ahmaddzidnii">
               <FaGithub className="h-[1.2rem] w-[1.2rem] md:w-6 md:h-6" />

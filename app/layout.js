@@ -11,6 +11,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/ui/providers/theme-provider";
 import { ClerkCustomProvider } from "@/components/ui/providers/clerk-provider";
 import { TanstackProvider } from "@/components/ui/providers/tanstack-provider";
+import { ModalProvider } from "@/providers/modal-provider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -45,6 +46,7 @@ export default function RootLayout({ children }) {
             />
             <ClerkCustomProvider>
               <TanstackProvider>
+                <ModalProvider />
                 <Toaster />
                 {children}
               </TanstackProvider>
