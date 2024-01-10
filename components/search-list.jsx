@@ -1,19 +1,28 @@
 "use client";
 
 import React from "react";
-import useSWR from "swr";
 import { useRouter } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
 import { SearchCheck } from "lucide-react";
-import Image from "next/image";
 
 import { fetcher } from "@/lib/fetcher";
 import { Skeleton } from "@/components/ui/skeleton";
-import { TextTruncation } from "./text-truncate";
+import { TextTruncation } from "@/components/text-truncate";
+import { ImageComponent } from "@/components/image";
 
 export const SearchList = ({ query, buttonRef }) => {
   const router = useRouter();
+  console.log(query);
 
-  const { data, isLoading, error } = useSWR(query ? query : null, fetcher);
+  const { data, isLoading, error } = useQuery({
+    queryKey: [query ? query : null],
+    queryFn: () => fetcher(query),
+    enabled: !!query,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+    retry: false,
+  });
 
   if (error) return <div>failed to load</div>;
   if (isLoading) return <ListSkeleton />;
@@ -36,14 +45,12 @@ export const SearchList = ({ query, buttonRef }) => {
             buttonRef?.current?.click();
           }}
         >
-          <Image
-            src={item.images.jpg.image_url}
+          <ImageComponent
             alt={item.title}
-            className="rounded-sm"
-            width={48}
-            height={64}
-            quality={100}
+            src={item.images.jpg.image_url}
+            className=" w-[48px] h-[64px] rounded-sm"
           />
+
           <div className="flex flex-col">
             <TextTruncation
               originalText={item.title}

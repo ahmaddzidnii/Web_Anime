@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { getCharacterById } from "@/services/anime.service";
-import Image from "next/image";
+import { ImageComponent } from "@/components/image";
 
 export const CharactersComponent = async ({ params }) => {
   const characters = await getCharacterById(params.id);
@@ -15,13 +15,10 @@ export const CharactersComponent = async ({ params }) => {
               className="h-auto flex justify-between items-start bordert-t border-b py-2"
             >
               <div className="flex items-center gap-x-3">
-                <Image
-                  src={character?.character.images.jpg.image_url}
+                <ImageComponent
                   alt={character?.character.name}
-                  className="rounded-sm"
-                  width={50}
-                  height={76}
-                  quality={100}
+                  src={character?.character.images.jpg.image_url}
+                  className="w-[50px] h-[76px] rounded-sm"
                 />
                 <div className="flex flex-col justify-between">
                   <Link
@@ -56,13 +53,11 @@ export const CharactersComponent = async ({ params }) => {
                         {voice?.language}
                       </span>
                     </div>
-                    <Image
+
+                    <ImageComponent
                       src={voice?.person.images.jpg.image_url}
                       alt={voice?.person.name}
-                      className="rounded-sm"
-                      width={50}
-                      height={76}
-                      quality={100}
+                      className="rounded-sm w-[50px] h-[76px]"
                     />
                   </div>
                 ))}
@@ -88,13 +83,10 @@ const MobileCharacterComponent = ({ characters }) => {
             className="h-auto bordert-t border-b py-2"
           >
             <div className="flex items-center gap-x-3">
-              <Image
-                src={character?.character.images.jpg.image_url}
+              <ImageComponent
                 alt={character?.character.name}
-                className="rounded-sm"
-                width={50}
-                height={76}
-                quality={100}
+                src={character?.character.images.jpg.image_url}
+                className="w-[50px] h-[76px] rounded-sm"
               />
               <div className="flex flex-col justify-between">
                 <Link

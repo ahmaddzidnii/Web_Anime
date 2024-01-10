@@ -10,6 +10,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/ui/providers/theme-provider";
 import { ClerkCustomProvider } from "@/components/ui/providers/clerk-provider";
+import { TanstackProvider } from "@/components/ui/providers/tanstack-provider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -38,13 +39,15 @@ export default function RootLayout({ children }) {
             disableTransitionOnChange
             storageKey="theme"
           >
+            <NextTopLoader
+              showSpinner={false}
+              height={4}
+            />
             <ClerkCustomProvider>
-              <NextTopLoader
-                showSpinner={false}
-                height={4}
-              />
-              <Toaster />
-              {children}
+              <TanstackProvider>
+                <Toaster />
+                {children}
+              </TanstackProvider>
             </ClerkCustomProvider>
           </ThemeProvider>
         </Suspense>

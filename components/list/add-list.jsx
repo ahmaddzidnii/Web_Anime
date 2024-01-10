@@ -3,6 +3,7 @@
 import { useUser } from "@clerk/nextjs";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
+import { FaList } from "react-icons/fa";
 
 import { Button } from "@/components/ui/button";
 import { useList } from "@/store/use-list";
@@ -35,6 +36,7 @@ export const AddList = ({ data }) => {
       variant="outline"
       disabled={!isMounted}
     >
+      <FaList className="h-5 w-5 mr-2" />
       Tambahkan Ke List
     </Button>
   );
