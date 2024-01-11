@@ -5,11 +5,11 @@ import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { SearchCheck } from "lucide-react";
 
-import { fetcher } from "@/lib/fetcher";
 import { Skeleton } from "@/components/ui/skeleton";
 import { TextTruncation } from "@/components/text-truncate";
 import { ImageComponent } from "@/components/image";
 import { useSearchModal } from "@/hooks/use-search-modal";
+import { fetchSearchAnime } from "@/services/anime.service";
 
 export const SearchList = ({ query }) => {
   const router = useRouter();
@@ -18,7 +18,7 @@ export const SearchList = ({ query }) => {
 
   const { data, isLoading, error } = useQuery({
     queryKey: [query ? query : null],
-    queryFn: () => fetcher(query),
+    queryFn: () => fetchSearchAnime(query),
     enabled: !!query,
     refetchOnMount: false,
     refetchOnWindowFocus: false,
@@ -26,7 +26,12 @@ export const SearchList = ({ query }) => {
     retry: false,
   });
 
-  if (error) return <div>failed to load</div>;
+  if (error)
+    return (
+      <div className="flex h-[300px] items-center justify-center text-center">
+        <h1>Something went wrong!</h1>
+      </div>
+    );
   if (isLoading) return <ListSkeleton />;
   return (
     <div
