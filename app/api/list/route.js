@@ -70,8 +70,37 @@ export async function POST(request) {
         list_id: list_user.user_id,
       },
     });
-    return NextResponse.json(list);
+    return NextResponse.json({ success: true });
   } catch (error) {
     console.log(error);
+  }
+}
+
+export async function DELETE(request) {
+  const body = await request.json();
+
+  const { userId, id } = body;
+
+  if (!userId) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  try {
+    await prisma.animeList.delete({
+      where: {
+        id,
+        list: {
+          user_id: userId,
+        },
+      },
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      { error: "Gagal menghapus anime dari list!" },
+      { status: 500 }
+    );
   }
 }

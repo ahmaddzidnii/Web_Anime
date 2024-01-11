@@ -4,12 +4,16 @@ import axios from "axios";
 import { toast } from "sonner";
 
 export const useAddList = () => {
-  const { userId } = useAuth();
+  const { userId, getToken } = useAuth();
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (data) => {
-      return axios.post(`/api/list`, data);
+      return axios.post(`/api/list`, data, {
+        headers: {
+          Authorization: `Bearer ${await getToken()}`,
+        },
+      });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [`count - ${userId}`] });
@@ -18,6 +22,34 @@ export const useAddList = () => {
     },
     onError: (err) => {
       if (err.response.status == 400) {
+        toast.error(err.response.data.error);
+      }
+    },
+  });
+};
+export const useDeleteList = () => {
+  const { userId, getToken } = useAuth();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (data) => {
+      return axios.delete(`/api/list`, {
+        headers: {
+          Authorization: `Bearer ${await getToken()}`,
+        },
+        data,
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [`count - ${userId}`] });
+      queryClient.invalidateQueries({ queryKey: [`list - ${userId}`] });
+      toast.success("Anime dihapus dari list.");
+    },
+    onError: (err) => {
+      if (err.response.status == 400) {
+        toast.error(err.response.data.error);
+      }
+      if (err.response.status == 500) {
         toast.error(err.response.data.error);
       }
     },

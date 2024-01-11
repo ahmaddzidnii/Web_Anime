@@ -7,8 +7,7 @@ const Toaster = ({ ...props }) => {
 
   return (
     <Sonner
-      expand={true}
-      position="top-center"
+      position="bottom-right"
       duration={2500}
       theme={theme}
       className="toaster group"

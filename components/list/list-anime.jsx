@@ -5,13 +5,21 @@ import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { useFetchList } from "@/hooks/feature-list/use-query-list";
+import { useDeleteList } from "@/hooks/feature-list/use-mutation-list";
+import { useAuth } from "@clerk/nextjs";
 
 export const ListAnime = () => {
   const [isMounted, setIsMounted] = useState(false);
 
-  const { data, isLoading } = useFetchList();
+  const { userId } = useAuth();
 
-  const onDeleteItem = (id) => {};
+  const { data, isLoading } = useFetchList();
+  const { mutate: deleteList, isPending: deleteIsPending } = useDeleteList();
+
+  const onDeleteItem = (id) => {
+    const data = { id, userId };
+    deleteList(data);
+  };
 
   useEffect(() => {
     setIsMounted(true);
@@ -39,8 +47,9 @@ export const ListAnime = () => {
             />
             <div>
               <Button
-                onClick={() => onDeleteItem(item.anime_id)}
+                onClick={() => onDeleteItem(item.id)}
                 variant="destructive"
+                disabled={deleteIsPending}
               >
                 Delete
               </Button>

@@ -7,9 +7,9 @@ export default authMiddleware({
   publicRoutes: (req) => {
     return !req.url.includes("/list");
   },
-  ignoredRoutes: (req) => {
-    return !req.url.startsWith("/api");
-  },
+  // ignoredRoutes: (req) => {
+  //   return !req.url.startsWith("/api");
+  // },
 });
 
 export const config = {
