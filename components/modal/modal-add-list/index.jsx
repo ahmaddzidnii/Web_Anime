@@ -1,6 +1,7 @@
 "use client";
 
-import { X } from "lucide-react";
+import { useState } from "react";
+import { Plus, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -11,9 +12,66 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { useAddListModal } from "@/hooks/use-add-list-modal";
+import { Separator } from "@/components/ui/separator";
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { SubmitAddList } from "./submit-add-list";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 export const ModalAddList = () => {
+  const [watchedEpisodes, setWatchedEpisodes] = useState(0);
+
   const { isOpen, onClose, animeId } = useAddListModal();
+
+  const { data } = useQuery({
+    queryKey: ["anime", animeId],
+    queryFn: async () => {
+      const { data } = await axios.get(
+        `https://api.jikan.moe/v4/anime/${animeId}`
+      );
+      return data;
+    },
+    enabled: !!animeId,
+  });
+
+  const animeStatusList = [
+    { value: "Currently Watching", label: "Currently Watching" },
+    { value: "Completed", label: "Completed" },
+    { value: "On Hold", label: "On Hold" },
+    { value: "Dropped", label: "Dropped" },
+    { value: "Plan to Watch", label: "Plan to Watch" },
+  ];
+
+  const animeScoreList = [
+    { score: 10, label: "(10) Masterpiece" },
+    { score: 9, label: "(9) Great" },
+    { score: 8, label: "(8) Very Good" },
+    { score: 7, label: "(7) Good" },
+    { score: 6, label: "(6) Fine" },
+    { score: 5, label: "(5) Average" },
+    { score: 4, label: "(4) Bad" },
+    { score: 3, label: "(3) Very Bad" },
+    { score: 2, label: "(2) Horrible" },
+    { score: 1, label: "(1) Appalling" },
+  ];
+
+  const handleIncreaseEpisodes = () => {
+    setWatchedEpisodes(watchedEpisodes + 1);
+  };
+
+  const handleChangeInputEpisodes = (e) => {
+    const value = parseInt(e.target.value);
+    setWatchedEpisodes(value >= 0 ? value : "");
+  };
+
   return (
     <Dialog
       open={isOpen}
@@ -23,7 +81,88 @@ export const ModalAddList = () => {
         <DialogHeader>
           <DialogTitle>Tambahkan Anime Ke List</DialogTitle>
         </DialogHeader>
-        {animeId}
+        <Separator className="my-2" />
+        <div className="flex flex-col gap-4">
+          <div className="flex justify-between items-center">
+            <div className="w-[40%]">
+              <h1>Anime Title</h1>
+            </div>
+            <div className="w-[60%]">
+              <h1 className="font-bold">{data?.data.title}</h1>
+            </div>
+          </div>
+          <div className="flex justify-between items-center">
+            <div className="w-[40%]">
+              <h1>Status</h1>
+            </div>
+            <div className="w-[60%]">
+              <Select>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Choose status..." />
+                </SelectTrigger>
+                <SelectContent>
+                  {animeStatusList.map((item, index) => (
+                    <SelectItem
+                      key={index}
+                      value={item.value}
+                    >
+                      {item.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <div className="flex justify-between items-center">
+            <div className="w-[40%]">
+              <h1>Episodes Watched</h1>
+            </div>
+            <div className="w-[60%]">
+              <div className="flex items-center gap-x-2">
+                <Input
+                  type="number"
+                  placeholder="0"
+                  className="w-[45px]"
+                  value={watchedEpisodes}
+                  onChange={handleChangeInputEpisodes}
+                />
+
+                <div className="flex items-center gap-x-2">
+                  <span>/ 12</span>
+                  <Button
+                    variant="ghost"
+                    onClick={handleIncreaseEpisodes}
+                  >
+                    <Plus className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-between items-center">
+            <div className="w-[40%]">
+              <h1>Your score</h1>
+            </div>
+            <div className="w-[60%]">
+              <Select>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder=" score..." />
+                </SelectTrigger>
+                <SelectContent>
+                  {animeScoreList.map((item, index) => (
+                    <SelectItem
+                      key={index}
+                      value={item.score}
+                    >
+                      {item.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <SubmitAddList />
+        </div>
         <DialogClose asChild>
           <Button
             onClick={onClose}

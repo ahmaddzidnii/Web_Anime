@@ -12,6 +12,7 @@ import { DetailComponent } from "./_components/detail-component";
 import { CharactersComponent } from "./_components/characther-component";
 import { EpisodesComponent } from "./_components/episode-component";
 import SkeletonLoaderImage from "../../_components/SkeletonLoaderImage";
+import { AddList } from "@/components/list/add-list";
 
 export const DetailAnimePage = ({ api, searchParams, params }) => {
   const { tab } = searchParams;
@@ -49,9 +50,13 @@ export const DetailAnimePage = ({ api, searchParams, params }) => {
         </div>
 
         <div className=" w-full h-auto">
-          <h1 className="text-sm md:text-lg lg:text-xl xl:text-2xl font-bold mb-5">
+          <h1 className="text-sm md:text-lg lg:text-xl xl:text-2xl font-bold ">
             {api?.title} <span className="italic">{api?.title_japanese}</span>
           </h1>
+
+          <div className="my-2">
+            <AddList data={api} />
+          </div>
 
           {isdetail && <DetailComponent api={api} />}
           {tab === "characters" && (
