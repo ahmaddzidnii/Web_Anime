@@ -25,11 +25,13 @@ import { Input } from "@/components/ui/input";
 import { SubmitAddList } from "./submit-add-list";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useCounterEpisodes } from "@/hooks/use-counter-episodes";
+import { animeScoreList, animeStatusList } from "@/constant/data-anime";
 
 export const ModalAddList = () => {
-  const [watchedEpisodes, setWatchedEpisodes] = useState(0);
-
   const { isOpen, onClose, animeId } = useAddListModal();
+
+  const { count, incrementCount, update } = useCounterEpisodes();
 
   const { data } = useQuery({
     queryKey: ["anime", animeId],
@@ -42,34 +44,13 @@ export const ModalAddList = () => {
     enabled: !!animeId,
   });
 
-  const animeStatusList = [
-    { value: "Currently Watching", label: "Currently Watching" },
-    { value: "Completed", label: "Completed" },
-    { value: "On Hold", label: "On Hold" },
-    { value: "Dropped", label: "Dropped" },
-    { value: "Plan to Watch", label: "Plan to Watch" },
-  ];
-
-  const animeScoreList = [
-    { score: 10, label: "(10) Masterpiece" },
-    { score: 9, label: "(9) Great" },
-    { score: 8, label: "(8) Very Good" },
-    { score: 7, label: "(7) Good" },
-    { score: 6, label: "(6) Fine" },
-    { score: 5, label: "(5) Average" },
-    { score: 4, label: "(4) Bad" },
-    { score: 3, label: "(3) Very Bad" },
-    { score: 2, label: "(2) Horrible" },
-    { score: 1, label: "(1) Appalling" },
-  ];
-
   const handleIncreaseEpisodes = () => {
-    setWatchedEpisodes(watchedEpisodes + 1);
+    incrementCount();
   };
 
   const handleChangeInputEpisodes = (e) => {
-    const value = parseInt(e.target.value);
-    setWatchedEpisodes(value >= 0 ? value : "");
+    const value = e.target.value;
+    update(value);
   };
 
   return (
@@ -122,13 +103,14 @@ export const ModalAddList = () => {
                 <Input
                   type="number"
                   placeholder="0"
-                  className="w-[45px]"
-                  value={watchedEpisodes}
+                  min="1"
+                  className="w-[60px]"
+                  value={count}
                   onChange={handleChangeInputEpisodes}
                 />
 
                 <div className="flex items-center gap-x-2">
-                  <span>/ 12</span>
+                  <span>/ {data?.data.episodes}</span>
                   <Button
                     variant="ghost"
                     onClick={handleIncreaseEpisodes}

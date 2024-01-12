@@ -29,9 +29,12 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      suppressHydrationWarning
+      suppressHydrationWarning={true}
     >
-      <body className={poppins.className}>
+      <body
+        className={poppins.className}
+        suppressHydrationWarning={true}
+      >
         <Suspense fallback={<></>}>
           <ThemeProvider
             attribute="class"
