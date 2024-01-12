@@ -2,24 +2,16 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useAuth } from "@clerk/nextjs";
 
 import { Button } from "@/components/ui/button";
 import { useFetchList } from "@/hooks/feature-list/use-query-list";
-import { useDeleteList } from "@/hooks/feature-list/use-mutation-list";
-import { useAuth } from "@clerk/nextjs";
+import { DeleteList } from "./delete-list";
 
 export const ListAnime = () => {
   const [isMounted, setIsMounted] = useState(false);
 
-  const { userId } = useAuth();
-
   const { data, isLoading } = useFetchList();
-  const { mutate: deleteList, isPending: deleteIsPending } = useDeleteList();
-
-  const onDeleteItem = (id) => {
-    const data = { id, userId };
-    deleteList(data);
-  };
 
   useEffect(() => {
     setIsMounted(true);
@@ -46,13 +38,7 @@ export const ListAnime = () => {
               quality={100}
             />
             <div>
-              <Button
-                onClick={() => onDeleteItem(item.id)}
-                variant="destructive"
-                disabled={deleteIsPending}
-              >
-                Delete
-              </Button>
+              <DeleteList id={item.id} />
             </div>
           </div>
         ))

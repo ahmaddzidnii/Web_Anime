@@ -14,6 +14,7 @@ export const AnimeAnak = () => {
   } = useQuery({
     queryKey: ["anakAnak"],
     queryFn: fetchAnimeAnakTop,
+    staleTime: 30000,
   });
 
   return (

@@ -7,6 +7,7 @@ import { FaList } from "react-icons/fa";
 
 import { Button } from "@/components/ui/button";
 import { useAddList } from "@/hooks/feature-list/use-mutation-list";
+import { useAddListModal } from "@/hooks/use-add-list-modal";
 
 export const AddList = ({ data }) => {
   const [isMounted, setIsMounted] = useState(false);
@@ -14,6 +15,8 @@ export const AddList = ({ data }) => {
   const { userId } = useAuth();
 
   const { mutate, isPending } = useAddList();
+
+  const { onOpen } = useAddListModal();
 
   const animeData = {
     userId,
@@ -28,7 +31,8 @@ export const AddList = ({ data }) => {
     if (!isSignedIn) {
       return toast.error("Anda harus login terlebih dahulu.");
     }
-    mutate(animeData);
+    // mutate(animeData);
+    onOpen(data.mal_id);
   };
 
   useEffect(() => {

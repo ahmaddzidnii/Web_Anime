@@ -1,4 +1,4 @@
-import { useAuth, useUser } from "@clerk/nextjs";
+import { useAuth } from "@clerk/nextjs";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "sonner";
@@ -15,16 +15,35 @@ export const useAddList = () => {
         },
       });
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [`count - ${userId}`] });
-      queryClient.invalidateQueries({ queryKey: [`list - ${userId}`] });
+    // onMutate: async (newList) => {
+    //   await queryClient.cancelQueries("count");
+    //   const prevList = queryClient.getQueryData("count");
+    //   queryClient.setQueryData("count", (oldQueryData) => {
+    //     return {
+    //       ...oldQueryData,
+    //       data: [...oldQueryData.data, { userId, ...newList.data }],
+    //     };
+    //   });
+    //   return {
+    //     prevList,
+    //   };
+    // },
+    onSuccess: async () => {
+      queryClient.invalidateQueries({ queryKey: ["count", userId] });
+      queryClient.invalidateQueries({ queryKey: ["list", userId] });
+
       toast.success("Anime ditambahkan ke list.");
     },
-    onError: (err) => {
+    onError: (err, _newList, context) => {
+      // queryClient.setQueryData("count ", context.prevList);
       if (err.response.status == 400) {
         toast.error(err.response.data.error);
       }
     },
+
+    // onSettled: () => {
+    //   queryClient.invalidateQueries("list");
+    // },
   });
 };
 export const useDeleteList = () => {
@@ -41,8 +60,8 @@ export const useDeleteList = () => {
       });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [`count - ${userId}`] });
-      queryClient.invalidateQueries({ queryKey: [`list - ${userId}`] });
+      queryClient.invalidateQueries({ queryKey: ["count"] });
+      queryClient.invalidateQueries({ queryKey: ["list"] });
       toast.success("Anime dihapus dari list.");
     },
     onError: (err) => {
