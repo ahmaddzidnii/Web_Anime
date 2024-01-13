@@ -27,12 +27,26 @@ export const FilterListAnime = () => {
     [searchParams]
   );
 
+  const deleteQueryString = useCallback(
+    (name) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.delete(name);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
+
   const status = !searchParams.get("status")
     ? "ALL"
     : searchParams.get("status");
 
   const handleValueChange = (value) => {
-    router.push(`${pathname}?${createQueryString("status", value)}`);
+    if (value === "ALL") {
+      router.push(`${pathname}?${deleteQueryString("status")}`);
+    } else {
+      router.push(`${pathname}?${createQueryString("status", value)}`);
+    }
   };
   return (
     <div className="my-5">

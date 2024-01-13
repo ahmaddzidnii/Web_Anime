@@ -1,9 +1,11 @@
 "use client";
 
 import { useAuth } from "@clerk/nextjs";
+import { FaTrash } from "react-icons/fa";
 
 import { Button } from "@/components/ui/button";
 import { useDeleteList } from "@/hooks/feature-list/use-mutation-list";
+import { Loader } from "../loader";
 
 export const DeleteList = ({ id }) => {
   const { userId } = useAuth();
@@ -19,7 +21,7 @@ export const DeleteList = ({ id }) => {
       onClick={onDeleteItem}
       disabled={isPending}
     >
-      {isPending ? "Deleting..." : "Delete"}
+      {isPending ? <Loader /> : <FaTrash />}
     </Button>
   );
 };
