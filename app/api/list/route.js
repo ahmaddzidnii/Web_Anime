@@ -57,7 +57,7 @@ export async function POST(request) {
       );
     }
 
-   await prisma.animeList.create({
+    await prisma.animeList.create({
       data: {
         anime_id,
         anime_title,
@@ -65,8 +65,8 @@ export async function POST(request) {
         status,
         type,
         score,
-        total_episode,
-        watched_episode,
+        total_episode: parseInt(total_episode),
+        watched_episode: parseInt(watched_episode),
         list_id: list_user.user_id,
       },
     });

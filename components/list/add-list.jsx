@@ -1,37 +1,24 @@
 "use client";
 
-import { useAuth, useUser } from "@clerk/nextjs";
+import { useAuth } from "@clerk/nextjs";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
-import { FaList } from "react-icons/fa";
+import { MdFormatListBulletedAdd } from "react-icons/md";
 
 import { Button } from "@/components/ui/button";
-import { useAddList } from "@/hooks/feature-list/use-mutation-list";
 import { useAddListModal } from "@/hooks/use-add-list-modal";
 
 export const AddList = ({ data }) => {
   const [isMounted, setIsMounted] = useState(false);
-  const { isSignedIn } = useUser();
-  const { userId } = useAuth();
-
-  const { mutate, isPending } = useAddList();
+  const { isSignedIn } = useAuth();
 
   const { onOpen } = useAddListModal();
-
-  const animeData = {
-    userId,
-    data: {
-      anime_id: data.mal_id,
-      anime_title: data.title,
-      anime_image: data.images.jpg.image_url,
-    },
-  };
 
   const onAddToList = () => {
     if (!isSignedIn) {
       return toast.error("Anda harus login terlebih dahulu.");
     }
-    // mutate(animeData);
+
     onOpen(data.mal_id);
   };
 
@@ -43,10 +30,10 @@ export const AddList = ({ data }) => {
     <Button
       onClick={onAddToList}
       variant="outline"
-      disabled={!isMounted || isPending}
+      disabled={!isMounted}
     >
-      <FaList className="h-5 w-5 mr-2" />
-      {isPending ? "Loading..." : "Tambahkan Ke List"}
+       <MdFormatListBulletedAdd className="h-5 w-5 mr-2" />
+      Tambahkan Ke List
     </Button>
   );
 };

@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { useAddListModal } from "../use-add-list-modal";
 
 export const useAddList = () => {
-  const { userId, getToken } = useAuth();
+  const { getToken } = useAuth();
   const { onClose } = useAddListModal();
   const queryClient = useQueryClient();
 
@@ -31,8 +31,7 @@ export const useAddList = () => {
     //   };
     // },
     onSuccess: async () => {
-      queryClient.invalidateQueries({ queryKey: ["count", userId] });
-      queryClient.invalidateQueries({ queryKey: ["list", userId] });
+      queryClient.invalidateQueries({ queryKey: ["list"] });
 
       onClose();
       toast.success("Anime ditambahkan ke list.");
@@ -50,7 +49,7 @@ export const useAddList = () => {
   });
 };
 export const useDeleteList = () => {
-  const { userId, getToken } = useAuth();
+  const { getToken } = useAuth();
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -63,7 +62,6 @@ export const useDeleteList = () => {
       });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["count"] });
       queryClient.invalidateQueries({ queryKey: ["list"] });
       toast.success("Anime dihapus dari list.");
     },

@@ -20,7 +20,6 @@ export const SearchList = ({ query }) => {
   const searchModal = useSearchModal();
   const { onOpen } = useAddListModal();
   const { user } = useUser();
-  console.log(user);
 
   const { data, isLoading, error } = useQuery({
     queryKey: [query ? query : null],

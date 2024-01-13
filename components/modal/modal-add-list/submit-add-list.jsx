@@ -1,3 +1,4 @@
+import { Loader } from "@/components/loader";
 import { Button } from "@/components/ui/button";
 import { useAddList } from "@/hooks/feature-list/use-mutation-list";
 
@@ -13,7 +14,7 @@ export const SubmitAddList = ({ data }) => {
       className="w-full text-sm sm:text-lg tracking-wide"
       disabled={isPending}
     >
-      {isPending ? "Menambahkan..." : "Tambahkan ke list"}
+      {isPending ? <Loader /> : "Tambahkan ke list"}
     </Button>
   );
 };
