@@ -1,20 +1,26 @@
 "use client";
 
-import React from "react";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { SearchCheck } from "lucide-react";
+import { MdFormatListBulletedAdd } from "react-icons/md";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import { TextTruncation } from "@/components/text-truncate";
 import { ImageComponent } from "@/components/image";
 import { useSearchModal } from "@/hooks/use-search-modal";
 import { fetchSearchAnime } from "@/services/anime.service";
+import { Button } from "@/components/ui/button";
+import { useAddListModal } from "@/hooks/use-add-list-modal";
+import { useUser } from "@clerk/nextjs";
 
 export const SearchList = ({ query }) => {
   const router = useRouter();
 
   const searchModal = useSearchModal();
+  const { onOpen } = useAddListModal();
+  const { user } = useUser();
+  console.log(user);
 
   const { data, isLoading, error } = useQuery({
     queryKey: [query ? query : null],
@@ -34,10 +40,7 @@ export const SearchList = ({ query }) => {
     );
   if (isLoading) return <ListSkeleton />;
   return (
-    <div
-      role="button"
-      className="flex flex-col gap-y-5"
-    >
+    <div className="flex flex-col gap-y-5">
       {!data && (
         <div className="flex h-[300px] items-center justify-center text-center">
           <h1>Masukkan kata kunci !</h1>
@@ -46,37 +49,58 @@ export const SearchList = ({ query }) => {
       {data?.data.map((item, idx) => (
         <div
           key={idx}
-          className="flex gap-x-5 items-center  hover:bg-slate-200 dark:hover:bg-slate-600 hover:rounded-sm p-2"
-          onClick={() => {
-            router.push(`/anime/details/${item.mal_id}`);
-            searchModal.onClose();
-          }}
+          className="flex p-2"
         >
-          <ImageComponent
-            alt={item.title}
-            src={item.images.jpg.image_url}
-            className=" w-[48px] h-[64px] rounded-sm"
-          />
+          <div
+            role="button"
+            onClick={() => {
+              router.push(`/anime/details/${item.mal_id}`);
+              searchModal.onClose();
+            }}
+            className="flex-1  hover:bg-slate-200 dark:hover:bg-slate-600 hover:rounded-sm"
+          >
+            <div className="flex  gap-x-5 items-center">
+              <ImageComponent
+                alt={item.title}
+                src={item.images.jpg.image_url}
+                className="w-[24px] h-[32px]  sm:w-[48px] sm:h-[64px] rounded-sm"
+              />
 
-          <div className="flex flex-col">
-            <TextTruncation
-              originalText={item.title}
-              maxLength={40}
-            />
-            <span>&#40;{item.type}&#41;</span>
-            <span>{item.duration}</span>
+              <div className="flex flex-col">
+                <TextTruncation
+                  originalText={item.title}
+                  maxLength={30}
+                  className="text-sm sm:text-lg font-semibold"
+                />
+                <span className="text-xs sm:text-sm">
+                  &#40;{item.type}&#41;
+                </span>
+                <span className="text-xs sm:text-sm">{item.duration}</span>
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-center items-center">
+            <Button
+              variant="ghost"
+              onClick={() => {
+                onOpen(item.mal_id);
+              }}
+            >
+              <MdFormatListBulletedAdd className="w-5 h-5 sm:w-10 sm:h-10" />
+            </Button>
           </div>
         </div>
       ))}
       {query && (
         <div
-          className="flex gap-x-5 items-center hover:bg-slate-200 dark:hover:bg-slate-600 hover:rounded-sm p-2"
+          role="button"
+          className="flex gap-x-5 items-center hover:bg-slate-200 dark:hover:bg-slate-600 hover:rounded-sm p-2 text-xs sm:text-sm"
           onClick={() => {
             router.push(`/anime/results?q=${query}`);
             searchModal.onClose();
           }}
         >
-          <SearchCheck className="w-12 h-16" />
+          <SearchCheck className="w-6 h-8 sm:w-12 sm:h-16" />
           Lanjutkan Mencari: {query}
         </div>
       )}

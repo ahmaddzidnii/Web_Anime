@@ -17,5 +17,5 @@ export const animeScoreList = [
   { score: 3, label: "(3) Very Bad" },
   { score: 2, label: "(2) Horrible" },
   { score: 1, label: "(1) Appalling" },
-  { score: 0, label: "(0) Not Rated" },
+  { score: "not-rated", label: "(0) Not Rated" },
 ];

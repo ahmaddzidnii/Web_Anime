@@ -57,7 +57,7 @@ export async function POST(request) {
       );
     }
 
-    const list = await prisma.animeList.create({
+   await prisma.animeList.create({
       data: {
         anime_id,
         anime_title,

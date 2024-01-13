@@ -1,7 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import { Plus, X } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { useAuth } from "@clerk/nextjs";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -23,17 +26,22 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { SubmitAddList } from "./submit-add-list";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+
 import { useCounterEpisodes } from "@/hooks/use-counter-episodes";
 import { animeScoreList, animeStatusList } from "@/constant/data-anime";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export const ModalAddList = () => {
   const { isOpen, onClose, animeId } = useAddListModal();
 
   const { count, incrementCount, update } = useCounterEpisodes();
 
-  const { data } = useQuery({
+  const { userId } = useAuth();
+
+  const [status, setStatus] = useState("");
+  const [score, setScore] = useState(null);
+
+  const { data, isLoading } = useQuery({
     queryKey: ["anime", animeId],
     queryFn: async () => {
       const { data } = await axios.get(
@@ -53,6 +61,28 @@ export const ModalAddList = () => {
     update(value);
   };
 
+  const handleStatusChange = (value) => {
+    setStatus(value);
+  };
+
+  const handleScoreChange = (value) => {
+    setScore(value);
+  };
+
+  const dataAnime = {
+    userId,
+    data: {
+      anime_id: animeId,
+      anime_title: data?.data.title,
+      anime_image: data?.data.images.jpg.image_url,
+      status,
+      type: data?.data.type,
+      score,
+      total_episode: data?.data.episodes,
+      watched_episode: count,
+    },
+  };
+
   return (
     <Dialog
       open={isOpen}
@@ -60,24 +90,35 @@ export const ModalAddList = () => {
     >
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Tambahkan Anime Ke List</DialogTitle>
+          <DialogTitle className="text-sm sm:text-lg text-start">
+            Tambahkan Anime Ke List
+          </DialogTitle>
         </DialogHeader>
         <Separator className="my-2" />
         <div className="flex flex-col gap-4">
           <div className="flex justify-between items-center">
             <div className="w-[40%]">
-              <h1>Anime Title</h1>
+              <h1 className="text-sm sm:text-lg">Anime Title</h1>
             </div>
             <div className="w-[60%]">
-              <h1 className="font-bold">{data?.data.title}</h1>
+              {isLoading ? (
+                <Skeleton className="w-full h-8" />
+              ) : (
+                <h1 className="text-sm sm:text-lg font-bold">
+                  {data?.data.title}
+                </h1>
+              )}
             </div>
           </div>
           <div className="flex justify-between items-center">
             <div className="w-[40%]">
-              <h1>Status</h1>
+              <h1 className="text-sm sm:text-lg">Status</h1>
             </div>
             <div className="w-[60%]">
-              <Select>
+              <Select
+                onValueChange={handleStatusChange}
+                defaultValue="Currently Watching"
+              >
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Choose status..." />
                 </SelectTrigger>
@@ -96,7 +137,7 @@ export const ModalAddList = () => {
           </div>
           <div className="flex justify-between items-center">
             <div className="w-[40%]">
-              <h1>Episodes Watched</h1>
+              <h1 className="text-sm sm:text-lg">Episodes Watched</h1>
             </div>
             <div className="w-[60%]">
               <div className="flex items-center gap-x-2">
@@ -110,7 +151,11 @@ export const ModalAddList = () => {
                 />
 
                 <div className="flex items-center gap-x-2">
-                  <span>/ {data?.data.episodes}</span>
+                  {isLoading ? (
+                    <Skeleton className="w-8 h-8" />
+                  ) : (
+                    <span>/ {data?.data.episodes}</span>
+                  )}
                   <Button
                     variant="ghost"
                     onClick={handleIncreaseEpisodes}
@@ -123,14 +168,17 @@ export const ModalAddList = () => {
           </div>
           <div className="flex justify-between items-center">
             <div className="w-[40%]">
-              <h1>Your score</h1>
+              <h1 className="text-sm sm:text-lg">Your score</h1>
             </div>
             <div className="w-[60%]">
-              <Select>
+              <Select
+                onValueChange={handleScoreChange}
+                defaultValue="not-rated"
+              >
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder=" score..." />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="overflow-y-scrol max-h-72 ">
                   {animeScoreList.map((item, index) => (
                     <SelectItem
                       key={index}
@@ -143,7 +191,7 @@ export const ModalAddList = () => {
               </Select>
             </div>
           </div>
-          <SubmitAddList />
+          <SubmitAddList data={dataAnime} />
         </div>
         <DialogClose asChild>
           <Button

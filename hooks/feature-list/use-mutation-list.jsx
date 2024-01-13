@@ -2,9 +2,11 @@ import { useAuth } from "@clerk/nextjs";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "sonner";
+import { useAddListModal } from "../use-add-list-modal";
 
 export const useAddList = () => {
   const { userId, getToken } = useAuth();
+  const { onClose } = useAddListModal();
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -32,6 +34,7 @@ export const useAddList = () => {
       queryClient.invalidateQueries({ queryKey: ["count", userId] });
       queryClient.invalidateQueries({ queryKey: ["list", userId] });
 
+      onClose();
       toast.success("Anime ditambahkan ke list.");
     },
     onError: (err, _newList, context) => {
