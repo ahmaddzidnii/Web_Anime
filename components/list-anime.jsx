@@ -3,17 +3,11 @@
 import { useEffect, useState } from "react";
 import { FaList } from "react-icons/fa";
 import Link from "next/link";
-// import { useUser } from "@clerk/nextjs";
 
 import { Skeleton } from "@/components/ui/skeleton";
-// import { useFetchCountList } from "@/hooks/feature-list/use-query-list";
 
 export const ListAnime = () => {
   const [isMounted, setIsMounted] = useState(false);
-
-  // const { isSignedIn } = useUser();
-
-  // const { data, isLoading, isError } = useFetchCountList();
 
   useEffect(() => {
     setIsMounted(true);

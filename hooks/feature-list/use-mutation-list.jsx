@@ -30,8 +30,11 @@ export const useAddList = () => {
     //     prevList,
     //   };
     // },
-    onSuccess: async () => {
-      queryClient.invalidateQueries({ queryKey: ["list"] });
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["list"],
+        refetchType: "all",
+      });
 
       onClose();
       toast.success("Anime ditambahkan ke list.");
@@ -62,7 +65,7 @@ export const useDeleteList = () => {
       });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["list"] });
+      queryClient.invalidateQueries({ queryKey: ["list"], refetchType: "all" });
       toast.success("Anime dihapus dari list.");
     },
     onError: (err) => {

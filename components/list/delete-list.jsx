@@ -5,7 +5,7 @@ import { FaTrash } from "react-icons/fa";
 
 import { Button } from "@/components/ui/button";
 import { useDeleteList } from "@/hooks/feature-list/use-mutation-list";
-import { Loader } from "../loader";
+import { Loader } from "@/components/loader";
 
 export const DeleteList = ({ id }) => {
   const { userId } = useAuth();

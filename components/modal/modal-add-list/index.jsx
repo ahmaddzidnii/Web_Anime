@@ -117,7 +117,7 @@ export const ModalAddList = () => {
             <div className="w-[60%]">
               <Select
                 onValueChange={handleStatusChange}
-                defaultValue="Currently Watching"
+                defaultValue="CW"
               >
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Choose status..." />

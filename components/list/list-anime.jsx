@@ -8,9 +8,13 @@ import { FilterListAnime } from "./filter-list";
 import { ImageComponent } from "../image";
 import { EditList } from "./edit-list";
 import { Separator } from "@/components/ui/separator";
+import { useUser } from "@clerk/nextjs";
 
 export const ListAnime = () => {
   const [isMounted, setIsMounted] = useState(false);
+
+  // const { user } = useUser();
+  // console.log(user.emailAddresses[0].emailAddress);
 
   const { data, isLoading } = useFetchList();
 
@@ -43,7 +47,10 @@ export const ListAnime = () => {
                   className="w-[150px] h-[200px]"
                 />
               </div>
-              <div className="flex-1">detail</div>
+              <div className="flex-1">
+                <h1 className="text-xl font-bold">{item.anime_title}</h1>
+                <p>{item.type}</p>
+              </div>
               <div className="w-[100px]">
                 <div className="flex items-center justify-center h-full space-x-2">
                   <DeleteList id={item.id} />
