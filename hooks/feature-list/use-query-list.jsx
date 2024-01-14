@@ -12,8 +12,9 @@ export const useFetchList = () => {
       });
       return response.data;
     },
-    refetchOnWindowFocus: true,
+    refetchOnWindowFocus: "always",
     refetchOnReconnect: true,
+    gcTime: 1000 * 60 * 10,
     enabled: !!userId,
   });
 };

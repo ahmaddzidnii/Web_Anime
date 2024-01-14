@@ -32,7 +32,7 @@ export const AddList = ({ data }) => {
       variant="outline"
       disabled={!isMounted}
     >
-       <MdFormatListBulletedAdd className="h-5 w-5 mr-2" />
+      <MdFormatListBulletedAdd className="h-5 w-5 mr-2" />
       Tambahkan Ke List
     </Button>
   );

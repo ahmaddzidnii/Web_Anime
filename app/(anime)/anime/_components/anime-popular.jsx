@@ -14,7 +14,7 @@ export const PopularAnime = () => {
   } = useQuery({
     queryKey: ["popularAnime"],
     queryFn: fetchAnimeTop,
-    staleTime: 30000,
+    staleTime: 15 * 60 * 1000,
   });
 
   return (

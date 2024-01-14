@@ -1,8 +1,9 @@
-import { useAuth } from "@clerk/nextjs";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "sonner";
-import { useAddListModal } from "../use-add-list-modal";
+import { useAuth } from "@clerk/nextjs";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
+import { useAddListModal } from "@/hooks/use-add-list-modal";
 
 export const useAddList = () => {
   const { getToken } = useAuth();
@@ -17,38 +18,22 @@ export const useAddList = () => {
         },
       });
     },
-    // onMutate: async (newList) => {
-    //   await queryClient.cancelQueries("count");
-    //   const prevList = queryClient.getQueryData("count");
-    //   queryClient.setQueryData("count", (oldQueryData) => {
-    //     return {
-    //       ...oldQueryData,
-    //       data: [...oldQueryData.data, { userId, ...newList.data }],
-    //     };
-    //   });
-    //   return {
-    //     prevList,
-    //   };
-    // },
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["list"],
-        refetchType: "all",
-      });
-
       onClose();
+
       toast.success("Anime ditambahkan ke list.");
     },
-    onError: (err, _newList, context) => {
-      // queryClient.setQueryData("count ", context.prevList);
+    onError: (err) => {
       if (err.response.status == 400) {
         toast.error(err.response.data.error);
       }
     },
-
-    // onSettled: () => {
-    //   queryClient.invalidateQueries("list");
-    // },
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["list"],
+        refetchType: "all",
+      });
+    },
   });
 };
 export const useDeleteList = () => {
@@ -65,7 +50,6 @@ export const useDeleteList = () => {
       });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["list"], refetchType: "all" });
       toast.success("Anime dihapus dari list.");
     },
     onError: (err) => {
@@ -75,6 +59,9 @@ export const useDeleteList = () => {
       if (err.response.status == 500) {
         toast.error(err.response.data.error);
       }
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ["list"], refetchType: "all" });
     },
   });
 };

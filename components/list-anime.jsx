@@ -8,7 +8,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export const ListAnime = () => {
   const [isMounted, setIsMounted] = useState(false);
-
   useEffect(() => {
     setIsMounted(true);
   }, []);
