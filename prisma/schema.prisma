@@ -10,13 +10,39 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model List {
-  user_id String @id @unique
-  anime_list AnimeList[]
+// model List {
+//   user_id String @id @unique
+//   anime_list AnimeList[]
+// }
+
+// model AnimeList {
+//   id  String @default(cuid()) @id
+//   anime_id Int
+//   anime_title String @db.Text
+//   anime_image String? @db.Text
+//   status String? @db.Text
+//   type String? @db.Text
+//   score Int? 
+//   total_episode Int?
+//   watched_episode Int?
+//   added_at DateTime @default(now())
+//   updated_at DateTime @updatedAt
+
+//   list_id String
+//   list List @relation(fields: [list_id],references: [user_id],onDelete: Cascade)
+
+// }
+
+
+model User {
+  id String @id @default(cuid())
+  user_id String @unique
+  email String
+  list_anime AnimeList[]
 }
 
 model AnimeList {
-  id  String @default(cuid()) @id
+  id String @id @default(cuid())
   anime_id Int
   anime_title String @db.Text
   anime_image String? @db.Text
@@ -25,10 +51,9 @@ model AnimeList {
   score Int? 
   total_episode Int?
   watched_episode Int?
-  added_at DateTime @default(now())
+  created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  list_id String
-  list List @relation(fields: [list_id],references: [user_id],onDelete: Cascade)
-
+  owner_id String
+  owner User @relation(fields: [owner_id],references: [id],onDelete: Cascade)
 }

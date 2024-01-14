@@ -12,7 +12,7 @@ export const DeleteList = ({ id }) => {
   const { mutate: deleteList, isPending } = useDeleteList();
 
   const onDeleteItem = () => {
-    const data = { id, userId };
+    const data = { id, user_id: userId };
     deleteList(data);
   };
   return (

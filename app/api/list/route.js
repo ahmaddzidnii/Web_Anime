@@ -1,3 +1,4 @@
+import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 import { prisma } from "@/lib/prisma";
@@ -5,7 +6,19 @@ import { prisma } from "@/lib/prisma";
 export async function POST(request) {
   const body = await request.json();
 
-  const { userId, data } = body;
+  const { user, data } = body;
+
+  const { user_id, email } = user;
+
+  const { userId } = auth();
+
+  if (!userId || !user_id) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  if (userId !== user_id) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
 
   const {
     anime_id,
@@ -18,35 +31,35 @@ export async function POST(request) {
     watched_episode,
   } = data;
 
-  if (!userId) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
   try {
-    const existingListUser = await prisma.list.count({
+    const existingUser = await prisma.user.count({
       where: {
         user_id: userId,
       },
     });
 
-    if (existingListUser < 1) {
-      await prisma.list.create({
+    if (existingUser < 1) {
+      await prisma.user.create({
         data: {
           user_id: userId,
+          email,
         },
       });
     }
 
-    const list_user = await prisma.list.findUnique({
+    const user = await prisma.user.findUnique({
       where: {
         user_id: userId,
+      },
+      select: {
+        id: true,
       },
     });
 
     const existingList = await prisma.animeList.count({
       where: {
-        list_id: list_user.user_id,
-        anime_id,
+        owner_id: user.id,
+        anime_id: anime_id,
       },
     });
 
@@ -57,19 +70,23 @@ export async function POST(request) {
       );
     }
 
+    const data = {
+      anime_id,
+      anime_id,
+      anime_title,
+      anime_image,
+      status,
+      type,
+      score,
+      total_episode: parseInt(total_episode),
+      watched_episode: parseInt(watched_episode),
+      owner_id: user.id,
+    };
+
     await prisma.animeList.create({
-      data: {
-        anime_id,
-        anime_title,
-        anime_image,
-        status,
-        type,
-        score,
-        total_episode: parseInt(total_episode),
-        watched_episode: parseInt(watched_episode),
-        list_id: list_user.user_id,
-      },
+      data,
     });
+
     return NextResponse.json({ success: true });
   } catch (error) {
     console.log(error);
@@ -79,17 +96,22 @@ export async function POST(request) {
 export async function DELETE(request) {
   const body = await request.json();
 
-  const { userId, id } = body;
+  const { user_id, id } = body;
+  const { userId } = auth();
 
-  if (!userId) {
+  if (!userId || !user_id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  if (userId !== user_id) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
   try {
     await prisma.animeList.delete({
       where: {
         id,
-        list: {
+        owner: {
           user_id: userId,
         },
       },

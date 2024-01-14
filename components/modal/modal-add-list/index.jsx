@@ -3,7 +3,7 @@
 import { Plus, X } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useAuth } from "@clerk/nextjs";
+import { useAuth, useUser } from "@clerk/nextjs";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -37,6 +37,7 @@ export const ModalAddList = () => {
   const { count, incrementCount, update } = useCounterEpisodes();
 
   const { userId } = useAuth();
+  const { user } = useUser();
 
   const [status, setStatus] = useState("");
   const [score, setScore] = useState(null);
@@ -69,8 +70,13 @@ export const ModalAddList = () => {
     setScore(value);
   };
 
+  const email = user?.emailAddresses[0].emailAddress;
+
   const dataAnime = {
-    userId,
+    user: {
+      user_id: userId,
+      email,
+    },
     data: {
       anime_id: animeId,
       anime_title: data?.data.title,
@@ -115,10 +121,7 @@ export const ModalAddList = () => {
               <h1 className="text-sm sm:text-lg">Status</h1>
             </div>
             <div className="w-[60%]">
-              <Select
-                onValueChange={handleStatusChange}
-                defaultValue="CW"
-              >
+              <Select onValueChange={handleStatusChange}>
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Choose status..." />
                 </SelectTrigger>
