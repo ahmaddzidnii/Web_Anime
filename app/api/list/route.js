@@ -2,6 +2,14 @@ import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 import { prisma } from "@/lib/prisma";
+import { animeStatusList } from "@/constant/data-anime";
+
+export const getLabelStatusByValue = (value) => {
+  const selectedOption = animeStatusList.find(
+    (option) => option.value === value
+  );
+  return selectedOption ? selectedOption.label : "ALL";
+};
 
 export async function POST(request) {
   const body = await request.json();
@@ -30,6 +38,20 @@ export async function POST(request) {
     total_episode,
     watched_episode,
   } = data;
+
+  if (Number(watched_episode) < 0) {
+    return NextResponse.json(
+      { error: "Watched Episode tidak valid!" },
+      { status: 400 }
+    );
+  }
+
+  if (Number(total_episode) < Number(watched_episode)) {
+    return NextResponse.json(
+      { error: "Total Episode harus lebih besar dari Watched Episode!" },
+      { status: 400 }
+    );
+  }
 
   try {
     const existingUser = await prisma.user.count({
@@ -75,7 +97,7 @@ export async function POST(request) {
       anime_id,
       anime_title,
       anime_image,
-      status,
+      status: getLabelStatusByValue(status),
       type,
       score,
       total_episode: parseInt(total_episode),

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 import { useFetchList } from "@/hooks/feature-list/use-query-list";
 import { DeleteList } from "./delete-list";
@@ -10,9 +11,12 @@ import { EditList } from "./edit-list";
 import { Separator } from "@/components/ui/separator";
 
 export const ListAnime = () => {
+  const searchParams = useSearchParams();
+  const status = searchParams.get("status") || "ALL";
+
   const [isMounted, setIsMounted] = useState(false);
 
-  const { data, isLoading } = useFetchList();
+  const { data, isLoading } = useFetchList({ status: status });
 
   useEffect(() => {
     setIsMounted(true);

@@ -2,12 +2,17 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "@clerk/nextjs";
 
-export const useFetchList = () => {
+export const useFetchList = (filters) => {
   const { userId, getToken } = useAuth();
+
   return useQuery({
-    queryKey: ["list"],
+    queryKey: ["list", filters?.status],
     queryFn: async () => {
-      const response = await axios.get(`/api/list/${userId}`, {
+      const queryString = Object.entries(filters)
+        .map(([key, value]) => `${key}=${value}`)
+        .join("&");
+
+      const response = await axios.get(`/api/list/${userId}?${queryString}`, {
         headers: { Authorization: `Bearer ${await getToken()}` },
       });
       return response.data;

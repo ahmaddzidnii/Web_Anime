@@ -2,6 +2,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import { useAuth } from "@clerk/nextjs";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useSearchParams } from "next/navigation";
 
 import { useAddListModal } from "@/hooks/use-add-list-modal";
 
@@ -9,6 +10,9 @@ export const useAddList = () => {
   const { getToken } = useAuth();
   const { onClose } = useAddListModal();
   const queryClient = useQueryClient();
+
+  const searchParams = useSearchParams();
+  const status = searchParams.get("status") || "ALL";
 
   return useMutation({
     mutationFn: async (data) => {
@@ -30,7 +34,7 @@ export const useAddList = () => {
     },
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: ["list"],
+        queryKey: ["list", status],
         refetchType: "all",
       });
     },

@@ -2,10 +2,14 @@ import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 import { prisma } from "@/lib/prisma";
+import { getLabelStatusByValue } from "../route";
 
 export async function GET(request, context) {
   const { userId } = auth();
   const user_id = context.params.userId;
+
+  const { searchParams } = new URL(request.url);
+  const status = searchParams.get("status");
 
   if (!user_id || !userId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -29,12 +33,17 @@ export async function GET(request, context) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
-    const lists = await prisma.animeList.findMany({
-      where: {
-        owner: {
-          id: user.id,
-        },
+    const whereCondition = {
+      owner: {
+        id: user.id,
       },
+      ...(status && status !== "ALL"
+        ? { status: getLabelStatusByValue(status) }
+        : {}),
+    };
+
+    const lists = await prisma.animeList.findMany({
+      where: whereCondition,
     });
 
     return NextResponse.json(lists);

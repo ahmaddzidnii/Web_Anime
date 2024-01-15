@@ -11,6 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { animeStatusListTwo } from "@/constant/data-anime";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const FilterListAnime = () => {
   const router = useRouter();
@@ -41,7 +42,7 @@ export const FilterListAnime = () => {
     ? "ALL"
     : searchParams.get("status");
 
-  const handleValueChange = (value) => {
+  const handleValueChange = async (value) => {
     if (value === "ALL") {
       router.push(`${pathname}?${deleteQueryString("status")}`);
     } else {

@@ -121,7 +121,10 @@ export const ModalAddList = () => {
               <h1 className="text-sm sm:text-lg">Status</h1>
             </div>
             <div className="w-[60%]">
-              <Select onValueChange={handleStatusChange}>
+              <Select
+                onValueChange={handleStatusChange}
+                defaultValue={status}
+              >
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Choose status..." />
                 </SelectTrigger>
