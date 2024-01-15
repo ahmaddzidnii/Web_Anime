@@ -53,6 +53,12 @@ export async function POST(request) {
     );
   }
 
+  let statusAnime = getLabelStatusByValue(status);
+
+  if(Number(total_episode) === Number(watched_episode)) {
+    statusAnime = "Completed";
+  }
+
   try {
     const existingUser = await prisma.user.count({
       where: {
@@ -97,7 +103,7 @@ export async function POST(request) {
       anime_id,
       anime_title,
       anime_image,
-      status: getLabelStatusByValue(status),
+      status: statusAnime,
       type,
       score,
       total_episode: parseInt(total_episode),

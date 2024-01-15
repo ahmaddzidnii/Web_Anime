@@ -43,6 +43,8 @@ export const useAddList = () => {
 export const useDeleteList = () => {
   const { getToken } = useAuth();
   const queryClient = useQueryClient();
+  const searchParams = useSearchParams();
+  const status = searchParams.get("status") || "ALL";
 
   return useMutation({
     mutationFn: async (data) => {
@@ -65,7 +67,10 @@ export const useDeleteList = () => {
       }
     },
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: ["list"], refetchType: "all" });
+      queryClient.invalidateQueries({
+        queryKey: ["list", status],
+        refetchType: "all",
+      });
     },
   });
 };

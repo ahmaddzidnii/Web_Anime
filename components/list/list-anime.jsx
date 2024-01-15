@@ -9,6 +9,9 @@ import { FilterListAnime } from "./filter-list";
 import { ImageComponent } from "../image";
 import { EditList } from "./edit-list";
 import { Separator } from "@/components/ui/separator";
+import Link from "next/link";
+import { Loader } from "../loader";
+import { Skeleton } from "../ui/skeleton";
 
 export const ListAnime = () => {
   const searchParams = useSearchParams();
@@ -30,7 +33,14 @@ export const ListAnime = () => {
     <>
       <FilterListAnime />
 
-      {isLoading && <div>Loading..</div>}
+      {isLoading && (
+        <div className="flex flex-col justify-center h-full space-y-2">
+          <Skeleton className="w-full h-48 bg-slate-300" />
+          <Skeleton className="w-full h-48 bg-slate-300" />
+          <Skeleton className="w-full h-48 bg-slate-300" />
+          <Skeleton className="w-full h-48 bg-slate-300" />
+        </div>
+      )}
 
       {data?.length == 0 && (
         <div className="text-center">Tidak ada anime di list</div>
@@ -51,7 +61,12 @@ export const ListAnime = () => {
                   />
                 </div>
                 <div className="flex-1 flex flex-col justify-center">
-                  <h1 className="text-xl font-bold">{item.anime_title}</h1>
+                  <Link
+                    href={`/anime/details/${item.anime_id}`}
+                    className="text-xl font-bold"
+                  >
+                    {item.anime_title}
+                  </Link>
                   <p>{item.type}</p>
                   <p>{item.status}</p>
                   <p>{item.score}</p>

@@ -21,7 +21,7 @@ export const DeleteList = ({ id }) => {
       onClick={onDeleteItem}
       disabled={isPending}
     >
-      {isPending ? <Loader /> : <FaTrash />}
+      {isPending ? <Loader colorInDark="#ffffff" /> : <FaTrash />}
     </Button>
   );
 };
