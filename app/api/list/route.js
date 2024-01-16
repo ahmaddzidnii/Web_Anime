@@ -54,9 +54,14 @@ export async function POST(request) {
   }
 
   let statusAnime = getLabelStatusByValue(status);
+  let watchedEpisode = parseInt(watched_episode);
 
-  if(Number(total_episode) === Number(watched_episode)) {
+  if (Number(total_episode) === Number(watched_episode)) {
     statusAnime = "Completed";
+  }
+
+  if (status === "C") {
+    watchedEpisode = Number(total_episode);
   }
 
   try {
@@ -105,9 +110,9 @@ export async function POST(request) {
       anime_image,
       status: statusAnime,
       type,
-      score,
+      score: score ? Number(score) : 0,
       total_episode: parseInt(total_episode),
-      watched_episode: parseInt(watched_episode),
+      watched_episode: watchedEpisode,
       owner_id: user.id,
     };
 

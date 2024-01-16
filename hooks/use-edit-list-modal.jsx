@@ -1,16 +1,16 @@
 import { create } from "zustand";
 
-export const useAddListModal = create((set) => ({
-  animeId: undefined,
+export const useEditListModal = create((set) => ({
+  listId: undefined,
   isOpen: false,
   count: 0,
   status: undefined,
   score: undefined,
-  onOpen: (id) => set({ isOpen: true, animeId: id }),
+  onOpen: (id) => set({ isOpen: true, listId: id }),
   onClose: () =>
     set({
       isOpen: false,
-      animeId: undefined,
+      listId: undefined,
       count: 0,
       status: undefined,
       score: undefined,

@@ -3,7 +3,7 @@
 import axios from "axios";
 import { X } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import { useAuth, useUser } from "@clerk/nextjs";
+import { useAuth } from "@clerk/nextjs";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -13,7 +13,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { useAddListModal } from "@/hooks/use-add-list-modal";
 import { Separator } from "@/components/ui/separator";
 
 import {
@@ -23,38 +22,52 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
-import { SubmitAddList } from "./submit-add-list";
 
 import { animeScoreList, animeStatusList } from "@/constant/data-anime";
 import { Skeleton } from "@/components/ui/skeleton";
 import { InputEpisode } from "./input-episode";
+import { useEditListModal } from "@/hooks/use-edit-list-modal";
+import { useEffect } from "react";
+import { SubmitEditList } from "./submit-edit-list";
+import { getValueStatusByLabel } from "@/utils/enum-status";
 
-export const ModalAddList = () => {
+export const ModalEditList = () => {
   const {
     count,
     status,
     score,
-    animeId,
+    listId,
     isOpen,
     onClose,
     setStatus,
     setScore,
-  } = useAddListModal();
+    setCount,
+  } = useEditListModal();
 
   const { userId } = useAuth();
-  const { user } = useUser();
 
-  const { data, isLoading } = useQuery({
-    queryKey: ["anime", animeId],
+  const { data, isLoading, isSuccess, isError } = useQuery({
+    queryKey: ["listUser", listId],
     queryFn: async () => {
-      const { data } = await axios.get(
-        `https://api.jikan.moe/v4/anime/${animeId}`
-      );
+      const { data } = await axios.get(`api/list/${userId}?listId=${listId}`);
       return data;
     },
-    enabled: !!animeId,
+    enabled: !!listId,
   });
+
+  useEffect(() => {
+    if (isSuccess) {
+      setCount(data?.watched_episode);
+      setStatus(data?.status);
+      setScore(data?.score);
+    }
+  }, [isSuccess]);
+
+  useEffect(() => {
+    if (isError) {
+      alert("Internal server error");
+    }
+  }, [isError]);
 
   const handleStatusChange = (value) => {
     setStatus(value);
@@ -62,25 +75,6 @@ export const ModalAddList = () => {
 
   const handleScoreChange = (value) => {
     setScore(value);
-  };
-
-  const email = user?.emailAddresses[0].emailAddress;
-
-  const dataAnime = {
-    user: {
-      user_id: userId,
-      email,
-    },
-    data: {
-      anime_id: animeId,
-      anime_title: data?.data.title,
-      anime_image: data?.data.images.jpg.image_url,
-      status,
-      type: data?.data.type,
-      score,
-      total_episode: data?.data.episodes,
-      watched_episode: count,
-    },
   };
 
   return (
@@ -91,7 +85,7 @@ export const ModalAddList = () => {
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="text-sm sm:text-lg text-start">
-            Tambahkan Anime Ke List
+            Edit Anime
           </DialogTitle>
         </DialogHeader>
         <Separator className="my-2" />
@@ -105,7 +99,7 @@ export const ModalAddList = () => {
                 <Skeleton className="w-full h-8" />
               ) : (
                 <h1 className="text-sm sm:text-lg font-bold">
-                  {data?.data.title}
+                  {data?.anime_title}
                 </h1>
               )}
             </div>
@@ -117,7 +111,7 @@ export const ModalAddList = () => {
             <div className="w-[60%]">
               <Select
                 onValueChange={handleStatusChange}
-                defaultValue={status}
+                value={getValueStatusByLabel(status)}
               >
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Choose status..." />
@@ -142,7 +136,7 @@ export const ModalAddList = () => {
             <div className="w-[60%]">
               <div className="flex items-center gap-x-2">
                 <InputEpisode
-                  total_episode={data?.data.episodes}
+                  total_episode={data?.total_episode}
                   isLoading={isLoading}
                   data={data}
                 />
@@ -157,6 +151,7 @@ export const ModalAddList = () => {
               <Select
                 onValueChange={handleScoreChange}
                 defaultValue="0"
+                value={score}
               >
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder=" score..." />
@@ -174,7 +169,7 @@ export const ModalAddList = () => {
               </Select>
             </div>
           </div>
-          <SubmitAddList data={dataAnime} />
+          <SubmitEditList />
         </div>
         <DialogClose asChild>
           <Button

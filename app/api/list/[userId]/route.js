@@ -10,6 +10,7 @@ export async function GET(request, context) {
 
   const { searchParams } = new URL(request.url);
   const status = searchParams.get("status");
+  const id = searchParams.get("listId");
 
   if (!user_id || !userId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -31,6 +32,23 @@ export async function GET(request, context) {
 
     if (!user) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
+
+    // mengambil list berdasarkan id
+    if (id) {
+      const list = await prisma.animeList.findUnique({
+        where: {
+          id: id,
+          owner: {
+            id: user.id,
+          },
+        },
+      });
+
+      if (!list) {
+        return NextResponse.json({ error: "List not found" }, { status: 404 });
+      }
+      return NextResponse.json(list);
     }
 
     const whereCondition = {
