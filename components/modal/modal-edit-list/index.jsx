@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import axios from "axios";
 import { X } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
@@ -27,7 +28,6 @@ import { animeScoreList, animeStatusList } from "@/constant/data-anime";
 import { Skeleton } from "@/components/ui/skeleton";
 import { InputEpisode } from "./input-episode";
 import { useEditListModal } from "@/hooks/use-edit-list-modal";
-import { useEffect } from "react";
 import { SubmitEditList } from "./submit-edit-list";
 import { getValueStatusByLabel } from "@/utils/enum-status";
 
@@ -77,6 +77,18 @@ export const ModalEditList = () => {
     setScore(value);
   };
 
+  const dataSubmit = {
+    user: {
+      user_id: userId,
+      id: listId,
+    },
+    data: {
+      status,
+      score,
+      watched_episode: count,
+    },
+  };
+
   return (
     <Dialog
       open={isOpen}
@@ -109,24 +121,28 @@ export const ModalEditList = () => {
               <h1 className="text-sm sm:text-lg">Status</h1>
             </div>
             <div className="w-[60%]">
-              <Select
-                onValueChange={handleStatusChange}
-                value={getValueStatusByLabel(status)}
-              >
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Choose status..." />
-                </SelectTrigger>
-                <SelectContent>
-                  {animeStatusList.map((item, index) => (
-                    <SelectItem
-                      key={index}
-                      value={item.value}
-                    >
-                      {item.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              {isLoading ? (
+                <Skeleton className="w-full h-8" />
+              ) : (
+                <Select
+                  onValueChange={handleStatusChange}
+                  value={getValueStatusByLabel(status)}
+                >
+                  <SelectTrigger className="w-[180px]">
+                    <SelectValue placeholder="Choose status..." />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {animeStatusList.map((item, index) => (
+                      <SelectItem
+                        key={index}
+                        value={item.value}
+                      >
+                        {item.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
             </div>
           </div>
           <div className="flex justify-between items-center">
@@ -148,28 +164,35 @@ export const ModalEditList = () => {
               <h1 className="text-sm sm:text-lg">Your score</h1>
             </div>
             <div className="w-[60%]">
-              <Select
-                onValueChange={handleScoreChange}
-                defaultValue="0"
-                value={score}
-              >
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder=" score..." />
-                </SelectTrigger>
-                <SelectContent className="overflow-y-scrol max-h-72 ">
-                  {animeScoreList.map((item, index) => (
-                    <SelectItem
-                      key={index}
-                      value={item.score}
-                    >
-                      {item.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              {isLoading ? (
+                <Skeleton className="w-full h-8" />
+              ) : (
+                <Select
+                  onValueChange={handleScoreChange}
+                  defaultValue="0"
+                  value={score}
+                >
+                  <SelectTrigger className="w-[180px]">
+                    <SelectValue placeholder=" score..." />
+                  </SelectTrigger>
+                  <SelectContent className="overflow-y-scrol max-h-72 ">
+                    {animeScoreList.map((item, index) => (
+                      <SelectItem
+                        key={index}
+                        value={item.score}
+                      >
+                        {item.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
             </div>
           </div>
-          <SubmitEditList />
+          <SubmitEditList
+            data={dataSubmit}
+            isLoading={isLoading}
+          />
         </div>
         <DialogClose asChild>
           <Button

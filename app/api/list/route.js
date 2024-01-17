@@ -159,3 +159,61 @@ export async function DELETE(request) {
     );
   }
 }
+
+export async function PUT(request) {
+  const { userId } = auth();
+  const { user, data } = await request.json();
+
+  const { user_id, id } = user;
+
+  const { status, score, watched_episode } = data;
+
+  if (!id) {
+    return NextResponse.json({ error: "Missing id" }, { status: 400 });
+  }
+
+  if (!user_id || !userId) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  if (userId !== user_id) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
+  try {
+    const animeList = await prisma.animeList.findUnique({
+      where: {
+        id,
+        owner: {
+          user_id: userId,
+        },
+      },
+    });
+
+    if (!animeList) {
+      return NextResponse.json({ error: "Anime not found" }, { status: 404 });
+    }
+
+    await prisma.animeList.update({
+      where: {
+        id: id,
+        owner: {
+          user_id: userId,
+        },
+      },
+      data: {
+        status: getLabelStatusByValue(status),
+        score,
+        watched_episode: Number(watched_episode),
+      },
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      { error: "Failed to update anime" },
+      { status: 500 }
+    );
+  }
+}

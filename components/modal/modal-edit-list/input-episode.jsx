@@ -24,14 +24,18 @@ export const InputEpisode = ({ total_episode, isLoading, data }) => {
 
   return (
     <>
-      <Input
-        type="number"
-        placeholder="0"
-        min="1"
-        className="w-[60px]"
-        value={count}
-        onChange={handleChangeInputEpisodes}
-      />
+      {isLoading ? (
+        <Skeleton className="w-[60px] h-8" />
+      ) : (
+        <Input
+          type="number"
+          placeholder="0"
+          min="1"
+          className="w-[60px]"
+          value={count}
+          onChange={handleChangeInputEpisodes}
+        />
+      )}
 
       <div className="flex items-center gap-x-2">
         {isLoading ? (

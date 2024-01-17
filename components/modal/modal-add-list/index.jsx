@@ -154,10 +154,7 @@ export const ModalAddList = () => {
               <h1 className="text-sm sm:text-lg">Your score</h1>
             </div>
             <div className="w-[60%]">
-              <Select
-                onValueChange={handleScoreChange}
-                defaultValue="0"
-              >
+              <Select onValueChange={handleScoreChange}>
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder=" score..." />
                 </SelectTrigger>
