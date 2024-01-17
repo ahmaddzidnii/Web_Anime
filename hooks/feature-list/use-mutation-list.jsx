@@ -110,11 +110,6 @@ export const useEditList = () => {
         queryKey: ["list", status],
         refetchType: "all",
       });
-
-      queryClient.invalidateQueries({
-        queryKey: ["listUser"],
-        refetchType: "all",
-      });
     },
   });
 };

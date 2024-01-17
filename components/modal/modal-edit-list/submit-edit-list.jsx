@@ -4,7 +4,7 @@ import { Loader } from "@/components/loader";
 import { Button } from "@/components/ui/button";
 import { useEditList } from "@/hooks/feature-list/use-mutation-list";
 
-export const SubmitEditList = ({ data, isLoading }) => {
+export const SubmitEditList = ({ data}) => {
   const { mutate, isPending } = useEditList();
 
   const handleClick = () => {
@@ -14,7 +14,7 @@ export const SubmitEditList = ({ data, isLoading }) => {
     <Button
       onClick={handleClick}
       className="w-full text-sm sm:text-lg tracking-wide"
-      disabled={isPending || isLoading}
+      disabled={isPending }
     >
       {isPending ? <Loader /> : "Perbarui list"}
     </Button>

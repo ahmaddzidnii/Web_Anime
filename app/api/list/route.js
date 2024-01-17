@@ -166,7 +166,7 @@ export async function PUT(request) {
 
   const { user_id, id } = user;
 
-  const { status, score, watched_episode } = data;
+  let { status, score, watched_episode } = data;
 
   if (!id) {
     return NextResponse.json({ error: "Missing id" }, { status: 400 });
@@ -192,6 +192,10 @@ export async function PUT(request) {
 
     if (!animeList) {
       return NextResponse.json({ error: "Anime not found" }, { status: 404 });
+    }
+
+    if (status === "C") {
+      watched_episode = animeList.total_episode;
     }
 
     await prisma.animeList.update({

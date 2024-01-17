@@ -2,6 +2,8 @@ import { create } from "zustand";
 
 export const useEditListModal = create((set) => ({
   listId: undefined,
+  animeTitle: undefined,
+  totalEpisode: undefined,
   isOpen: false,
   count: 0,
   status: undefined,
@@ -11,6 +13,8 @@ export const useEditListModal = create((set) => ({
     set({
       isOpen: false,
       listId: undefined,
+      animeTitle: undefined,
+      totalEpisode: undefined,
       count: 0,
       status: undefined,
       score: undefined,
@@ -32,4 +36,6 @@ export const useEditListModal = create((set) => ({
   },
   setStatus: (status) => set({ status: status }),
   setScore: (score) => set({ score: score }),
+  setAnimeTitle: (title) => set({ animeTitle: title }),
+  setTotalEpisode: (episode) => set({ totalEpisode: episode }),
 }));

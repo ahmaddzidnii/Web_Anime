@@ -79,7 +79,7 @@ export const ListAnime = () => {
                 <div className="w-[100px]">
                   <div className="flex items-center justify-center h-full space-x-2">
                     <DeleteList id={item.id} />
-                    <EditList id={item.id} />
+                    <EditList data={item} />
                   </div>
                 </div>
               </div>
