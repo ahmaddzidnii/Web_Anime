@@ -5,8 +5,8 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "@/components/mode-toggle";
 import { ProfileUser } from "@/components/auth/profile-user";
-import { ListAnime } from "@/components/list-anime";
-import { ButtonModalSearch } from "./modal/modal-search/button-modal-search";
+import { ButtonModalSearch } from "@/components/modal/modal-search/button-modal-search";
+import { IconListAnime } from "@/components/icon-list-anime";
 
 export const Navbar = () => {
   return (
@@ -40,7 +40,7 @@ export const Navbar = () => {
               <FaGithub className="h-[1.2rem] w-[1.2rem] md:w-6 md:h-6" />
             </Link>
             <ModeToggle />
-            <ListAnime />
+            <IconListAnime />
             <ProfileUser />
           </nav>
         </div>

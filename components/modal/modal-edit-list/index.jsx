@@ -25,7 +25,6 @@ import {
 } from "@/components/ui/select";
 
 import { animeScoreList, animeStatusList } from "@/constant/data-anime";
-import { Skeleton } from "@/components/ui/skeleton";
 import { InputEpisode } from "./input-episode";
 import { useEditListModal } from "@/hooks/use-edit-list-modal";
 import { SubmitEditList } from "./submit-edit-list";
@@ -37,18 +36,20 @@ export const ModalEditList = () => {
     status,
     score,
     listId,
+    animeTitle,
+    totalEpisode,
     isOpen,
     onClose,
     setStatus,
     setScore,
-    animeTitle,
   } = useEditListModal();
-
-  console.log({ count, status, score });
 
   const { userId } = useAuth();
 
   const handleStatusChange = (value) => {
+    if (value === "Completed") {
+      setCount(totalEpisode);
+    }
     setStatus(value);
   };
 

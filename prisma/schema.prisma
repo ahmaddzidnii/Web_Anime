@@ -46,7 +46,7 @@ model AnimeList {
   anime_id Int
   anime_title String @db.Text
   anime_image String? @db.Text
-  status String? @db.Text
+  status Status? 
   type String? @db.Text
   score Int? 
   total_episode Int?
@@ -56,4 +56,12 @@ model AnimeList {
 
   owner_id String
   owner User @relation(fields: [owner_id],references: [id],onDelete: Cascade)
+}
+
+enum Status {
+  Watching
+  Completed
+  OnHold
+  Dropped
+  PlanToWatch
 }

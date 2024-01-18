@@ -40,6 +40,7 @@ export const ModalAddList = () => {
     onClose,
     setStatus,
     setScore,
+    setCount,
   } = useAddListModal();
 
   const { userId } = useAuth();
@@ -57,6 +58,9 @@ export const ModalAddList = () => {
   });
 
   const handleStatusChange = (value) => {
+    if (value === "Completed") {
+      setCount(data?.data.episodes);
+    }
     setStatus(value);
   };
 

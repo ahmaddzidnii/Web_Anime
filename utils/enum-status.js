@@ -6,3 +6,11 @@ export const getValueStatusByLabel = (value) => {
   );
   return selectedOption?.value || value;
 };
+
+export const daftarStatus = [
+  "Dropped",
+  "OnHold",
+  "PlanToWatch",
+  "Watching",
+  "Completed",
+];

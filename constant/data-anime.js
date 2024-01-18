@@ -21,13 +21,17 @@ export const animeScoreList = [
 ];
 
 export const animeStatusList = [
-  { label: "Currently Watching", value: "CW" },
-  { label: "Completed", value: "C" },
-  { label: "Plan to Watch", value: "PTW" },
+  { label: "Currently Watching", value: "Watching" },
+  { label: "Completed", value: "Completed" },
+  { label: "Plan to Watch", value: "PlanToWatch" },
+  { label: "On Hold", value: "OnHold" },
+  { label: "Dropped", value: "Dropped" }, 
 ];
 export const animeStatusListTwo = [
-  { label: "Currently Watching", value: "CW" },
-  { label: "Completed", value: "C" },
-  { label: "Plan to Watch", value: "PTW" },
+  { label: "Currently Watching", value: "Watching" },
+  { label: "Completed", value: "Completed" },
+  { label: "Plan to Watch", value: "PlanToWatch" },
+  { label: "On Hold", value: "OnHold" },
+  { label: "Dropped", value: "Dropped" },
   { label: "All", value: "ALL" },
 ];

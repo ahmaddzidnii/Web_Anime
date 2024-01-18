@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 
 import { prisma } from "@/lib/prisma";
 import { animeStatusList } from "@/constant/data-anime";
+import { daftarStatus } from "@/utils/enum-status";
 
 export const getLabelStatusByValue = (value) => {
   const selectedOption = animeStatusList.find(
@@ -53,14 +54,14 @@ export async function POST(request) {
     );
   }
 
-  let statusAnime = getLabelStatusByValue(status);
+  let statusAnime = daftarStatus.includes(status) ? status : "Watching";
   let watchedEpisode = parseInt(watched_episode);
 
   if (Number(total_episode) === Number(watched_episode)) {
     statusAnime = "Completed";
   }
 
-  if (status === "C") {
+  if (status === "Completed") {
     watchedEpisode = Number(total_episode);
   }
 
@@ -194,8 +195,12 @@ export async function PUT(request) {
       return NextResponse.json({ error: "Anime not found" }, { status: 404 });
     }
 
-    if (status === "C") {
+    if (status === "Completed") {
       watched_episode = animeList.total_episode;
+    }
+
+    if (!daftarStatus.includes(status)) {
+      status = animeList.status;
     }
 
     await prisma.animeList.update({
@@ -206,7 +211,7 @@ export async function PUT(request) {
         },
       },
       data: {
-        status: getLabelStatusByValue(status),
+        status,
         score,
         watched_episode: Number(watched_episode),
       },

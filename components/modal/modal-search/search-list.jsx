@@ -13,13 +13,14 @@ import { fetchSearchAnime } from "@/services/anime.service";
 import { Button } from "@/components/ui/button";
 import { useAddListModal } from "@/hooks/use-add-list-modal";
 import { useUser } from "@clerk/nextjs";
+import { toast } from "sonner";
 
 export const SearchList = ({ query }) => {
   const router = useRouter();
 
   const searchModal = useSearchModal();
   const { onOpen } = useAddListModal();
-  const { user } = useUser();
+  const { isSignedIn } = useUser();
 
   const { data, isLoading, error } = useQuery({
     queryKey: [query ? query : null],
@@ -82,6 +83,10 @@ export const SearchList = ({ query }) => {
             <Button
               variant="ghost"
               onClick={() => {
+                if (!isSignedIn) {
+                  toast.error("Anda harus login terlebih dahulu !");
+                  return;
+                }
                 onOpen(item.mal_id);
               }}
             >

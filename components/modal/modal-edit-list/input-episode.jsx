@@ -2,7 +2,6 @@ import { Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Skeleton } from "@/components/ui/skeleton";
 import { useEditListModal } from "@/hooks/use-edit-list-modal";
 
 export const InputEpisode = () => {
@@ -13,7 +12,7 @@ export const InputEpisode = () => {
     let value = e.target.value;
 
     if (value == totalEpisode) {
-      setStatus("C");
+      setStatus("Completed");
     }
 
     setCount(value);

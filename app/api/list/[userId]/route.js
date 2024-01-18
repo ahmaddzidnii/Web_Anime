@@ -34,30 +34,11 @@ export async function GET(request, context) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
 
-    // mengambil list berdasarkan id
-    if (id) {
-      const list = await prisma.animeList.findUnique({
-        where: {
-          id: id,
-          owner: {
-            id: user.id,
-          },
-        },
-      });
-
-      if (!list) {
-        return NextResponse.json({ error: "List not found" }, { status: 404 });
-      }
-      return NextResponse.json(list);
-    }
-
     const whereCondition = {
       owner: {
         id: user.id,
       },
-      ...(status && status !== "ALL"
-        ? { status: getLabelStatusByValue(status) }
-        : {}),
+      ...(status && status !== "ALL" ? { status: status } : {}),
     };
 
     const lists = await prisma.animeList.findMany({
