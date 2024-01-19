@@ -57,7 +57,7 @@ export const FilterListAnime = () => {
         onValueChange={handleValueChange}
         defaultValue={status}
       >
-        <SelectTrigger className="w-[280px]">
+        <SelectTrigger className="w-[150px]">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>

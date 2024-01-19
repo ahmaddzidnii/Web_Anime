@@ -53,8 +53,8 @@ export const ListAnime = () => {
           );
           return (
             <div key={item.id}>
-              <Separator className="my-5" />
-              <div className="flex gap-x-5">
+              <Separator className="my-2" />
+              <div className="flex gap-x-5 relative">
                 <div>
                   <ImageComponent
                     src={item.anime_image}
@@ -62,7 +62,7 @@ export const ListAnime = () => {
                     className="w-[80px] h-[130px] sm:w-[100px] sm:h-[150px] md:w-[150px] md:h-[200px]"
                   />
                 </div>
-                <div className="flex-1 flex flex-col justify-center space-y-3 relative">
+                <div className="flex-1 flex flex-col justify-center space-y-2 ">
                   <EditListMobile data={item} />
                   <Link
                     href={`/anime/details/${item.anime_id}`}
@@ -71,7 +71,7 @@ export const ListAnime = () => {
                     {item.anime_title}
                   </Link>
                   <div className="flex items-center space-x-3">
-                    <p>{item.type}</p>
+                    <p className="text-[10px] sm:text-sm">{item.type}</p>
                     <Badge
                       variant="outline"
                       className="text-[10px] sm:text-sm"
@@ -89,7 +89,7 @@ export const ListAnime = () => {
                     </p>
                   </div>
                 </div>
-                <div className="hidden md:block w-[50px] md:w-[100px]">
+                <div className="hidden md:block w-[40px]">
                   <div className="flex items-center justify-center h-full space-x-2">
                     <EditList data={item} />
                   </div>

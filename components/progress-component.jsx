@@ -13,7 +13,7 @@ export const ProgressComponent = ({ value, status, className }) => {
       color = "bg-green-500";
       break;
     case "PlanToWatch":
-      color = "bg-fuchsia-500";
+      color = "bg-secondary";
       break;
     case "OnHold":
       color = "bg-purple-500";
