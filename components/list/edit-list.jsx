@@ -37,7 +37,7 @@ export const EditList = ({ data }) => {
   );
 };
 
-EditList.Mobile = function ({ data }) {
+export const EditListMobile = ({ data }) => {
   const {
     onOpen,
     setCount,

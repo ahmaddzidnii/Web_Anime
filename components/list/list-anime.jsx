@@ -7,11 +7,11 @@ import { useSearchParams } from "next/navigation";
 import { useFetchList } from "@/hooks/feature-list/use-query-list";
 import { FilterListAnime } from "./filter-list";
 import { ImageComponent } from "../image";
-import { EditList } from "./edit-list";
+import { EditList, EditListMobile } from "./edit-list";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ProgressComponent } from "@/components/progress-component";
-import { Badge } from "../ui/badge";
+import { Badge } from "@/components/ui/badge";
 
 export const ListAnime = () => {
   const searchParams = useSearchParams();
@@ -63,7 +63,7 @@ export const ListAnime = () => {
                   />
                 </div>
                 <div className="flex-1 flex flex-col justify-center space-y-3 relative">
-                  <EditList.Mobile data={item} />
+                  <EditListMobile data={item} />
                   <Link
                     href={`/anime/details/${item.anime_id}`}
                     className="text-sm sm:text-lg md:text-xl font-bold"
