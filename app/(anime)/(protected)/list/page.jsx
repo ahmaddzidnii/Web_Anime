@@ -1,5 +1,6 @@
-import { ListAnime } from "@/components/list/list-anime";
 import { Suspense } from "react";
+
+import { ListAnime } from "@/components/list/list-anime";
 
 const ListPage = () => {
   return (

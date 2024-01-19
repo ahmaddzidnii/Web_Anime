@@ -11,10 +11,6 @@ export const InputEpisode = () => {
   const handleChangeInputEpisodes = (e) => {
     let value = e.target.value;
 
-    if (value == totalEpisode) {
-      setStatus("Completed");
-    }
-
     setCount(value);
   };
 

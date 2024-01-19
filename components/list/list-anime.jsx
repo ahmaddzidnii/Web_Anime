@@ -1,17 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
 import { useFetchList } from "@/hooks/feature-list/use-query-list";
-import { DeleteList } from "./delete-list";
 import { FilterListAnime } from "./filter-list";
 import { ImageComponent } from "../image";
 import { EditList } from "./edit-list";
 import { Separator } from "@/components/ui/separator";
-import Link from "next/link";
-import { Loader } from "../loader";
-import { Skeleton } from "../ui/skeleton";
+import { Skeleton } from "@/components/ui/skeleton";
+import { ProgressComponent } from "@/components/progress-component";
+import { Badge } from "../ui/badge";
 
 export const ListAnime = () => {
   const searchParams = useSearchParams();
@@ -38,7 +38,6 @@ export const ListAnime = () => {
           <Skeleton className="w-full h-48 bg-slate-300" />
           <Skeleton className="w-full h-48 bg-slate-300" />
           <Skeleton className="w-full h-48 bg-slate-300" />
-          <Skeleton className="w-full h-48 bg-slate-300" />
         </div>
       )}
 
@@ -47,8 +46,11 @@ export const ListAnime = () => {
       )}
       <div className="h-full">
         {data?.map((item) => {
-          const createdDate = new Date(item.created_at).toLocaleString("id-ID");
-          const updatedDate = new Date(item.updated_at).toLocaleString("id-ID");
+          // const createdDate = new Date(item.created_at).toLocaleString("id-ID");
+          // const updatedDate = new Date(item.updated_at).toLocaleString("id-ID");
+          const progress = Math.ceil(
+            (item.watched_episode / item.total_episode) * 100
+          );
           return (
             <div key={item.id}>
               <Separator className="my-5" />
@@ -57,28 +59,38 @@ export const ListAnime = () => {
                   <ImageComponent
                     src={item.anime_image}
                     alt={item.anime_title}
-                    className="w-[150px] h-[200px]"
+                    className="w-[80px] h-[130px] sm:w-[100px] sm:h-[150px] md:w-[150px] md:h-[200px]"
                   />
                 </div>
-                <div className="flex-1 flex flex-col justify-center">
+                <div className="flex-1 flex flex-col justify-center space-y-3 relative">
+                  <EditList.Mobile data={item} />
                   <Link
                     href={`/anime/details/${item.anime_id}`}
-                    className="text-xl font-bold"
+                    className="text-sm sm:text-lg md:text-xl font-bold"
                   >
                     {item.anime_title}
                   </Link>
-                  <p>{item.type}</p>
-                  <p>{item.status}</p>
-                  <p>{item.score}</p>
-                  <p>
-                    {item.watched_episode}/{item.total_episode}
-                  </p>
-                  <p>Ditambahkan pada {createdDate}</p>
-                  <p>Diperbarui pada {updatedDate}</p>
+                  <div className="flex items-center space-x-3">
+                    <p>{item.type}</p>
+                    <Badge
+                      variant="outline"
+                      className="text-[10px] sm:text-sm"
+                    >
+                      {item.status}
+                    </Badge>
+                  </div>
+                  <ProgressComponent
+                    status={item.status}
+                    value={progress}
+                  />
+                  <div className="flex justify-end">
+                    <p className="rounded-[1px] text-[10px] sm:text-sm">
+                      {item.watched_episode}/{item.total_episode}
+                    </p>
+                  </div>
                 </div>
-                <div className="w-[100px]">
+                <div className="hidden md:block w-[50px] md:w-[100px]">
                   <div className="flex items-center justify-center h-full space-x-2">
-                    <DeleteList id={item.id} />
                     <EditList data={item} />
                   </div>
                 </div>

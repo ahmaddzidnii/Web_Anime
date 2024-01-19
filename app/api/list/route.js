@@ -40,6 +40,13 @@ export async function POST(request) {
     watched_episode,
   } = data;
 
+  if (Number(score) < 0 || Number(score) > 10) {
+    return NextResponse.json(
+      { error: "Score harus antara 0 - 10!" },
+      { status: 400 }
+    );
+  }
+
   if (Number(watched_episode) < 0) {
     return NextResponse.json(
       { error: "Watched Episode tidak valid!" },
@@ -179,6 +186,13 @@ export async function PUT(request) {
 
   if (userId !== user_id) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
+
+  if (Number(score) < 0 || Number(score) > 10) {
+    return NextResponse.json(
+      { error: "Score harus antara 0 - 10!" },
+      { status: 400 }
+    );
   }
 
   try {

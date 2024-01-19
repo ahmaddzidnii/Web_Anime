@@ -5,7 +5,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 
 import { useAddListModal } from "@/hooks/use-add-list-modal";
-import { useEditListModal } from "../use-edit-list-modal";
+import { useEditListModal } from "@/hooks/use-edit-list-modal";
 
 export const useAddList = () => {
   const { getToken } = useAuth();
@@ -42,6 +42,7 @@ export const useAddList = () => {
   });
 };
 export const useDeleteList = () => {
+  const { onClose } = useEditListModal();
   const { getToken } = useAuth();
   const queryClient = useQueryClient();
   const searchParams = useSearchParams();
@@ -57,6 +58,7 @@ export const useDeleteList = () => {
       });
     },
     onSuccess: () => {
+      onClose();
       toast.success("Anime dihapus dari list.");
     },
     onError: (err) => {

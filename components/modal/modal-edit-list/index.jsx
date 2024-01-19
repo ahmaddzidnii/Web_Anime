@@ -28,7 +28,7 @@ import { animeScoreList, animeStatusList } from "@/constant/data-anime";
 import { InputEpisode } from "./input-episode";
 import { useEditListModal } from "@/hooks/use-edit-list-modal";
 import { SubmitEditList } from "./submit-edit-list";
-import { getValueStatusByLabel } from "@/utils/enum-status";
+import { DeleteList } from "@/components/list/delete-list";
 
 export const ModalEditList = () => {
   const {
@@ -42,6 +42,7 @@ export const ModalEditList = () => {
     onClose,
     setStatus,
     setScore,
+    setCount,
   } = useEditListModal();
 
   const { userId } = useAuth();
@@ -97,7 +98,7 @@ export const ModalEditList = () => {
             <div className="w-[60%]">
               <Select
                 onValueChange={handleStatusChange}
-                value={getValueStatusByLabel(status)}
+                value={status}
               >
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Choose status..." />
@@ -152,6 +153,7 @@ export const ModalEditList = () => {
             </div>
           </div>
           <SubmitEditList data={dataSubmit} />
+          <DeleteList id={listId} />
         </div>
         <DialogClose asChild>
           <Button
