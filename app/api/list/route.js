@@ -176,6 +176,8 @@ export async function PUT(request) {
 
   let { status, score, watched_episode } = data;
 
+  const WATCHED_EPISODE_NUMBER = parseInt(watched_episode);
+
   if (!id) {
     return NextResponse.json({ error: "Missing id" }, { status: 400 });
   }
@@ -205,16 +207,34 @@ export async function PUT(request) {
       },
     });
 
+    /** If anime not found */
     if (!animeList) {
       return NextResponse.json({ error: "Anime not found" }, { status: 404 });
     }
 
+    /** Update watched episode and status if user choose completed status */
     if (status === "Completed") {
       watched_episode = animeList.total_episode;
     }
 
+    /** Update status to plan to watch to zero if user choose PlanToWatch status */
+    if (status === "PlanToWatch") {
+      watched_episode = 0;
+    }
+
+    //* Update status to plan to watch to zero if user choose PlanToWatch status */
+    if (watched_episode == 0) {
+      status = "PlanToWatch";
+    }
+
+    /** Update status if user choose other status */
     if (!daftarStatus.includes(status)) {
       status = animeList.status;
+    }
+
+    /** Update status to completed if user watched all episode */
+    if (WATCHED_EPISODE_NUMBER === animeList.total_episode) {
+      status = "Completed";
     }
 
     await prisma.animeList.update({

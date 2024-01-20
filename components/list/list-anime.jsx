@@ -3,13 +3,13 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { Bars } from "react-loader-spinner";
 
 import { useFetchList } from "@/hooks/feature-list/use-query-list";
 import { FilterListAnime } from "./filter-list";
 import { ImageComponent } from "../image";
 import { EditList, EditListMobile } from "./edit-list";
 import { Separator } from "@/components/ui/separator";
-import { Skeleton } from "@/components/ui/skeleton";
 import { ProgressComponent } from "@/components/progress-component";
 import { Badge } from "@/components/ui/badge";
 
@@ -34,10 +34,13 @@ export const ListAnime = () => {
       <FilterListAnime />
 
       {isLoading && (
-        <div className="flex flex-col justify-center h-full space-y-2">
-          <Skeleton className="w-full h-48 bg-slate-300" />
-          <Skeleton className="w-full h-48 bg-slate-300" />
-          <Skeleton className="w-full h-48 bg-slate-300" />
+        <div className="flex items-center justify-center h-[60vh]">
+          <Bars
+            height="80"
+            width="80"
+            color="#facc15"
+            ariaLabel="bars-loading"
+          />
         </div>
       )}
 
@@ -46,8 +49,6 @@ export const ListAnime = () => {
       )}
       <div className="h-full">
         {data?.map((item) => {
-          // const createdDate = new Date(item.created_at).toLocaleString("id-ID");
-          // const updatedDate = new Date(item.updated_at).toLocaleString("id-ID");
           const progress = Math.ceil(
             (item.watched_episode / item.total_episode) * 100
           );

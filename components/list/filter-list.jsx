@@ -2,6 +2,7 @@
 
 import { useCallback } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { IoOptionsSharp } from "react-icons/io5";
 
 import {
   Select,
@@ -52,7 +53,7 @@ export const FilterListAnime = () => {
     }
   };
   return (
-    <div className="my-5">
+    <div className="my-5 flex justify-between items-center">
       <Select
         onValueChange={handleValueChange}
         defaultValue={status}
@@ -71,6 +72,9 @@ export const FilterListAnime = () => {
           ))}
         </SelectContent>
       </Select>
+      <div>
+        <IoOptionsSharp className="w-7 h-7" />
+      </div>
     </div>
   );
 };

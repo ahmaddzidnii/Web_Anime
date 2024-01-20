@@ -16,7 +16,7 @@ export const ProgressComponent = ({ value, status, className }) => {
       color = "bg-secondary";
       break;
     case "OnHold":
-      color = "bg-purple-500";
+      color = "bg-orange-500";
       break;
     case "Dropped":
       color = "bg-red-500";
