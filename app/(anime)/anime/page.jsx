@@ -5,9 +5,9 @@ export const metadata = {
   title: "Anime",
 };
 
-const AnimePage = async () => {
+const AnimePage = () => {
   return (
-    <div className="w-full">
+    <div className="w-full min-h-screen pt-5">
       <PopularAnime />
       <AnimeAnak />
     </div>

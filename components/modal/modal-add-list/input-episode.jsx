@@ -28,7 +28,7 @@ export const InputEpisode = ({ total_episode, isLoading, data }) => {
         type="number"
         placeholder="0"
         min="1"
-        className="w-[60px]"
+        className="w-[50px] sm:w-[60px]"
         value={count}
         onChange={handleChangeInputEpisodes}
       />
@@ -37,7 +37,7 @@ export const InputEpisode = ({ total_episode, isLoading, data }) => {
         {isLoading ? (
           <Skeleton className="w-8 h-8" />
         ) : (
-          <span>/ {data?.data.episodes}</span>
+          <span className="text-xs sm:text-sm">/ {data?.data.episodes}</span>
         )}
         <Button
           variant="ghost"

@@ -16,10 +16,10 @@ const AnimeChildrenPage = async ({ searchParams }) => {
   const { data, pagination } = animeAnak;
 
   return (
-    <>
+    <main className="pt-5 min-h-screen">
       <CardListAnime data={data} />
       <div className="my-10">
-        <Suspense fallback={null}>
+        <Suspense fallback={<></>}>
           <PaginationCustom
             currentPage={page}
             maxPagesToShow={5}
@@ -27,7 +27,7 @@ const AnimeChildrenPage = async ({ searchParams }) => {
           />
         </Suspense>
       </div>
-    </>
+    </main>
   );
 };
 

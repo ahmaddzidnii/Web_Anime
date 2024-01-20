@@ -33,9 +33,9 @@ const Page = async ({ searchParams }) => {
   }
 
   return (
-    <>
+    <main className="pt-5">
       {!q || !data ? (
-        <div className="-mt-20">
+        <div className="pt-5">
           <div className=" min-h-screen flex justify-center items-center gap-5">
             <GiPeriscope className="text-4xl" />
             <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold  tracking-wide mb-5">
@@ -61,7 +61,7 @@ const Page = async ({ searchParams }) => {
           </div>
         </div>
       )}
-    </>
+    </main>
   );
 };
 

@@ -5,8 +5,7 @@ import { Input } from "@/components/ui/input";
 import { useEditListModal } from "@/hooks/use-edit-list-modal";
 
 export const InputEpisode = () => {
-  const { count, setStatus, setCount, incrementCount, totalEpisode } =
-    useEditListModal();
+  const { count, setCount, incrementCount, totalEpisode } = useEditListModal();
 
   const handleChangeInputEpisodes = (e) => {
     let value = e.target.value;
@@ -24,13 +23,13 @@ export const InputEpisode = () => {
         type="number"
         placeholder="0"
         min="1"
-        className="w-[60px]"
+        className="w-[50px] sm:w-[60px]"
         value={count}
         onChange={handleChangeInputEpisodes}
       />
 
       <div className="flex items-center gap-x-2">
-        <span>/ {totalEpisode}</span>
+        <span className="text-xs sm:text-sm">/ {totalEpisode}</span>
 
         <Button
           variant="ghost"

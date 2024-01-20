@@ -21,7 +21,7 @@ const TopAnimePage = async ({ searchParams }) => {
 
   const { data, pagination } = animePopular;
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pt-5">
       <CardListAnime data={data} />
       <div className="my-10">
         <Suspense fallback={null}>

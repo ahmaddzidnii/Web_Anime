@@ -123,7 +123,7 @@ export const ModalAddList = () => {
                 onValueChange={handleStatusChange}
                 defaultValue={status}
               >
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className="w-full">
                   <SelectValue placeholder="Choose status..." />
                 </SelectTrigger>
                 <SelectContent>
@@ -159,7 +159,7 @@ export const ModalAddList = () => {
             </div>
             <div className="w-[60%]">
               <Select onValueChange={handleScoreChange}>
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className="w-full">
                   <SelectValue placeholder=" score..." />
                 </SelectTrigger>
                 <SelectContent className="overflow-y-scrol max-h-72 ">

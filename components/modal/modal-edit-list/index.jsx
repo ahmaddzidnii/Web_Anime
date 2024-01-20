@@ -1,9 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
-import axios from "axios";
 import { X } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "@clerk/nextjs";
 
 import { Button } from "@/components/ui/button";
@@ -100,7 +97,7 @@ export const ModalEditList = () => {
                 onValueChange={handleStatusChange}
                 value={status}
               >
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className="w-full">
                   <SelectValue placeholder="Choose status..." />
                 </SelectTrigger>
                 <SelectContent>
@@ -136,7 +133,7 @@ export const ModalEditList = () => {
                 defaultValue="0"
                 value={score}
               >
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className="w-full">
                   <SelectValue placeholder=" score..." />
                 </SelectTrigger>
                 <SelectContent className="overflow-y-scrol max-h-72 ">
