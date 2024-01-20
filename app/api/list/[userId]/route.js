@@ -2,7 +2,6 @@ import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 import { prisma } from "@/lib/prisma";
-import { getLabelStatusByValue } from "../route";
 
 export async function GET(request, context) {
   const { userId } = auth();
@@ -10,7 +9,7 @@ export async function GET(request, context) {
 
   const { searchParams } = new URL(request.url);
   const status = searchParams.get("status");
-  const id = searchParams.get("listId");
+  const orderBy = searchParams.get("orderBy");
 
   if (!user_id || !userId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -41,10 +40,21 @@ export async function GET(request, context) {
       ...(status && status !== "ALL" ? { status: status } : {}),
     };
 
+    const orderCondition = {
+      ...(orderBy !== "score" ? { updated_at: "desc" } : { score: "desc" }),
+    };
+
     const lists = await prisma.animeList.findMany({
       where: whereCondition,
+      orderBy: orderCondition,
     });
 
     return NextResponse.json(lists);
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      { error: "Failed to fetch lists" },
+      { status: 500 }
+    );
+  }
 }

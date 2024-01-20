@@ -16,6 +16,7 @@ export const ImageComponent = ({
         fill
         className={imageClassName}
         quality={100}
+        priority
       />
     </div>
   );

@@ -25,7 +25,7 @@ export const ButtonModalSearch = () => {
           searchModal.onOpen();
         }}
       >
-        <Search className="h-7 w-7" />
+        <Search className="h-[1.2rem] w-[1.2rem] md:w-6 md:h-6" />
       </div>
 
       <div className="hidden md:block">

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Bars } from "react-loader-spinner";
+import { FaStar } from "react-icons/fa";
 
 import { useFetchList } from "@/hooks/feature-list/use-query-list";
 import { FilterListAnime } from "./filter-list";
@@ -16,10 +17,14 @@ import { Badge } from "@/components/ui/badge";
 export const ListAnime = () => {
   const searchParams = useSearchParams();
   const status = searchParams.get("status") || "ALL";
+  const orderBy = searchParams.get("orderBy");
 
   const [isMounted, setIsMounted] = useState(false);
 
-  const { data, isLoading } = useFetchList({ status: status });
+  const { data, isLoading } = useFetchList({
+    status: status,
+    orderBy: orderBy,
+  });
 
   useEffect(() => {
     setIsMounted(true);
@@ -84,7 +89,14 @@ export const ListAnime = () => {
                     status={item.status}
                     value={progress}
                   />
-                  <div className="flex justify-end">
+                  <div className="flex justify-between">
+                    <p className="rounded-[1px] text-[10px] sm:text-sm">
+                      {item.score != 0 && (
+                        <span className="flex items-center gap-x-1">
+                          <FaStar className="text-yellow-500" /> {item.score}
+                        </span>
+                      )}
+                    </p>
                     <p className="rounded-[1px] text-[10px] sm:text-sm">
                       {item.watched_episode}/{item.total_episode}
                     </p>

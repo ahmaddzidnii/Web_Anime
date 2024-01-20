@@ -6,7 +6,7 @@ export const useFetchList = (filters) => {
   const { userId, getToken } = useAuth();
 
   return useQuery({
-    queryKey: ["list", filters?.status],
+    queryKey: ["list", filters?.status, filters?.orderBy],
     queryFn: async () => {
       const queryString = Object.entries(filters)
         .map(([key, value]) => `${key}=${value}`)

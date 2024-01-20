@@ -5,6 +5,15 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { IoOptionsSharp } from "react-icons/io5";
 
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -13,6 +22,7 @@ import {
 } from "@/components/ui/select";
 import { animeStatusListTwo } from "@/constant/data-anime";
 import { daftarStatus } from "@/utils/enum-status";
+import { Button } from "../ui/button";
 
 export const FilterListAnime = () => {
   const router = useRouter();
@@ -52,6 +62,15 @@ export const FilterListAnime = () => {
       router.push(`${pathname}?${createQueryString("status", value)}`);
     }
   };
+
+  const byLastUpdate = () => {
+    router.push(`${pathname}?${deleteQueryString("orderBy")}`);
+  };
+
+  const byScore = () => {
+    router.push(`${pathname}?${createQueryString("orderBy", "score")}`);
+  };
+
   return (
     <div className="my-5 flex justify-between items-center">
       <Select
@@ -73,7 +92,21 @@ export const FilterListAnime = () => {
         </SelectContent>
       </Select>
       <div>
-        <IoOptionsSharp className="w-7 h-7" />
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost">
+              <IoOptionsSharp className="w-7 h-7" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuLabel>Filter By</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onClick={byLastUpdate}>
+              Last Update
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={byScore}>Score</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </div>
   );

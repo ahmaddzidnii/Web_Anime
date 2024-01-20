@@ -8,17 +8,26 @@ export async function GET(request, context) {
     return NextResponse.json({ error: "Mising user_id" }, { status: 400 });
   }
   try {
-    const listCount = await prisma.animeList.count({
+    const user = await prisma.user.findUnique({
       where: {
-        list: {
-          user_id,
+        user_id: user_id,
+      },
+      select: {
+        id: true,
+      },
+    });
+
+    if (!user) {
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
+    const list = await prisma.animeList.findMany({
+      where: {
+        owner: {
+          id: user.id,
         },
       },
     });
 
-    return NextResponse.json({
-      userId: user_id,
-      count: listCount,
-    });
+    return NextResponse.json(list);
   } catch (error) {}
 }
