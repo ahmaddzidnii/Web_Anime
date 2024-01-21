@@ -19,13 +19,13 @@ export const ButtonModalSearch = () => {
   return (
     <>
       <div
-        className="md:hidden"
+        className="md:hidden ms-auto"
         role="button"
         onClick={() => {
           searchModal.onOpen();
         }}
       >
-        <Search className="h-[1.2rem] w-[1.2rem] md:w-6 md:h-6" />
+        <Search className="h-[1.4rem] w-[1.4rem]" />
       </div>
 
       <div className="hidden md:block">

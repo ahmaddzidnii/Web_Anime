@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Bars } from "react-loader-spinner";
 import { FaStar } from "react-icons/fa";
+import { GiPeriscope } from "react-icons/gi";
 
 import { useFetchList } from "@/hooks/feature-list/use-query-list";
 import { FilterListAnime } from "./filter-list";
@@ -21,7 +22,7 @@ export const ListAnime = () => {
 
   const [isMounted, setIsMounted] = useState(false);
 
-  const { data, isLoading } = useFetchList({
+  const { data, isLoading, isError } = useFetchList({
     status: status,
     orderBy: orderBy,
   });
@@ -49,8 +50,19 @@ export const ListAnime = () => {
         </div>
       )}
 
+      {isError && (
+        <div className="flex items-center justify-center h-[60vh]">
+          <h1>Something went wrong!</h1>
+        </div>
+      )}
+
       {data?.length == 0 && (
-        <div className="text-center">Tidak ada anime di list</div>
+        <div className="flex items-center justify-center gap-x-3 h-[60vh]">
+          <GiPeriscope className="w-10 h-10 sm:w-20 sm:h-20" />
+          <h1 className="text-lg sm:text-xl font-bold text-center">
+            Tidak ada data anime!
+          </h1>
+        </div>
       )}
       <div className="h-full">
         {data?.map((item) => {
