@@ -38,6 +38,8 @@ export async function POST(request) {
     score,
     total_episode,
     watched_episode,
+    start_watch,
+    end_watch,
   } = data;
 
   if (Number(score) < 0 || Number(score) > 10) {
@@ -121,6 +123,8 @@ export async function POST(request) {
       score: score ? Number(score) : 0,
       total_episode: parseInt(total_episode),
       watched_episode: watchedEpisode,
+      start_watch: start_watch,
+      end_watch: end_watch,
       owner_id: user.id,
     };
 
@@ -174,7 +178,7 @@ export async function PUT(request) {
 
   const { user_id, id } = user;
 
-  let { status, score, watched_episode } = data;
+  let { status, score, watched_episode, start_watch, end_watch } = data;
 
   const WATCHED_EPISODE_NUMBER = parseInt(watched_episode);
 
@@ -248,6 +252,8 @@ export async function PUT(request) {
         status,
         score,
         watched_episode: Number(watched_episode),
+        start_watch,
+        end_watch,
       },
     });
 

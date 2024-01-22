@@ -36,9 +36,9 @@ export const Navbar = () => {
         <div className="ml-4 md:ml-0 flex flex-1 items-center gap-x-2 md:gap-x-5 justify-end">
           <nav className="flex items-center gap-x-2 md:gap-x-3">
             <ButtonModalSearch />
-            <Link href="https://github.com/ahmaddzidnii">
+            {/* <Link href="https://github.com/ahmaddzidnii">
               <FaGithub className="h-[1.2rem] w-[1.2rem] md:w-6 md:h-6" />
-            </Link>
+            </Link> */}
             <ModeToggle />
             <IconListAnime />
             <ProfileUser />

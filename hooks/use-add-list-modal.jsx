@@ -6,6 +6,8 @@ export const useAddListModal = create((set) => ({
   count: 0,
   status: undefined,
   score: undefined,
+  startWatch: undefined,
+  endWatch: undefined,
   onOpen: (id) => set({ isOpen: true, animeId: id }),
   onClose: () =>
     set({
@@ -14,6 +16,8 @@ export const useAddListModal = create((set) => ({
       count: 0,
       status: undefined,
       score: undefined,
+      startWatch: undefined,
+      endWatch: undefined,
     }),
   incrementCount: () =>
     set((state) => {
@@ -32,4 +36,6 @@ export const useAddListModal = create((set) => ({
   },
   setStatus: (status) => set({ status: status }),
   setScore: (score) => set({ score: score }),
+  setStartWatch: (startWatch) => set({ startWatch: startWatch }),
+  setEndWatch: (endWatch) => set({ endWatch: endWatch }),
 }));

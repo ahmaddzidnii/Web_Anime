@@ -26,6 +26,7 @@ import { InputEpisode } from "./input-episode";
 import { useEditListModal } from "@/hooks/use-edit-list-modal";
 import { SubmitEditList } from "./submit-edit-list";
 import { DeleteList } from "@/components/list/delete-list";
+import { InputDate } from "@/components/input-date";
 
 export const ModalEditList = () => {
   const {
@@ -35,11 +36,15 @@ export const ModalEditList = () => {
     listId,
     animeTitle,
     totalEpisode,
+    startWatch,
+    endWatch,
     isOpen,
     onClose,
     setStatus,
     setScore,
     setCount,
+    setStartWatch,
+    setEndWatch,
   } = useEditListModal();
 
   const { userId } = useAuth();
@@ -48,11 +53,24 @@ export const ModalEditList = () => {
     if (value === "Completed") {
       setCount(totalEpisode);
     }
+
+    if (value === "Watching") {
+      setStartWatch(new Date());
+    }
     setStatus(value);
   };
 
   const handleScoreChange = (value) => {
     setScore(value);
+  };
+
+  /** function to convert date to epoch */
+  const dateToEpoch = (date) => {
+    if (!date) {
+      return null;
+    }
+
+    return Math.floor(date.getTime() / 1000);
   };
 
   const dataSubmit = {
@@ -64,6 +82,8 @@ export const ModalEditList = () => {
       status,
       score,
       watched_episode: count,
+      start_watch: dateToEpoch(startWatch),
+      end_watch: dateToEpoch(endWatch),
     },
   };
 
@@ -134,7 +154,7 @@ export const ModalEditList = () => {
                 value={score}
               >
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder=" score..." />
+                  <SelectValue placeholder=" Select score..." />
                 </SelectTrigger>
                 <SelectContent className="overflow-y-scrol max-h-72 ">
                   {animeScoreList.map((item, index) => (
@@ -147,6 +167,32 @@ export const ModalEditList = () => {
                   ))}
                 </SelectContent>
               </Select>
+            </div>
+          </div>
+          <div className="flex justify-between items-center">
+            <div className="w-[40%]">
+              <h1 className="text-sm sm:text-lg">Start Watch</h1>
+            </div>
+            <div className="w-[60%]">
+              <InputDate
+                value={startWatch}
+                onSelect={(date) => setStartWatch(date)}
+              >
+                Select Date
+              </InputDate>
+            </div>
+          </div>
+          <div className="flex justify-between items-center">
+            <div className="w-[40%]">
+              <h1 className="text-sm sm:text-lg">End Watch</h1>
+            </div>
+            <div className="w-[60%]">
+              <InputDate
+                value={endWatch}
+                onSelect={(date) => setEndWatch(date)}
+              >
+                Select Date
+              </InputDate>
             </div>
           </div>
           <SubmitEditList data={dataSubmit} />

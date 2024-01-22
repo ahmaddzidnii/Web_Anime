@@ -13,6 +13,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+
 import { useAddListModal } from "@/hooks/use-add-list-modal";
 import { Separator } from "@/components/ui/separator";
 
@@ -23,12 +24,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
-import { SubmitAddList } from "./submit-add-list";
 
+import { SubmitAddList } from "./submit-add-list";
 import { animeScoreList, animeStatusList } from "@/constant/data-anime";
 import { Skeleton } from "@/components/ui/skeleton";
 import { InputEpisode } from "./input-episode";
+import { InputDate } from "@/components/input-date";
 
 export const ModalAddList = () => {
   const {
@@ -36,12 +37,21 @@ export const ModalAddList = () => {
     status,
     score,
     animeId,
+    startWatch,
+    endWatch,
     isOpen,
     onClose,
     setStatus,
     setScore,
     setCount,
+    setStartWatch,
+    setEndWatch,
   } = useAddListModal();
+
+  const epochStartWatch = startWatch
+    ? Math.floor(startWatch.getTime() / 1000)
+    : null;
+  const epochEndWatch = endWatch ? Math.floor(endWatch.getTime() / 1000) : null;
 
   const { userId } = useAuth();
   const { user } = useUser();
@@ -60,6 +70,12 @@ export const ModalAddList = () => {
   const handleStatusChange = (value) => {
     if (value === "Completed") {
       setCount(data?.data.episodes);
+    }
+    if (value === "Watching") {
+      setStartWatch(new Date());
+    }
+    if (value === "Completed") {
+      setEndWatch(new Date());
     }
     setStatus(value);
   };
@@ -84,6 +100,8 @@ export const ModalAddList = () => {
       score,
       total_episode: data?.data.episodes,
       watched_episode: count,
+      start_watch: epochStartWatch,
+      end_watch: epochEndWatch,
     },
   };
 
@@ -160,7 +178,7 @@ export const ModalAddList = () => {
             <div className="w-[60%]">
               <Select onValueChange={handleScoreChange}>
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder=" score..." />
+                  <SelectValue placeholder="Select Score..." />
                 </SelectTrigger>
                 <SelectContent className="overflow-y-scrol max-h-72 ">
                   {animeScoreList.map((item, index) => (
@@ -173,6 +191,32 @@ export const ModalAddList = () => {
                   ))}
                 </SelectContent>
               </Select>
+            </div>
+          </div>
+          <div className="flex justify-between items-center">
+            <div className="w-[40%]">
+              <h1 className="text-sm sm:text-lg">Start Watch</h1>
+            </div>
+            <div className="w-[60%]">
+              <InputDate
+                value={startWatch}
+                onSelect={(date) => setStartWatch(date)}
+              >
+                Select Date
+              </InputDate>
+            </div>
+          </div>
+          <div className="flex justify-between items-center">
+            <div className="w-[40%]">
+              <h1 className="text-sm sm:text-lg">End Watch</h1>
+            </div>
+            <div className="w-[60%]">
+              <InputDate
+                value={endWatch}
+                onSelect={(date) => setEndWatch(date)}
+              >
+                Select Date
+              </InputDate>
             </div>
           </div>
           <SubmitAddList data={dataAnime} />

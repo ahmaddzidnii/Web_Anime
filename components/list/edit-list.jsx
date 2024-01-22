@@ -7,6 +7,14 @@ import { Button } from "@/components/ui/button";
 import { Loader } from "../loader";
 import { useEditListModal } from "@/hooks/use-edit-list-modal";
 
+/** function to convert epoch to date*/
+const epochToDate = (epoch) => {
+  if (!epoch) {
+    return null;
+  }
+  return new Date(epoch * 1000);
+};
+
 export const EditList = ({ data }) => {
   const {
     onOpen,
@@ -15,9 +23,13 @@ export const EditList = ({ data }) => {
     setScore,
     setAnimeTitle,
     setTotalEpisode,
+    setStartWatch,
+    setEndWatch,
   } = useEditListModal();
   const isPending = false;
   const onEditList = () => {
+    setStartWatch(epochToDate(data.start_watch));
+    setEndWatch(epochToDate(data.end_watch));
     setAnimeTitle(data.anime_title);
     setTotalEpisode(data.total_episode);
     setCount(data.watched_episode);
@@ -45,9 +57,13 @@ export const EditListMobile = ({ data }) => {
     setScore,
     setAnimeTitle,
     setTotalEpisode,
+    setStartWatch,
+    setEndWatch,
   } = useEditListModal();
 
   const onEditList = () => {
+    setStartWatch(epochToDate(data.start_watch));
+    setEndWatch(epochToDate(data.end_watch));
     setAnimeTitle(data.anime_title);
     setTotalEpisode(data.total_episode);
     setCount(data.watched_episode);

@@ -12,6 +12,8 @@ const useEditListModal = create((set) => {
         count: 0,
         status: undefined,
         score: undefined,
+        startWatch: undefined,
+        endWatch: undefined,
       }),
     incrementCount: () =>
       set((state) => {
@@ -32,6 +34,8 @@ const useEditListModal = create((set) => {
     setScore: (score) => set({ score: score }),
     setAnimeTitle: (title) => set({ animeTitle: title }),
     setTotalEpisode: (episode) => set({ totalEpisode: episode }),
+    setStartWatch: (startWatch) => set({ startWatch: startWatch }),
+    setEndWatch: (endWatch) => set({ endWatch: endWatch }),
   };
 
   return {
@@ -42,6 +46,8 @@ const useEditListModal = create((set) => {
     count: 0,
     status: undefined,
     score: undefined,
+    startWatch: undefined,
+    endWatch: undefined,
     ...methods,
   };
 });

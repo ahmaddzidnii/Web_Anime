@@ -51,6 +51,8 @@ model AnimeList {
   score Int? 
   total_episode Int?
   watched_episode Int?
+  start_watch Int?
+  end_watch Int?
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
