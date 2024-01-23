@@ -27,6 +27,7 @@ import { useEditListModal } from "@/hooks/use-edit-list-modal";
 import { SubmitEditList } from "./submit-edit-list";
 import { DeleteList } from "@/components/list/delete-list";
 import { InputDate } from "@/components/input-date";
+import { SelectWrapper } from "@/components/select-wrapper";
 
 export const ModalEditList = () => {
   const {
@@ -113,24 +114,20 @@ export const ModalEditList = () => {
               <h1 className="text-sm sm:text-lg">Status</h1>
             </div>
             <div className="w-[60%]">
-              <Select
+              <SelectWrapper
                 onValueChange={handleStatusChange}
                 value={status}
+                className="w-full"
               >
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Choose status..." />
-                </SelectTrigger>
-                <SelectContent>
-                  {animeStatusList.map((item, index) => (
-                    <SelectItem
-                      key={index}
-                      value={item.value}
-                    >
-                      {item.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+                {animeStatusList.map((item, index) => (
+                  <SelectItem
+                    key={index}
+                    value={item.value}
+                  >
+                    {item.label}
+                  </SelectItem>
+                ))}
+              </SelectWrapper>
             </div>
           </div>
           <div className="flex justify-between items-center">
@@ -148,25 +145,21 @@ export const ModalEditList = () => {
               <h1 className="text-sm sm:text-lg">Your score</h1>
             </div>
             <div className="w-[60%]">
-              <Select
+              <SelectWrapper
+                className="w-full"
                 onValueChange={handleScoreChange}
                 defaultValue="0"
                 value={score}
               >
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder=" Select score..." />
-                </SelectTrigger>
-                <SelectContent className="overflow-y-scrol max-h-72 ">
-                  {animeScoreList.map((item, index) => (
-                    <SelectItem
-                      key={index}
-                      value={item.score}
-                    >
-                      {item.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+                {animeScoreList.map((item, index) => (
+                  <SelectItem
+                    key={index}
+                    value={item.score}
+                  >
+                    {item.label}
+                  </SelectItem>
+                ))}
+              </SelectWrapper>
             </div>
           </div>
           <div className="flex justify-between items-center">

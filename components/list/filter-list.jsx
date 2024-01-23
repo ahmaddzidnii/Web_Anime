@@ -13,16 +13,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { animeStatusListTwo } from "@/constant/data-anime";
 import { daftarStatus } from "@/utils/enum-status";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
+import { SelectWrapper, SelectItem } from "@/components/select-wrapper";
 
 export const FilterListAnime = () => {
   const router = useRouter();
@@ -73,24 +67,19 @@ export const FilterListAnime = () => {
 
   return (
     <div className="my-5 flex justify-between items-center">
-      <Select
-        onValueChange={handleValueChange}
+      <SelectWrapper
         defaultValue={status}
+        onValueChange={handleValueChange}
       >
-        <SelectTrigger className="w-[150px]">
-          <SelectValue />
-        </SelectTrigger>
-        <SelectContent>
-          {animeStatusListTwo.map((item, index) => (
-            <SelectItem
-              key={index}
-              value={item.value}
-            >
-              {item.label}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+        {animeStatusListTwo.map((item, index) => (
+          <SelectItem
+            key={index}
+            value={item.value}
+          >
+            {item.label}
+          </SelectItem>
+        ))}
+      </SelectWrapper>
       <div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

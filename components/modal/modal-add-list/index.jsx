@@ -17,19 +17,12 @@ import {
 import { useAddListModal } from "@/hooks/use-add-list-modal";
 import { Separator } from "@/components/ui/separator";
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-
 import { SubmitAddList } from "./submit-add-list";
 import { animeScoreList, animeStatusList } from "@/constant/data-anime";
 import { Skeleton } from "@/components/ui/skeleton";
 import { InputEpisode } from "./input-episode";
 import { InputDate } from "@/components/input-date";
+import { SelectWrapper, SelectItem } from "@/components/select-wrapper";
 
 export const ModalAddList = () => {
   const {
@@ -137,24 +130,20 @@ export const ModalAddList = () => {
               <h1 className="text-sm sm:text-lg">Status</h1>
             </div>
             <div className="w-[60%]">
-              <Select
+              <SelectWrapper
+                className="w-full"
+                placeholder="Choose status..."
                 onValueChange={handleStatusChange}
-                defaultValue={status}
               >
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Choose status..." />
-                </SelectTrigger>
-                <SelectContent>
-                  {animeStatusList.map((item, index) => (
-                    <SelectItem
-                      key={index}
-                      value={item.value}
-                    >
-                      {item.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+                {animeStatusList.map((item, index) => (
+                  <SelectItem
+                    key={index}
+                    value={item.value}
+                  >
+                    {item.label}
+                  </SelectItem>
+                ))}
+              </SelectWrapper>
             </div>
           </div>
           <div className="flex justify-between items-center">
@@ -176,21 +165,20 @@ export const ModalAddList = () => {
               <h1 className="text-sm sm:text-lg">Your score</h1>
             </div>
             <div className="w-[60%]">
-              <Select onValueChange={handleScoreChange}>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select Score..." />
-                </SelectTrigger>
-                <SelectContent className="overflow-y-scrol max-h-72 ">
-                  {animeScoreList.map((item, index) => (
-                    <SelectItem
-                      key={index}
-                      value={item.score}
-                    >
-                      {item.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <SelectWrapper
+                className="w-full"
+                placeholder="Select Score..."
+                onValueChange={handleScoreChange}
+              >
+                {animeScoreList.map((item, index) => (
+                  <SelectItem
+                    key={index}
+                    value={item.score}
+                  >
+                    {item.label}
+                  </SelectItem>
+                ))}
+              </SelectWrapper>
             </div>
           </div>
           <div className="flex justify-between items-center">
