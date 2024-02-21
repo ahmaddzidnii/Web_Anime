@@ -3,9 +3,9 @@ import { Navbar } from "@/components/navbar";
 
 const HomePageLayout = ({ children }) => {
   return (
-    <div className="h-auto relative">
+    <div className="relative h-auto">
       <Navbar />
-      <main className="h-full  container-custom">{children}</main>
+      <main className="container-custom  h-full">{children}</main>
       <Footer />
     </div>
   );

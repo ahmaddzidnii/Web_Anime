@@ -14,7 +14,7 @@ export const getAnimePopular = async (limit) => {
 export const getAnimeQuery = async (q, page) => {
   try {
     const response = await axiosInstance.get(
-      `/anime?q=${q}&sfw=true&limit=24&page=${page}`
+      `/anime?q=${q}&sfw=true&limit=24&page=${page}`,
     );
     const data = response.data;
     return data;

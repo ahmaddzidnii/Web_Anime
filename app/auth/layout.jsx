@@ -1,6 +1,6 @@
 const AuthLayout = ({ children }) => {
   return (
-    <div className="flex justify-center items-center min-h-screen py-10">
+    <div className="flex min-h-screen items-center justify-center py-10">
       {children}
     </div>
   );

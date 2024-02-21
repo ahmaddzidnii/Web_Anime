@@ -11,7 +11,7 @@ export const SubmitAddList = ({ data }) => {
   return (
     <Button
       onClick={handleClick}
-      className="w-full text-sm sm:text-lg tracking-wide"
+      className="w-full text-sm tracking-wide sm:text-lg"
       disabled={isPending}
     >
       {isPending ? <Loader /> : "Tambahkan ke list"}

@@ -54,7 +54,7 @@ export async function GET(request, context) {
     console.log(error);
     return NextResponse.json(
       { error: "Failed to fetch lists" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

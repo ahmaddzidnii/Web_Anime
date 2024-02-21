@@ -27,12 +27,8 @@ export const AddList = ({ data }) => {
   }, []);
 
   return (
-    <Button
-      onClick={onAddToList}
-      variant="outline"
-      disabled={!isMounted}
-    >
-      <MdFormatListBulletedAdd className="h-5 w-5 mr-2" />
+    <Button onClick={onAddToList} variant="outline" disabled={!isMounted}>
+      <MdFormatListBulletedAdd className="mr-2 h-5 w-5" />
       Tambahkan Ke List
     </Button>
   );

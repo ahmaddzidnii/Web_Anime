@@ -12,11 +12,7 @@ export const Loader = ({
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <circle
-            cx="4"
-            cy="12"
-            r="0"
-          >
+          <circle cx="4" cy="12" r="0">
             <animate
               begin="0;h.end"
               attributeName="r"
@@ -63,11 +59,7 @@ export const Loader = ({
               fill="freeze"
             />
           </circle>
-          <circle
-            cx="4"
-            cy="12"
-            r="3"
-          >
+          <circle cx="4" cy="12" r="3">
             <animate
               begin="0;h.end"
               attributeName="cx"
@@ -114,11 +106,7 @@ export const Loader = ({
               fill="freeze"
             />
           </circle>
-          <circle
-            cx="12"
-            cy="12"
-            r="3"
-          >
+          <circle cx="12" cy="12" r="3">
             <animate
               begin="0;h.end"
               attributeName="cx"
@@ -165,11 +153,7 @@ export const Loader = ({
               fill="freeze"
             />
           </circle>
-          <circle
-            cx="20"
-            cy="12"
-            r="3"
-          >
+          <circle cx="20" cy="12" r="3">
             <animate
               id="a"
               begin="0;h.end"
@@ -227,11 +211,7 @@ export const Loader = ({
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <circle
-            cx="4"
-            cy="12"
-            r="0"
-          >
+          <circle cx="4" cy="12" r="0">
             <animate
               begin="0;h.end"
               attributeName="r"
@@ -278,11 +258,7 @@ export const Loader = ({
               fill="freeze"
             />
           </circle>
-          <circle
-            cx="4"
-            cy="12"
-            r="3"
-          >
+          <circle cx="4" cy="12" r="3">
             <animate
               begin="0;h.end"
               attributeName="cx"
@@ -329,11 +305,7 @@ export const Loader = ({
               fill="freeze"
             />
           </circle>
-          <circle
-            cx="12"
-            cy="12"
-            r="3"
-          >
+          <circle cx="12" cy="12" r="3">
             <animate
               begin="0;h.end"
               attributeName="cx"
@@ -380,11 +352,7 @@ export const Loader = ({
               fill="freeze"
             />
           </circle>
-          <circle
-            cx="20"
-            cy="12"
-            r="3"
-          >
+          <circle cx="20" cy="12" r="3">
             <animate
               id="a"
               begin="0;h.end"

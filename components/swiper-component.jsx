@@ -55,13 +55,13 @@ export const SwiperComponent = ({ data, isLoading, isError }) => {
         data.map((data) => {
           return (
             <SwiperSlide key={data.mal_id}>
-              <Card className="shadow-lg hover:-translate-y-[1px] transition">
-                <div className="relative w-[full] h-[300px]">
+              <Card className="shadow-lg transition hover:-translate-y-[1px]">
+                <div className="relative h-[300px] w-[full]">
                   <SkeletonLoaderImage />
                   <Image
                     loading="lazy"
                     quality={100}
-                    className="w-full h-full object-cover"
+                    className="h-full w-full object-cover"
                     src={data.images.jpg.large_image_url}
                     fill
                     alt={data.title}
@@ -77,10 +77,7 @@ export const SwiperComponent = ({ data, isLoading, isError }) => {
                       />
                     </CardTitle>
                   </div>
-                  <Button
-                    asChild
-                    size="sm"
-                  >
+                  <Button asChild size="sm">
                     <Link href={`/anime/details/${data.mal_id}`}>
                       Lihat Deskripsi
                     </Link>
@@ -101,13 +98,13 @@ const SkeletonCaroselSwiper = () => {
       <div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3">
         <CardSkeleton />
       </div>
-      <div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 hidden sm:block ">
+      <div className="col-span-12 hidden sm:col-span-6 sm:block md:col-span-4 lg:col-span-3 ">
         <CardSkeleton />
       </div>
-      <div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 hidden md:block">
+      <div className="col-span-12 hidden sm:col-span-6 md:col-span-4 md:block lg:col-span-3">
         <CardSkeleton />
       </div>
-      <div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 hidden lg:block">
+      <div className="col-span-12 hidden sm:col-span-6 md:col-span-4 lg:col-span-3 lg:block">
         <CardSkeleton />
       </div>
     </div>

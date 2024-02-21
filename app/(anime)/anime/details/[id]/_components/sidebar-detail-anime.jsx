@@ -83,12 +83,12 @@ export const SideBarDetailAnime = () => {
   }
   return (
     <div
-      className={`max-h-screen border-e-2 relative p-2 md:p-5 ${
+      className={`relative max-h-screen border-e-2 p-2 md:p-5 ${
         open ? "w-72" : "w-14 md:w-20"
       } duration-300`}
     >
       <BsArrowLeftShort
-        className={`bg-white text-3xl rounded-full text-slate-500 absolute -right-4 top-0 border border-slate-500 cursor-pointer ${
+        className={`absolute -right-4 top-0 cursor-pointer rounded-full border border-slate-500 bg-white text-3xl text-slate-500 ${
           !open && "rotate-180"
         } hidden md:block`}
         onClick={() => setOpen(!open)}
@@ -100,13 +100,13 @@ export const SideBarDetailAnime = () => {
             <Link
               href={d.href}
               key={index}
-              className={`flex gap-x-4 p-2 items-center cursor-pointer mb-4 rounded-sm text-sm ${
+              className={`mb-4 flex cursor-pointer items-center gap-x-4 rounded-sm p-2 text-sm ${
                 d.isActive && "bg-slate-300 dark:text-slate-900"
               } hover:bg-slate-300 dark:hover:text-slate-900`}
             >
-              <span className="text-2xl block float-left">{d.icon}</span>
+              <span className="float-left block text-2xl">{d.icon}</span>
               <span
-                className={`text-base font-medium flex-1 duration-300 ${
+                className={`flex-1 text-base font-medium duration-300 ${
                   !open && "hidden"
                 }`}
               >
@@ -122,12 +122,12 @@ export const SideBarDetailAnime = () => {
 
 const SidebarSkeleton = () => {
   return (
-    <div className="max-h-screen border-e-2  p-2 md:p-5 w-14 md:w-72">
+    <div className="max-h-screen w-14  border-e-2 p-2 md:w-72 md:p-5">
       <ul>
         {Array.from({ length: 5 }).map((_, index) => (
           <Skeleton
             key={index}
-            className="flex gap-x-4 p-2 items-center mb-4 rounded-sm h-10"
+            className="mb-4 flex h-10 items-center gap-x-4 rounded-sm p-2"
           />
         ))}
       </ul>

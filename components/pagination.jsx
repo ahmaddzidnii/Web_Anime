@@ -34,7 +34,7 @@ export const PaginationCustom = ({
 
       return params.toString();
     },
-    [searchParams]
+    [searchParams],
   );
   return (
     <div className={totalPages == 1 ? "hidden" : ""}>
@@ -54,12 +54,7 @@ export const PaginationCustom = ({
 
           {listPageToShow.map((idxPage, idx) => {
             if (idxPage === "...") {
-              return (
-                <PaginationEllipsis
-                  className="text-sm"
-                  key={idx}
-                />
-              );
+              return <PaginationEllipsis className="text-sm" key={idx} />;
             }
             return (
               <PaginationLink
@@ -94,11 +89,7 @@ const PaginationMobile = ({ currentPage, totalPages, createQueryString }) => {
             href={`?${createQueryString("page", parseInt(currentPage) - 1)}`}
           />
         )}
-        <Button
-          disabled
-          variant="ghost"
-          className="text-sm"
-        >
+        <Button disabled variant="ghost" className="text-sm">
           {currentPage}
         </Button>
         {currentPage < totalPages ? (

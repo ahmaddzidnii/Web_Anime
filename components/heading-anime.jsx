@@ -10,18 +10,15 @@ import {
 
 export const HeadingAnime = ({ title, href }) => {
   return (
-    <div className="flex flex-row  justify-between items-center  mb-5">
-      <h1 className="text-sm sm:text-lg md:text-2xl lg:text-3xl font-bold  tracking-wide">
+    <div className="mb-5 flex  flex-row items-center  justify-between">
+      <h1 className="text-sm font-bold tracking-wide sm:text-lg md:text-2xl  lg:text-3xl">
         {title}
       </h1>
 
       <TooltipProvider delayDuration={0}>
         <Tooltip>
           <TooltipTrigger asChild>
-            <Link
-              href={href}
-              className="font-bold"
-            >
+            <Link href={href} className="font-bold">
               <MoveRight />
             </Link>
           </TooltipTrigger>

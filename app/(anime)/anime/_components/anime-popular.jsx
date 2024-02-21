@@ -19,10 +19,7 @@ export const PopularAnime = () => {
 
   return (
     <section>
-      <HeadingAnime
-        title="Paling Popular"
-        href="/anime/top"
-      />
+      <HeadingAnime title="Paling Popular" href="/anime/top" />
 
       <SwiperComponent
         data={animePopular?.data}

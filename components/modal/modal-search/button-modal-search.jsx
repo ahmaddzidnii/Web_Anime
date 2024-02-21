@@ -13,13 +13,13 @@ export const ButtonModalSearch = () => {
     () => {
       searchModal.onOpen();
     },
-    { preventDefault: true }
+    { preventDefault: true },
   );
 
   return (
     <>
       <div
-        className="md:hidden ms-auto"
+        className="ms-auto md:hidden"
         role="button"
         onClick={() => {
           searchModal.onOpen();
@@ -34,7 +34,7 @@ export const ButtonModalSearch = () => {
           onClick={() => {
             searchModal.onOpen();
           }}
-          className=" inline-flex items-center whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-accent hover:text-accent-foreground px-4 py-2 relative h-10 w-full justify-start rounded-[0.5rem] bg-background text-sm font-normal text-muted-foreground shadow-none sm:pr-12 md:w-40 lg:w-64"
+          className=" relative inline-flex h-10 w-full items-center justify-start whitespace-nowrap rounded-[0.5rem] border border-input bg-background px-4 py-2 text-sm font-normal text-muted-foreground shadow-none transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 sm:pr-12 md:w-40 lg:w-64"
         >
           <span className="hidden lg:block">Search Anime..</span>
           <span className="hidden md:block lg:hidden">Search</span>

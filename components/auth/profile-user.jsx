@@ -14,7 +14,7 @@ export const ProfileUser = () => {
 
   if (!isMounted) {
     return (
-      <Skeleton className="h-[1.5rem] w-[1.5rem] md:w-7 md:h-7 rounded-full bg-slate-300" />
+      <Skeleton className="h-[1.5rem] w-[1.5rem] rounded-full bg-slate-300 md:h-7 md:w-7" />
     );
   }
   return (

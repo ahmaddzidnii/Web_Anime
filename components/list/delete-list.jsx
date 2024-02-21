@@ -16,11 +16,7 @@ export const DeleteList = ({ id }) => {
     deleteList(data);
   };
   return (
-    <Button
-      variant="destructive"
-      onClick={onDeleteItem}
-      disabled={isPending}
-    >
+    <Button variant="destructive" onClick={onDeleteItem} disabled={isPending}>
       {isPending ? <Loader colorInDark="#ffffff" /> : <FaTrash />}
     </Button>
   );

@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 export const Logo = () => {
   return (
-    <div className="hidden md:flex items-center md:gap-x-2">
+    <div className="hidden items-center md:flex md:gap-x-2">
       <Image
         className="dark:hidden"
         src="/logo.svg"

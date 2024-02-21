@@ -10,7 +10,7 @@ export async function getAnimeTop({
 }) {
   try {
     const response = await axiosInstance.get(
-      `${resource}?sfw=${sfw}&limit=${limit}${query}`
+      `${resource}?sfw=${sfw}&limit=${limit}${query}`,
     );
     return response.data;
   } catch (error) {}
@@ -19,7 +19,7 @@ export async function getAnimeTop({
 export const getAnimeAnak = async (limit, page = 1) => {
   try {
     const response = await axiosInstance.get(
-      `anime?sfw=true&rating=pg&limit=${limit}&page=${page}&order_by=popularity`
+      `anime?sfw=true&rating=pg&limit=${limit}&page=${page}&order_by=popularity`,
     );
     const { data } = response;
     return data;
@@ -55,14 +55,14 @@ export const fetchAnimeTop = async () => {
 
 export const fetchAnimeAnakTop = async () => {
   const { data } = await axios.get(
-    `${ANIME_URL}/anime?sfw=true&rating=pg&limit=10&order_by=popularity`
+    `${ANIME_URL}/anime?sfw=true&rating=pg&limit=10&order_by=popularity`,
   );
   return data;
 };
 
 export const fetchSearchAnime = async (query) => {
   const { data } = await axios.get(
-    `${ANIME_URL}/anime?q=${query}&sfw=true&limit=10`
+    `${ANIME_URL}/anime?q=${query}&sfw=true&limit=10`,
   );
 
   return data;

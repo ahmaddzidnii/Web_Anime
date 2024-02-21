@@ -35,14 +35,11 @@ export const InputEpisode = ({ total_episode, isLoading, data }) => {
 
       <div className="flex items-center gap-x-2">
         {isLoading ? (
-          <Skeleton className="w-8 h-8" />
+          <Skeleton className="h-8 w-8" />
         ) : (
           <span className="text-xs sm:text-sm">/ {data?.data.episodes}</span>
         )}
-        <Button
-          variant="ghost"
-          onClick={handleIncreaseEpisodes}
-        >
+        <Button variant="ghost" onClick={handleIncreaseEpisodes}>
           <Plus className="h-4 w-4" />
         </Button>
       </div>

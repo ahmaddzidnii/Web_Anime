@@ -14,13 +14,7 @@ export const YtIframe = ({ id, title }) => {
   }, []);
 
   if (!isMounted) {
-    return <Skeleton className="w-full h-[300px]" />;
+    return <Skeleton className="h-[300px] w-full" />;
   }
-  return (
-    <LiteYouTubeEmbed
-      id={id}
-      title={title}
-      poster="maxresdefault"
-    />
-  );
+  return <LiteYouTubeEmbed id={id} title={title} poster="maxresdefault" />;
 };

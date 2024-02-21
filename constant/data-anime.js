@@ -25,7 +25,7 @@ export const animeStatusList = [
   { label: "Completed", value: "Completed" },
   { label: "Plan to Watch", value: "PlanToWatch" },
   { label: "On Hold", value: "OnHold" },
-  { label: "Dropped", value: "Dropped" }, 
+  { label: "Dropped", value: "Dropped" },
 ];
 export const animeStatusListTwo = [
   { label: "Currently Watching", value: "Watching" },

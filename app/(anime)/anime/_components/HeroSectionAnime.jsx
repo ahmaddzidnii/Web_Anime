@@ -3,16 +3,16 @@ import Form from "../../../../components/form";
 
 const HeroSectionAnime = ({ q }) => {
   return (
-    <div className="flex flex-col items-center my-5">
+    <div className="my-5 flex flex-col items-center">
       <Image
-        className="dark:hidden mb-2"
+        className="mb-2 dark:hidden"
         src="/logo.svg"
         height="100"
         width="100"
         alt="logo"
       />
       <Image
-        className="hidden dark:block mb-2"
+        className="mb-2 hidden dark:block"
         src="/logo-dark.svg"
         height="100"
         width="100"

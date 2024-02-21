@@ -33,13 +33,13 @@ export const DetailAnimePage = ({ api, searchParams, params }) => {
   const tabIcon = tabInfo[tab] ? tabInfo[tab].icon : <BiSolidUserDetail />;
 
   return (
-    <main className="p-4 md:p-7 overflow-y-scroll max-h-screen w-full">
-      <div className="flex gap-x-5 -mt-5 mb-5 text-4xl">
+    <main className="max-h-screen w-full overflow-y-scroll p-4 md:p-7">
+      <div className="-mt-5 mb-5 flex gap-x-5 text-4xl">
         {tabIcon}
         <h1 className="font-bold">{tabTitle}</h1>
       </div>
-      <div className="flex flex-col lg:flex-row gap-5 justify-center">
-        <div className="mx-auto w-full lg:w-[350px]  h-[400px] relative">
+      <div className="flex flex-col justify-center gap-5 lg:flex-row">
+        <div className="relative mx-auto h-[400px]  w-full lg:w-[350px]">
           <SkeletonLoaderImage />
           <Image
             src={api?.images.jpg.large_image_url}
@@ -49,8 +49,8 @@ export const DetailAnimePage = ({ api, searchParams, params }) => {
           />
         </div>
 
-        <div className=" w-full h-auto">
-          <h1 className="text-sm md:text-lg lg:text-xl xl:text-2xl font-bold ">
+        <div className=" h-auto w-full">
+          <h1 className="text-sm font-bold md:text-lg lg:text-xl xl:text-2xl ">
             {api?.title} <span className="italic">{api?.title_japanese}</span>
           </h1>
 

@@ -40,7 +40,7 @@ export const ListAnime = () => {
       <FilterListAnime />
 
       {isLoading && (
-        <div className="flex items-center justify-center h-[60vh]">
+        <div className="flex h-[60vh] items-center justify-center">
           <Bars
             height="80"
             width="80"
@@ -51,15 +51,15 @@ export const ListAnime = () => {
       )}
 
       {isError && (
-        <div className="flex items-center justify-center h-[60vh]">
+        <div className="flex h-[60vh] items-center justify-center">
           <h1>Something went wrong!</h1>
         </div>
       )}
 
       {data?.length == 0 && (
-        <div className="flex items-center justify-center gap-x-3 h-[60vh]">
-          <GiPeriscope className="w-10 h-10 sm:w-20 sm:h-20" />
-          <h1 className="text-lg sm:text-xl font-bold text-center">
+        <div className="flex h-[60vh] items-center justify-center gap-x-3">
+          <GiPeriscope className="h-10 w-10 sm:h-20 sm:w-20" />
+          <h1 className="text-center text-lg font-bold sm:text-xl">
             Tidak ada data anime!
           </h1>
         </div>
@@ -67,40 +67,34 @@ export const ListAnime = () => {
       <div className="h-full">
         {data?.map((item) => {
           const progress = Math.ceil(
-            (item.watched_episode / item.total_episode) * 100
+            (item.watched_episode / item.total_episode) * 100,
           );
           return (
             <div key={item.id}>
               <Separator className="my-2" />
-              <div className="flex gap-x-5 relative">
+              <div className="relative flex gap-x-5">
                 <div>
                   <ImageComponent
                     src={item.anime_image}
                     alt={item.anime_title}
-                    className="w-[80px] h-[130px] sm:w-[100px] sm:h-[150px] md:w-[150px] md:h-[200px]"
+                    className="h-[130px] w-[80px] sm:h-[150px] sm:w-[100px] md:h-[200px] md:w-[150px]"
                   />
                 </div>
-                <div className="flex-1 flex flex-col justify-center space-y-2 ">
+                <div className="flex flex-1 flex-col justify-center space-y-2 ">
                   <EditListMobile data={item} />
                   <Link
                     href={`/anime/details/${item.anime_id}`}
-                    className="text-sm sm:text-lg md:text-xl font-bold"
+                    className="text-sm font-bold sm:text-lg md:text-xl"
                   >
                     {item.anime_title}
                   </Link>
                   <div className="flex items-center space-x-3">
                     <p className="text-[10px] sm:text-sm">{item.type}</p>
-                    <Badge
-                      variant="outline"
-                      className="text-[10px] sm:text-sm"
-                    >
+                    <Badge variant="outline" className="text-[10px] sm:text-sm">
                       {item.status}
                     </Badge>
                   </div>
-                  <ProgressComponent
-                    status={item.status}
-                    value={progress}
-                  />
+                  <ProgressComponent status={item.status} value={progress} />
                   <div className="flex justify-between">
                     <p className="rounded-[1px] text-[10px] sm:text-sm">
                       {item.score != 0 && (
@@ -114,8 +108,8 @@ export const ListAnime = () => {
                     </p>
                   </div>
                 </div>
-                <div className="hidden md:block w-[40px]">
-                  <div className="flex items-center justify-center h-full space-x-2">
+                <div className="hidden w-[40px] md:block">
+                  <div className="flex h-full items-center justify-center space-x-2">
                     <EditList data={item} />
                   </div>
                 </div>

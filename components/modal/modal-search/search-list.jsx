@@ -47,30 +47,27 @@ export const SearchList = ({ query }) => {
         </div>
       )}
       {data?.data.map((item, idx) => (
-        <div
-          key={idx}
-          className="flex p-2"
-        >
+        <div key={idx} className="flex p-2">
           <div
             role="button"
             onClick={() => {
               router.push(`/anime/details/${item.mal_id}`);
               searchModal.onClose();
             }}
-            className="flex-1  hover:bg-slate-200 dark:hover:bg-slate-600 hover:rounded-sm"
+            className="flex-1  hover:rounded-sm hover:bg-slate-200 dark:hover:bg-slate-600"
           >
-            <div className="flex  gap-x-5 items-center">
+            <div className="flex  items-center gap-x-5">
               <ImageComponent
                 alt={item.title}
                 src={item.images.jpg.image_url}
-                className="w-[24px] h-[32px]  sm:w-[48px] sm:h-[64px] rounded-sm"
+                className="h-[32px] w-[24px]  rounded-sm sm:h-[64px] sm:w-[48px]"
               />
 
               <div className="flex flex-col">
                 <TextTruncation
                   originalText={item.title}
                   maxLength={30}
-                  className="text-sm sm:text-lg font-semibold"
+                  className="text-sm font-semibold sm:text-lg"
                 />
                 <span className="text-xs sm:text-sm">
                   &#40;{item.type}&#41;
@@ -79,7 +76,7 @@ export const SearchList = ({ query }) => {
               </div>
             </div>
           </div>
-          <div className="flex justify-center items-center">
+          <div className="flex items-center justify-center">
             <Button
               variant="ghost"
               onClick={() => {
@@ -90,7 +87,7 @@ export const SearchList = ({ query }) => {
                 onOpen(item.mal_id);
               }}
             >
-              <MdFormatListBulletedAdd className="w-5 h-5 sm:w-10 sm:h-10" />
+              <MdFormatListBulletedAdd className="h-5 w-5 sm:h-10 sm:w-10" />
             </Button>
           </div>
         </div>
@@ -98,13 +95,13 @@ export const SearchList = ({ query }) => {
       {query && (
         <div
           role="button"
-          className="flex gap-x-5 items-center hover:bg-slate-200 dark:hover:bg-slate-600 hover:rounded-sm p-2 text-xs sm:text-sm"
+          className="flex items-center gap-x-5 p-2 text-xs hover:rounded-sm hover:bg-slate-200 dark:hover:bg-slate-600 sm:text-sm"
           onClick={() => {
             router.push(`/anime/results?q=${query}`);
             searchModal.onClose();
           }}
         >
-          <SearchCheck className="w-6 h-8 sm:w-12 sm:h-16" />
+          <SearchCheck className="h-8 w-6 sm:h-16 sm:w-12" />
           Lanjutkan Mencari: {query}
         </div>
       )}
@@ -115,21 +112,21 @@ export const SearchList = ({ query }) => {
 const ListSkeleton = () => {
   return (
     <div className="flex flex-col gap-y-5">
-      <div className="flex gap-x-5 items-center w-full">
-        <Skeleton className="w-12 h-16 bg-slate-300" />
-        <Skeleton className="w-96 h-16 bg-slate-300 " />
+      <div className="flex w-full items-center gap-x-5">
+        <Skeleton className="h-16 w-12 bg-slate-300" />
+        <Skeleton className="h-16 w-96 bg-slate-300 " />
       </div>
-      <div className="flex gap-x-5 items-center w-full">
-        <Skeleton className="w-12 h-16 bg-slate-300" />
-        <Skeleton className="w-96 h-16 bg-slate-300 " />
+      <div className="flex w-full items-center gap-x-5">
+        <Skeleton className="h-16 w-12 bg-slate-300" />
+        <Skeleton className="h-16 w-96 bg-slate-300 " />
       </div>
-      <div className="flex gap-x-5 items-center w-full">
-        <Skeleton className="w-12 h-16 bg-slate-300" />
-        <Skeleton className="w-96 h-16 bg-slate-300 " />
+      <div className="flex w-full items-center gap-x-5">
+        <Skeleton className="h-16 w-12 bg-slate-300" />
+        <Skeleton className="h-16 w-96 bg-slate-300 " />
       </div>
-      <div className="flex gap-x-5 items-center w-full">
-        <Skeleton className="w-12 h-16 bg-slate-300" />
-        <Skeleton className="w-96 h-16 bg-slate-300 " />
+      <div className="flex w-full items-center gap-x-5">
+        <Skeleton className="h-16 w-12 bg-slate-300" />
+        <Skeleton className="h-16 w-96 bg-slate-300 " />
       </div>
     </div>
   );

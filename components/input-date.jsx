@@ -22,16 +22,13 @@ export const InputDate = ({ children, onSelect, value = null }) => {
   };
 
   return (
-    <Popover
-      open={isPopoverOpen}
-      onOpenChange={setIsPopoverOpen}
-    >
+    <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
       <PopoverTrigger asChild>
         <Button
           variant="outline"
           className={cn(
             "w-full pl-3 text-left font-normal",
-            !value && "text-muted-foreground"
+            !value && "text-muted-foreground",
           )}
           onClick={() => setIsPopoverOpen(!isPopoverOpen)}
         >
@@ -39,11 +36,7 @@ export const InputDate = ({ children, onSelect, value = null }) => {
           <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent
-        className="w-auto p-0"
-        align="start"
-        offset={[0, 8]}
-      >
+      <PopoverContent className="w-auto p-0" align="start" offset={[0, 8]}>
         <Calendar
           mode="single"
           selected={value}

@@ -27,14 +27,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning={true}
-    >
-      <body
-        className={poppins.className}
-        suppressHydrationWarning={true}
-      >
+    <html lang="en" suppressHydrationWarning={true}>
+      <body className={poppins.className} suppressHydrationWarning={true}>
         <Suspense fallback={<></>}>
           <ThemeProvider
             attribute="class"
@@ -43,10 +37,7 @@ export default function RootLayout({ children }) {
             disableTransitionOnChange
             storageKey="theme"
           >
-            <NextTopLoader
-              showSpinner={false}
-              height={4}
-            />
+            <NextTopLoader showSpinner={false} height={4} />
             <ClerkCustomProvider>
               <TanstackProvider>
                 <ModalProvider />

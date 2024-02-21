@@ -10,7 +10,7 @@ import { IconListAnime } from "@/components/icon-list-anime";
 
 export const Navbar = () => {
   return (
-    <header className="max-w-screen z-50 bg-background dark:bg-[#1f1f1f] sticky top-0  w-full p-6 border-b shadow-sm backdrop-blur supports-[backdrop-filter]:bg-background/60 dark:supports-[backdrop-filter]:bg-[#1f1f1f]/60">
+    <header className="max-w-screen sticky top-0 z-50 w-full border-b  bg-background p-6 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-background/60 dark:bg-[#1f1f1f] dark:supports-[backdrop-filter]:bg-[#1f1f1f]/60">
       <div className=" container-custom flex h-9  max-w-screen-2xl items-center">
         <Link href="/anime">
           <div className="flex items-center">
@@ -28,12 +28,12 @@ export const Navbar = () => {
               width="40"
               alt="logo"
             />
-            <p className={cn("font-semibold hidden sm:block")}>
+            <p className={cn("hidden font-semibold sm:block")}>
               ahmadzidni.site
             </p>
           </div>
         </Link>
-        <div className="ml-4 md:ml-0 flex flex-1 items-center gap-x-2 md:gap-x-5 justify-end">
+        <div className="ml-4 flex flex-1 items-center justify-end gap-x-2 md:ml-0 md:gap-x-5">
           <nav className="flex items-center gap-x-2 md:gap-x-3">
             <ButtonModalSearch />
             {/* <Link href="https://github.com/ahmaddzidnii">

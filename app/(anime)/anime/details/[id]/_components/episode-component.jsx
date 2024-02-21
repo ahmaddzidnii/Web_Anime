@@ -7,14 +7,11 @@ export const EpisodesComponent = async ({ params }) => {
 
   return (
     <>
-      <div className="w-full flex flex-col gap-y-3">
+      <div className="flex w-full flex-col gap-y-3">
         {episodes?.promo.map((trailer) => (
           <div key={trailer.trailer.youtube_id}>
             <h1>{trailer.title}</h1>
-            <YtIframe
-              id={trailer.trailer.youtube_id}
-              title={trailer.title}
-            />
+            <YtIframe id={trailer.trailer.youtube_id} title={trailer.title} />
           </div>
         ))}
       </div>

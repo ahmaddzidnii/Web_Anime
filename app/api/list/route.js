@@ -7,7 +7,7 @@ import { daftarStatus } from "@/utils/enum-status";
 
 export const getLabelStatusByValue = (value) => {
   const selectedOption = animeStatusList.find(
-    (option) => option.value === value
+    (option) => option.value === value,
   );
   return selectedOption ? selectedOption.label : "ALL";
 };
@@ -45,21 +45,21 @@ export async function POST(request) {
   if (Number(score) < 0 || Number(score) > 10) {
     return NextResponse.json(
       { error: "Score harus antara 0 - 10!" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
   if (Number(watched_episode) < 0) {
     return NextResponse.json(
       { error: "Watched Episode tidak valid!" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
   if (Number(total_episode) < Number(watched_episode)) {
     return NextResponse.json(
       { error: "Total Episode harus lebih besar dari Watched Episode!" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -109,7 +109,7 @@ export async function POST(request) {
     if (existingList > 0) {
       return NextResponse.json(
         { error: "Anime sudah ada di list!" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -167,7 +167,7 @@ export async function DELETE(request) {
     console.log(error);
     return NextResponse.json(
       { error: "Gagal menghapus anime dari list!" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -197,7 +197,7 @@ export async function PUT(request) {
   if (Number(score) < 0 || Number(score) > 10) {
     return NextResponse.json(
       { error: "Score harus antara 0 - 10!" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -262,7 +262,7 @@ export async function PUT(request) {
     console.log(error);
     return NextResponse.json(
       { error: "Failed to update anime" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

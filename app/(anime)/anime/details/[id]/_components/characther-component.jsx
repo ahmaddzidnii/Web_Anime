@@ -7,30 +7,30 @@ export const CharactersComponent = async ({ params }) => {
   const characters = await getCharacterById(params.id);
   return (
     <div>
-      <article className="w-full bg-slate-300 py-5 rounded-lg p-2 hidden md:block">
+      <article className="hidden w-full rounded-lg bg-slate-300 p-2 py-5 md:block">
         <div className="flex flex-col gap-y-3">
           {characters?.map((character, idx) => (
             <div
               key={idx}
-              className="h-auto flex justify-between items-start bordert-t border-b py-2"
+              className="bordert-t flex h-auto items-start justify-between border-b py-2"
             >
               <div className="flex items-center gap-x-3">
                 <ImageComponent
                   alt={character?.character.name}
                   src={character?.character.images.jpg.image_url}
-                  className="w-[50px] h-[76px] rounded-sm"
+                  className="h-[76px] w-[50px] rounded-sm"
                 />
                 <div className="flex flex-col justify-between">
                   <Link
-                    className="text-slate-800 text-xs font-bold "
+                    className="text-xs font-bold text-slate-800 "
                     href={character?.character.url}
                   >
                     {character?.character.name}
                   </Link>
-                  <span className="text-slate-800 text-xs">
+                  <span className="text-xs text-slate-800">
                     {character?.role}
                   </span>
-                  <span className="text-slate-800 text-xs">
+                  <span className="text-xs text-slate-800">
                     {character?.favorites} Favorites
                   </span>
                 </div>
@@ -39,17 +39,17 @@ export const CharactersComponent = async ({ params }) => {
               <div className="flex flex-col items-end gap-y-3">
                 {character?.voice_actors.map((voice, idx) => (
                   <div
-                    className="w-full flex items-center justify-end gap-x-3"
+                    className="flex w-full items-center justify-end gap-x-3"
                     key={idx}
                   >
                     <div className="flex flex-col items-end justify-between">
                       <Link
-                        className="text-slate-800 text-xs font-bold "
+                        className="text-xs font-bold text-slate-800 "
                         href={voice?.person.url}
                       >
                         {voice?.person.name}
                       </Link>
-                      <span className="text-slate-800 text-xs">
+                      <span className="text-xs text-slate-800">
                         {voice?.language}
                       </span>
                     </div>
@@ -57,7 +57,7 @@ export const CharactersComponent = async ({ params }) => {
                     <ImageComponent
                       src={voice?.person.images.jpg.image_url}
                       alt={voice?.person.name}
-                      className="rounded-sm w-[50px] h-[76px]"
+                      className="h-[76px] w-[50px] rounded-sm"
                     />
                   </div>
                 ))}
@@ -75,34 +75,31 @@ export const CharactersComponent = async ({ params }) => {
 
 const MobileCharacterComponent = ({ characters }) => {
   return (
-    <article className="w-full bg-slate-300 py-5 rounded-lg p-2  md:hidden">
+    <article className="w-full rounded-lg bg-slate-300 p-2 py-5  md:hidden">
       <div className="flex flex-col gap-y-3">
         {characters?.map((character, idx) => (
-          <div
-            key={idx}
-            className="h-auto bordert-t border-b py-2"
-          >
+          <div key={idx} className="bordert-t h-auto border-b py-2">
             <div className="flex items-center gap-x-3">
               <ImageComponent
                 alt={character?.character.name}
                 src={character?.character.images.jpg.image_url}
-                className="w-[50px] h-[76px] rounded-sm"
+                className="h-[76px] w-[50px] rounded-sm"
               />
               <div className="flex flex-col justify-between">
                 <Link
-                  className="text-slate-800 text-xs font-bold "
+                  className="text-xs font-bold text-slate-800 "
                   href={character?.character.url}
                 >
                   {character?.character.name}
                 </Link>
-                <span className="text-slate-800 text-xs">
+                <span className="text-xs text-slate-800">
                   {character?.role}
                 </span>
-                <span className="text-slate-800 text-xs">
+                <span className="text-xs text-slate-800">
                   Voice:
                   <Link
                     href={`/person/${character?.voice_actors[0]?.person.id}`}
-                    className="text-slate-800 font-semibold"
+                    className="font-semibold text-slate-800"
                   >
                     {character?.voice_actors[0]?.person.name}
                   </Link>

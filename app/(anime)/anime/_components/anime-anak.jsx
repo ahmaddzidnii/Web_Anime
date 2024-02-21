@@ -19,10 +19,7 @@ export const AnimeAnak = () => {
 
   return (
     <div className="mt-5">
-      <HeadingAnime
-        title="Anak Anak"
-        href="/anime/children"
-      />
+      <HeadingAnime title="Anak Anak" href="/anime/children" />
       <SwiperComponent
         data={animeAnak?.data}
         isLoading={isLoading}

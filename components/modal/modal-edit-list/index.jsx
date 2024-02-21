@@ -89,27 +89,24 @@ export const ModalEditList = () => {
   };
 
   return (
-    <Dialog
-      open={isOpen}
-      onOpenChange={onClose}
-    >
+    <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className="text-sm sm:text-lg text-start">
+          <DialogTitle className="text-start text-sm sm:text-lg">
             Edit Anime
           </DialogTitle>
         </DialogHeader>
         <Separator className="my-2" />
         <div className="flex flex-col gap-4">
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <div className="w-[40%]">
               <h1 className="text-sm sm:text-lg">Anime Title</h1>
             </div>
             <div className="w-[60%]">
-              <h1 className="text-sm sm:text-lg font-bold">{animeTitle}</h1>
+              <h1 className="text-sm font-bold sm:text-lg">{animeTitle}</h1>
             </div>
           </div>
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <div className="w-[40%]">
               <h1 className="text-sm sm:text-lg">Status</h1>
             </div>
@@ -120,17 +117,14 @@ export const ModalEditList = () => {
                 className="w-full"
               >
                 {animeStatusList.map((item, index) => (
-                  <SelectItem
-                    key={index}
-                    value={item.value}
-                  >
+                  <SelectItem key={index} value={item.value}>
                     {item.label}
                   </SelectItem>
                 ))}
               </SelectWrapper>
             </div>
           </div>
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <div className="w-[40%]">
               <h1 className="text-sm sm:text-lg">Episodes Watched</h1>
             </div>
@@ -140,7 +134,7 @@ export const ModalEditList = () => {
               </div>
             </div>
           </div>
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <div className="w-[40%]">
               <h1 className="text-sm sm:text-lg">Your score</h1>
             </div>
@@ -152,17 +146,14 @@ export const ModalEditList = () => {
                 value={score}
               >
                 {animeScoreList.map((item, index) => (
-                  <SelectItem
-                    key={index}
-                    value={item.score}
-                  >
+                  <SelectItem key={index} value={item.score}>
                     {item.label}
                   </SelectItem>
                 ))}
               </SelectWrapper>
             </div>
           </div>
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <div className="w-[40%]">
               <h1 className="text-sm sm:text-lg">Start Watch</h1>
             </div>
@@ -175,7 +166,7 @@ export const ModalEditList = () => {
               </InputDate>
             </div>
           </div>
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <div className="w-[40%]">
               <h1 className="text-sm sm:text-lg">End Watch</h1>
             </div>
@@ -195,7 +186,7 @@ export const ModalEditList = () => {
           <Button
             onClick={onClose}
             variant="ghost"
-            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
+            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity data-[state=open]:bg-accent data-[state=open]:text-muted-foreground hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none"
           >
             <X className="h-4 w-4" />
           </Button>

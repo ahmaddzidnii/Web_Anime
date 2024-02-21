@@ -4,8 +4,8 @@ import { Card, CardHeader } from "./ui/card";
 export const CardSkeleton = () => {
   return (
     <Card>
-      <div className=" w-[full] h-[300px]">
-        <Skeleton className="w-full h-full object-cover" />
+      <div className=" h-[300px] w-[full]">
+        <Skeleton className="h-full w-full object-cover" />
       </div>
 
       <CardHeader className="flex flex-col justify-between">

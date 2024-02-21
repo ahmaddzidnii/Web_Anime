@@ -9,20 +9,20 @@ import { AddList } from "@/components/list/add-list";
 
 export const CardListAnime = ({ data }) => {
   return (
-    <div className="grid grid-cols-1  sm:grid-cols-2  lg:grid-cols-4 gap-6 p-1">
+    <div className="grid grid-cols-1  gap-6  p-1 sm:grid-cols-2 lg:grid-cols-4">
       {data &&
         data.map((item) => {
           return (
             <Card
               key={item.mal_id}
-              className="shadow-lg hover:-translate-y-[1px] transition"
+              className="shadow-lg transition hover:-translate-y-[1px]"
             >
-              <div className="relative w-[full] h-[300px]">
+              <div className="relative h-[300px] w-[full]">
                 <SkeletonLoaderImage />
                 <Image
                   loading="lazy"
                   quality={100}
-                  className="w-full h-full object-cover"
+                  className="h-full w-full object-cover"
                   src={item.images.jpg.large_image_url}
                   fill
                   alt={item.title}
@@ -32,16 +32,10 @@ export const CardListAnime = ({ data }) => {
               <CardHeader className="flex flex-col justify-between">
                 <div className="h-10 sm:h-20">
                   <CardTitle className="text-sm xl:text-lg">
-                    <TextTruncation
-                      originalText={item.title}
-                      maxLength={40}
-                    />
+                    <TextTruncation originalText={item.title} maxLength={40} />
                   </CardTitle>
                 </div>
-                <Button
-                  asChild
-                  size="sm"
-                >
+                <Button asChild size="sm">
                   <Link href={`/anime/details/${item.mal_id}`}>
                     Lihat Deskripsi
                   </Link>

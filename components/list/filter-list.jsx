@@ -30,7 +30,7 @@ export const FilterListAnime = () => {
 
       return params.toString();
     },
-    [searchParams]
+    [searchParams],
   );
 
   const deleteQueryString = useCallback(
@@ -40,7 +40,7 @@ export const FilterListAnime = () => {
 
       return params.toString();
     },
-    [searchParams]
+    [searchParams],
   );
 
   let status = searchParams.get("status");
@@ -66,16 +66,10 @@ export const FilterListAnime = () => {
   };
 
   return (
-    <div className="my-5 flex justify-between items-center">
-      <SelectWrapper
-        defaultValue={status}
-        onValueChange={handleValueChange}
-      >
+    <div className="my-5 flex items-center justify-between">
+      <SelectWrapper defaultValue={status} onValueChange={handleValueChange}>
         {animeStatusListTwo.map((item, index) => (
-          <SelectItem
-            key={index}
-            value={item.value}
-          >
+          <SelectItem key={index} value={item.value}>
             {item.label}
           </SelectItem>
         ))}
@@ -84,7 +78,7 @@ export const FilterListAnime = () => {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost">
-              <IoOptionsSharp className="w-7 h-7" />
+              <IoOptionsSharp className="h-7 w-7" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
