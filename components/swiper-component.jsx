@@ -1,17 +1,18 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
+// import Link from "next/link";
+// import Image from "next/image";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { useEffect, useState } from "react";
 import { Navigation, Pagination } from "swiper/modules";
 
-import { Card, CardHeader, CardTitle } from "./ui/card";
-import { Button } from "./ui/button";
-import { AddList } from "./list/add-list";
-import { TextTruncation } from "./text-truncate";
-import SkeletonLoaderImage from "@/app/(anime)/anime/_components/SkeletonLoaderImage";
+// import { Card, CardHeader, CardTitle } from "./ui/card";
+// import { Button } from "./ui/button";
+// import { AddList } from "./list/add-list";
+// import { TextTruncation } from "./text-truncate";
+// import SkeletonLoaderImage from "@/app/(anime)/anime/_components/SkeletonLoaderImage";
 import { CardSkeleton } from "./skeleton";
+import { CardAnime } from "./card-anime";
 
 export const SwiperComponent = ({ data, isLoading, isError }) => {
   const [isMounted, setIsMounted] = useState(false);
@@ -55,7 +56,15 @@ export const SwiperComponent = ({ data, isLoading, isError }) => {
         data.map((data) => {
           return (
             <SwiperSlide key={data.mal_id}>
-              <Card className="shadow-lg transition hover:-translate-y-[1px]">
+              <CardAnime
+                img={data.images.jpg.large_image_url}
+                mal_id={data.mal_id}
+                score={data.score}
+                title={data.title}
+                type={data.type}
+                key={data.mal_id}
+              />
+              {/* <Card className="shadow-lg transition hover:-translate-y-[1px]">
                 <div className="relative h-[300px] w-[full]">
                   <SkeletonLoaderImage />
                   <Image
@@ -84,7 +93,7 @@ export const SwiperComponent = ({ data, isLoading, isError }) => {
                   </Button>
                   <AddList data={data} />
                 </CardHeader>
-              </Card>
+              </Card> */}
             </SwiperSlide>
           );
         })}

@@ -11,7 +11,7 @@ import { IconListAnime } from "@/components/icon-list-anime";
 export const Navbar = () => {
   return (
     <header className="max-w-screen sticky top-0 z-50 w-full border-b  bg-background p-6 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-background/60 dark:bg-[#1f1f1f] dark:supports-[backdrop-filter]:bg-[#1f1f1f]/60">
-      <div className=" container-custom flex h-9  max-w-screen-2xl items-center">
+      <div className="container-custom flex h-9  max-w-screen-2xl items-center">
         <Link href="/anime">
           <div className="flex items-center">
             <Image

@@ -19,7 +19,7 @@ export const AddList = ({ data }) => {
       return toast.error("Anda harus login terlebih dahulu.");
     }
 
-    onOpen(data.mal_id);
+    onOpen(data);
   };
 
   useEffect(() => {
@@ -27,9 +27,12 @@ export const AddList = ({ data }) => {
   }, []);
 
   return (
-    <Button onClick={onAddToList} variant="outline" disabled={!isMounted}>
-      <MdFormatListBulletedAdd className="mr-2 h-5 w-5" />
-      Tambahkan Ke List
-    </Button>
+    <button onClick={onAddToList} disabled={!isMounted}>
+      <MdFormatListBulletedAdd className="h-6 w-6" />
+    </button>
+    // <Button onClick={onAddToList} variant="outline" disabled={!isMounted}>
+    //   {/* <MdFormatListBulletedAdd className="mr-2 h-5 w-5" />
+    //   Tambahkan Ke List */}
+    // </Button>
   );
 };

@@ -1,8 +1,11 @@
+import { Skeleton } from "@/components/ui/skeleton";
+
 const SkeletonLoaderImage = () => {
   return (
-    <div className="relative h-[300px] w-full animate-pulse bg-gray-300">
-      <div className="h-full w-full object-contain"></div>
-    </div>
+    <Skeleton className="h-full w-full object-cover" />
+    // <div className="relative h-[300px] w-full animate-pulse bg-gray-300">
+    //   <div className="h-full w-full object-contain"></div>
+    // </div>
   );
 };
 
