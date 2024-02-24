@@ -57,6 +57,7 @@ export const SwiperComponent = ({ data, isLoading, isError }) => {
           return (
             <SwiperSlide key={data.mal_id}>
               <CardAnime
+                rank={data.rank}
                 img={data.images.jpg.large_image_url}
                 mal_id={data.mal_id}
                 score={data.score}

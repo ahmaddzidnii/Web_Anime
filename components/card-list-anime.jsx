@@ -16,6 +16,7 @@ export const CardListAnime = ({ data }) => {
           return (
             <CardAnime
               key={item.mal_id}
+              rank={item.rank}
               img={item.images.jpg.large_image_url}
               mal_id={item.mal_id}
               title={item.title}

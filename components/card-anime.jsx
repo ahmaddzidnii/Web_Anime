@@ -1,16 +1,34 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaRegStar } from "react-icons/fa6";
+import { BsBarChart } from "react-icons/bs";
+
 import { TextTruncation } from "./text-truncate";
 import { AddList } from "./list/add-list";
+import { Skeleton } from "./ui/skeleton";
 
-export const CardAnime = ({ mal_id, title, img, score, type }) => {
+export const CardAnime = ({
+  mal_id,
+  title,
+  img,
+  score,
+  type,
+  rank,
+  refElement,
+}) => {
   return (
-    <article className="transition hover:-translate-y-[1px]">
+    <article ref={refElement} className="transition hover:-translate-y-[1px]">
       <div className="flex w-full flex-col gap-2 overflow-hidden rounded-b-lg rounded-t-lg border ">
         <Link href={`/anime/details/${mal_id}`}>
           <div className="relative h-[400px] w-full ">
-            <Image src={img} alt={title} fill className="object-cover" />
+            <Skeleton className="absolute h-full w-full object-cover" />
+            <Image
+              quality={100}
+              src={img}
+              alt={title}
+              fill
+              className="object-cover"
+            />
           </div>
         </Link>
         <div className=" px-2 pb-2">
@@ -29,9 +47,19 @@ export const CardAnime = ({ mal_id, title, img, score, type }) => {
             </Link>
           </div>
           <div className="flex w-full items-center justify-between">
-            <div className="flex w-full items-center gap-x-1 font-semibold text-orange-400">
-              <FaRegStar className="h-5 w-5 " />
-              {score}
+            <div className="flex w-full items-center gap-x-2 font-semibold">
+              {rank && (
+                <div className="flex items-center gap-x-1">
+                  <BsBarChart className="h-5 w-5 " />
+                  {rank}
+                </div>
+              )}
+              {score && (
+                <div className="flex items-center gap-x-1  text-orange-400">
+                  <FaRegStar className="h-5 w-5 " />
+                  {score}
+                </div>
+              )}
             </div>
             <AddList data={mal_id} />
           </div>
