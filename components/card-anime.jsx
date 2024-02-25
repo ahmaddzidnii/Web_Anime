@@ -17,7 +17,7 @@ export const CardAnime = ({
   refElement,
 }) => {
   return (
-    <article ref={refElement} className="transition hover:-translate-y-[1px]">
+    <article ref={refElement}>
       <div className="flex w-full flex-col gap-2 overflow-hidden rounded-b-lg rounded-t-lg border ">
         <Link href={`/anime/details/${mal_id}`}>
           <div className="relative h-[400px] w-full ">

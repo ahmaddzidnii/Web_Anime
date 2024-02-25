@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { cn } from "@/lib/utils";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export const ImageComponent = ({
   className,
@@ -10,6 +11,7 @@ export const ImageComponent = ({
 }) => {
   return (
     <div className={cn("relative ", className)}>
+      <Skeleton className="absolute h-full w-full object-cover" />
       <Image
         src={src}
         alt={alt}

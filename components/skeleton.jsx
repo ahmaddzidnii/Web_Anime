@@ -14,26 +14,26 @@ export const CardSkeleton = () => {
       <div className=" px-2 pb-2">
         <div className="w-full">
           <div className="flex justify-between">
-            <Skeleton className="h-5 w-32" />
+            <Skeleton className="h-4 w-32" />
             <span className="text-xs font-bold text-muted-foreground">
-              <Skeleton className="h-5 w-20" />
+              <Skeleton className="h-4 w-20" />
             </span>
           </div>
         </div>
-        <div className="mt-3 flex w-full items-center justify-between">
+        <div className="mt-1 flex w-full items-center justify-between">
           <div className="flex w-full items-center gap-x-2 font-semibold">
             <div className="flex items-center gap-x-1">
-              <BsBarChart className="h-5 w-5 " />
+              <Skeleton className="h-5 w-5 " />
               <Skeleton className="h-5 w-10" />
             </div>
 
             <div className="flex items-center gap-x-1  text-orange-400">
-              <FaRegStar className="h-5 w-5 " />
+              <Skeleton className="h-5 w-5 " />
               <Skeleton className="h-5 w-10" />
             </div>
           </div>
 
-          <Skeleton className="h-5 w-5" />
+          <Skeleton className="h-6 w-6" />
         </div>
       </div>
     </div>

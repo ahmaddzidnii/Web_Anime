@@ -113,20 +113,20 @@ const ListSkeleton = () => {
   return (
     <div className="flex flex-col gap-y-5">
       <div className="flex w-full items-center gap-x-5">
-        <Skeleton className="h-16 w-12 bg-slate-300" />
-        <Skeleton className="h-16 w-96 bg-slate-300 " />
+        <Skeleton className="h-16 w-12 " />
+        <Skeleton className="h-16 w-96  " />
       </div>
       <div className="flex w-full items-center gap-x-5">
-        <Skeleton className="h-16 w-12 bg-slate-300" />
-        <Skeleton className="h-16 w-96 bg-slate-300 " />
+        <Skeleton className="h-16 w-12 " />
+        <Skeleton className="h-16 w-96  " />
       </div>
       <div className="flex w-full items-center gap-x-5">
-        <Skeleton className="h-16 w-12 bg-slate-300" />
-        <Skeleton className="h-16 w-96 bg-slate-300 " />
+        <Skeleton className="h-16 w-12 " />
+        <Skeleton className="h-16 w-96  " />
       </div>
       <div className="flex w-full items-center gap-x-5">
-        <Skeleton className="h-16 w-12 bg-slate-300" />
-        <Skeleton className="h-16 w-96 bg-slate-300 " />
+        <Skeleton className="h-16 w-12 " />
+        <Skeleton className="h-16 w-96  " />
       </div>
     </div>
   );
