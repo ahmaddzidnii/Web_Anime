@@ -5,7 +5,6 @@ import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import { MdFormatListBulletedAdd } from "react-icons/md";
 
-import { Button } from "@/components/ui/button";
 import { useAddListModal } from "@/hooks/use-add-list-modal";
 
 export const AddList = ({ data }) => {
@@ -30,9 +29,5 @@ export const AddList = ({ data }) => {
     <button onClick={onAddToList} disabled={!isMounted}>
       <MdFormatListBulletedAdd className="h-6 w-6" />
     </button>
-    // <Button onClick={onAddToList} variant="outline" disabled={!isMounted}>
-    //   {/* <MdFormatListBulletedAdd className="mr-2 h-5 w-5" />
-    //   Tambahkan Ke List */}
-    // </Button>
   );
 };

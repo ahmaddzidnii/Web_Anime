@@ -2,7 +2,7 @@ import { Suspense } from "react";
 
 import { getAnimeTop } from "@/services/anime.service";
 import { PaginationCustom } from "@/components/pagination";
-import { CardListAnime } from "@/components/card-list-anime";
+import { CardAnime } from "@/components/card-anime";
 
 export const metadata = {
   title: "Top Anime",
@@ -25,7 +25,19 @@ const TopAnimePage = async ({ searchParams }) => {
       <h1 className="mb-5 text-xl font-bold tracking-wide sm:text-2xl  md:text-3xl lg:text-4xl">
         Top Anime
       </h1>
-      <CardListAnime data={data} />
+      <div className="grid grid-cols-1  gap-6  p-1 sm:grid-cols-2 lg:grid-cols-4">
+        {data?.map((item, index) => (
+          <CardAnime
+            key={index}
+            rank={item.rank}
+            img={item.images.jpg.large_image_url}
+            mal_id={item.mal_id}
+            title={item.title}
+            score={item.score}
+            type={item.type}
+          />
+        ))}
+      </div>
       <div className="my-10">
         <Suspense fallback={null}>
           <PaginationCustom

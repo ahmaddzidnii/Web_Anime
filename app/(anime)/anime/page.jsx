@@ -1,6 +1,6 @@
 import { PopularAnime } from "./_components/anime-popular";
 import { AnimeAnak } from "./_components/anime-anak";
-import { AnimeAll } from "./_components/anime-all";
+import { AnimeAll } from "./_components/anime-explore";
 
 export const metadata = {
   title: "Anime",

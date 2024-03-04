@@ -3,7 +3,7 @@ import { Suspense } from "react";
 
 import { getAnimeQuery } from "@/services/api";
 import { PaginationCustom } from "@/components/pagination";
-import { CardListAnime } from "@/components/card-list-anime";
+import { CardAnime } from "@/components/card-anime";
 
 export async function generateMetadata({ searchParams }) {
   return {
@@ -49,7 +49,21 @@ const Page = async ({ searchParams }) => {
             Terdapat {pagination?.items.total} hasil pencarian untuk kata kunci
             &quot;{searchParams.q}&quot; :
           </h1>
-          <CardListAnime data={data} />
+          <div className="grid grid-cols-1  gap-6  p-1 sm:grid-cols-2 lg:grid-cols-4">
+            {data?.map((item, index) => (
+              <CardAnime
+                key={index}
+                img={item.images.jpg.image_url}
+                title={item.title}
+                url={item.url}
+                mal_id={item.mal_id}
+                rank={item.rank}
+                score={item.score}
+                type={item.type}
+              />
+            ))}
+          </div>
+
           <div className="my-10">
             <Suspense fallback={null}>
               <PaginationCustom

@@ -6,7 +6,7 @@ import { SearchCheck } from "lucide-react";
 import { MdFormatListBulletedAdd } from "react-icons/md";
 
 import { Skeleton } from "@/components/ui/skeleton";
-import { TextTruncation } from "@/components/text-truncate";
+import { TextTruncate } from "@/components/text-truncate";
 import { ImageComponent } from "@/components/image";
 import { useSearchModal } from "@/hooks/use-search-modal";
 import { fetchSearchAnime } from "@/services/anime.service";
@@ -64,7 +64,7 @@ export const SearchList = ({ query }) => {
               />
 
               <div className="flex flex-col">
-                <TextTruncation
+                <TextTruncate
                   originalText={item.title}
                   maxLength={30}
                   className="text-sm font-semibold sm:text-lg"

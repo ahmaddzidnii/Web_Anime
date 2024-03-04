@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FaRegStar } from "react-icons/fa6";
 import { BsBarChart } from "react-icons/bs";
 
-import { TextTruncation } from "./text-truncate";
+import { TextTruncate } from "./text-truncate";
 import { AddList } from "./list/add-list";
 import { Skeleton } from "./ui/skeleton";
 
@@ -35,7 +35,7 @@ export const CardAnime = ({
           <div className="w-full">
             <Link href={`/anime/details/${mal_id}`}>
               <div className="flex justify-between">
-                <TextTruncation
+                <TextTruncate
                   className="text-sm font-semibold"
                   originalText={title}
                   maxLength={20}

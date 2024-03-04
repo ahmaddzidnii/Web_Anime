@@ -2,7 +2,7 @@ import { Suspense } from "react";
 
 import { getAnimeAnak } from "@/services/anime.service";
 import { PaginationCustom } from "@/components/pagination";
-import { CardListAnime } from "@/components/card-list-anime";
+import { CardAnime } from "@/components/card-anime";
 
 export const metadata = {
   title: "Anime for Children",
@@ -17,7 +17,20 @@ const AnimeChildrenPage = async ({ searchParams }) => {
 
   return (
     <main className="min-h-screen pt-5">
-      <CardListAnime data={data} />
+      <div className="grid grid-cols-1  gap-6  p-1 sm:grid-cols-2 lg:grid-cols-4">
+        {data?.map((item, index) => (
+          <CardAnime
+            key={index}
+            img={item.images.jpg.image_url}
+            title={item.title}
+            url={item.url}
+            mal_id={item.mal_id}
+            rank={item.rank}
+            score={item.score}
+            type={item.type}
+          />
+        ))}
+      </div>
       <div className="my-10">
         <Suspense fallback={<></>}>
           <PaginationCustom

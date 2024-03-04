@@ -1,16 +1,9 @@
 "use client";
 
-// import Link from "next/link";
-// import Image from "next/image";
 import { SwiperSlide, Swiper } from "swiper/react";
 import { useEffect, useState } from "react";
 import { Navigation, Pagination } from "swiper/modules";
 
-// import { Card, CardHeader, CardTitle } from "./ui/card";
-// import { Button } from "./ui/button";
-// import { AddList } from "./list/add-list";
-// import { TextTruncation } from "./text-truncate";
-// import SkeletonLoaderImage from "@/app/(anime)/anime/_components/SkeletonLoaderImage";
 import { CardSkeleton } from "./skeleton";
 import { CardAnime } from "./card-anime";
 
@@ -65,36 +58,6 @@ export const SwiperComponent = ({ data, isLoading, isError }) => {
                 type={data.type}
                 key={data.mal_id}
               />
-              {/* <Card className="shadow-lg transition hover:-translate-y-[1px]">
-                <div className="relative h-[300px] w-[full]">
-                  <SkeletonLoaderImage />
-                  <Image
-                    loading="lazy"
-                    quality={100}
-                    className="h-full w-full object-cover"
-                    src={data.images.jpg.large_image_url}
-                    fill
-                    alt={data.title}
-                  />
-                </div>
-
-                <CardHeader className="flex flex-col justify-between">
-                  <div className="h-10 sm:h-20">
-                    <CardTitle className="text-sm xl:text-lg ">
-                      <TextTruncation
-                        originalText={data?.title}
-                        maxLength={40}
-                      />
-                    </CardTitle>
-                  </div>
-                  <Button asChild size="sm">
-                    <Link href={`/anime/details/${data.mal_id}`}>
-                      Lihat Deskripsi
-                    </Link>
-                  </Button>
-                  <AddList data={data} />
-                </CardHeader>
-              </Card> */}
             </SwiperSlide>
           );
         })}

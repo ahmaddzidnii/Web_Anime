@@ -55,7 +55,7 @@ export const DetailAnimePage = ({ api, searchParams, params }) => {
           </h1>
 
           <div className="my-2">
-            <AddList data={api} />
+            <AddList data={api?.mal_id} />
           </div>
 
           {isdetail && <DetailComponent api={api} />}

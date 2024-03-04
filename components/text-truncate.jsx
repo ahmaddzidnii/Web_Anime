@@ -1,5 +1,5 @@
 "use client";
-export const TextTruncation = ({
+export const TextTruncate = ({
   originalText,
   maxLength = 10,
   className = "",
