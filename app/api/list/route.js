@@ -17,7 +17,7 @@ export async function POST(request) {
 
   const { user, data } = body;
 
-  const { user_id, email } = user;
+  const { user_id } = user;
 
   const { userId } = auth();
 
@@ -75,21 +75,6 @@ export async function POST(request) {
   }
 
   try {
-    const existingUser = await prisma.user.count({
-      where: {
-        user_id: userId,
-      },
-    });
-
-    if (existingUser < 1) {
-      await prisma.user.create({
-        data: {
-          user_id: userId,
-          email,
-        },
-      });
-    }
-
     const user = await prisma.user.findUnique({
       where: {
         user_id: userId,
@@ -98,6 +83,10 @@ export async function POST(request) {
         id: true,
       },
     });
+
+    if (!user_id) {
+      return NextResponse.json({ error: "User not found" }, { status: 404 });
+    }
 
     const existingList = await prisma.animeList.count({
       where: {
