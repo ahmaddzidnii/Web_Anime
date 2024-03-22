@@ -9,6 +9,7 @@ export async function generateMetadata({ params }) {
   const detailsAnime = await getDetailAnimeById(params.id);
   return {
     title: detailsAnime ? `${detailsAnime?.title_english}` : "Tidak Ditemukan",
+    description: detailsAnime ? `${detailsAnime?.synopsis}` : "Tidak Ditemukan",
   };
 }
 const Page = async ({ params, searchParams }) => {
