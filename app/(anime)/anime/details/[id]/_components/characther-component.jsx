@@ -3,8 +3,8 @@ import Link from "next/link";
 import { getCharacterById } from "@/services/anime.service";
 import { ImageComponent } from "@/components/image";
 
-export const CharactersComponent = async ({ params }) => {
-  const characters = await getCharacterById(params.id);
+export const CharactersComponent = async ({ data }) => {
+  const characters = await getCharacterById(data.mal_id);
   return (
     <div>
       <article className="hidden w-full rounded-lg bg-slate-300 p-2 py-5 md:block">

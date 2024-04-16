@@ -1,4 +1,6 @@
 import { YtIframe } from "@/components/iframe/yt";
+import { CharactersComponent } from "./characther-component";
+import { Suspense } from "react";
 
 export const DetailComponent = ({ api }) => {
   return (
@@ -26,7 +28,7 @@ export const DetailComponent = ({ api }) => {
         </div>
       </div>
 
-      <div className="mt-5 flex flex-col  gap-5 ">
+      <div className="mt-5 flex flex-col  gap-5">
         <div className="w-full  rounded-lg bg-slate-300 p-5">
           <h1 className="mb-3 text-xl font-bold  text-slate-800">Genre:</h1>
           <div className="grid w-full  grid-rows-1 gap-4 ">
@@ -50,6 +52,12 @@ export const DetailComponent = ({ api }) => {
       <div className="mt-5 w-full rounded-lg bg-slate-300 p-5  text-slate-800">
         <h1 className="text-xl font-bold">Sinopsis :</h1>
         <p className="text-justify">{api.synopsis}</p>
+      </div>
+      <div className="mt-5 w-full rounded-lg bg-slate-300 p-5  text-slate-800">
+        <h1 className="text-xl font-bold">Character :</h1>
+        <Suspense fallback={<div>Loading...</div>}>
+          <CharactersComponent data={api} />
+        </Suspense>
       </div>
     </>
   );

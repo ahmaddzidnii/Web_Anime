@@ -10,7 +10,7 @@ export const ImageComponent = ({
   imageClassName = "object-cover",
 }) => {
   return (
-    <div className={cn("relative ", className)}>
+    <div className={cn("relative overflow-hidden ", className)}>
       <Skeleton className="absolute h-full w-full object-cover" />
       <Image
         src={src}

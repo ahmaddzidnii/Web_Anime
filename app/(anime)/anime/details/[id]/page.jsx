@@ -1,9 +1,7 @@
 import { GiPeriscope } from "react-icons/gi";
-import { Suspense } from "react";
 
 import { getDetailAnimeById } from "@/services/api";
 import { DetailAnimePage } from "./detail-anime-page";
-import { SideBarDetailAnime } from "./_components/sidebar-detail-anime";
 
 export async function generateMetadata({ params }) {
   const detailsAnime = await getDetailAnimeById(params.id);
@@ -12,7 +10,7 @@ export async function generateMetadata({ params }) {
     description: detailsAnime ? `${detailsAnime?.synopsis}` : "Tidak Ditemukan",
   };
 }
-const Page = async ({ params, searchParams }) => {
+const Page = async ({ params }) => {
   const detailsAnime = await getDetailAnimeById(params.id);
   if (!detailsAnime)
     return (
@@ -28,16 +26,7 @@ const Page = async ({ params, searchParams }) => {
 
   return (
     <main className="pt-5">
-      <div className="flex  h-full">
-        <Suspense fallback={null}>
-          <SideBarDetailAnime />
-        </Suspense>
-        <DetailAnimePage
-          api={detailsAnime}
-          searchParams={searchParams}
-          params={params}
-        />
-      </div>
+      <DetailAnimePage api={detailsAnime} />
     </main>
   );
 };

@@ -27,7 +27,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning={true}>
+    <html className="min-w-[300px]" suppressHydrationWarning={true}>
       <body className={poppins.className} suppressHydrationWarning={true}>
         <Suspense fallback={<></>}>
           <ThemeProvider

@@ -16,5 +16,9 @@ export const YtIframe = ({ id, title }) => {
   if (!isMounted) {
     return <Skeleton className="h-[300px] w-full" />;
   }
-  return <LiteYouTubeEmbed id={id} title={title} poster="maxresdefault" />;
+  return (
+    <div className="overflow-hidden rounded-lg">
+      <LiteYouTubeEmbed id={id} title={title} poster="maxresdefault" />
+    </div>
+  );
 };

@@ -6,8 +6,9 @@ import { useEffect, useState } from "react";
 import { MdFormatListBulletedAdd } from "react-icons/md";
 
 import { useAddListModal } from "@/hooks/use-add-list-modal";
+import { Button } from "../ui/button";
 
-export const AddList = ({ data }) => {
+export const AddList = ({ data, withText = false }) => {
   const [isMounted, setIsMounted] = useState(false);
   const { isSignedIn } = useAuth();
 
@@ -26,8 +27,15 @@ export const AddList = ({ data }) => {
   }, []);
 
   return (
-    <button onClick={onAddToList} disabled={!isMounted}>
-      <MdFormatListBulletedAdd className="h-6 w-6" />
-    </button>
+    <Button
+      title="Tambahkan ke list"
+      onClick={onAddToList}
+      disabled={!isMounted}
+      className={withText && "w-full gap-x-3 text-sm sm:text-lg"}
+      variant={withText ? "outline" : "ghost"}
+    >
+      <MdFormatListBulletedAdd className=" h-6 w-6" />
+      {withText && <span className="text-sm">Tambahkan ke list</span>}
+    </Button>
   );
 };

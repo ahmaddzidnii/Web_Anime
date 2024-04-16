@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { FaGithub } from "react-icons/fa";
 import Link from "next/link";
+import { Suspense } from "react";
 
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "@/components/mode-toggle";
@@ -36,12 +37,14 @@ export const Navbar = () => {
         <div className="ml-4 flex flex-1 items-center justify-end gap-x-2 md:ml-0 md:gap-x-5">
           <nav className="flex items-center gap-x-2 md:gap-x-3">
             <ButtonModalSearch />
-            {/* <Link href="https://github.com/ahmaddzidnii">
-              <FaGithub className="h-[1.2rem] w-[1.2rem] md:w-6 md:h-6" />
-            </Link> */}
+            <Link href="https://github.com/ahmaddzidnii">
+              <FaGithub className="h-[1.2rem] w-[1.2rem] md:h-6 md:w-6" />
+            </Link>
             <ModeToggle />
             <IconListAnime />
-            <ProfileUser />
+            <Suspense fallback={null}>
+              <ProfileUser />
+            </Suspense>
           </nav>
         </div>
       </div>
