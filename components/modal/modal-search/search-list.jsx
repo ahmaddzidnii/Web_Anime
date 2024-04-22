@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { SearchCheck } from "lucide-react";
 import { MdFormatListBulletedAdd } from "react-icons/md";
+import { useUser } from "@clerk/nextjs";
+import { toast } from "sonner";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import { TextTruncate } from "@/components/text-truncate";
@@ -12,8 +14,6 @@ import { useSearchModal } from "@/hooks/use-search-modal";
 import { fetchSearchAnime } from "@/services/anime.service";
 import { Button } from "@/components/ui/button";
 import { useAddListModal } from "@/hooks/use-add-list-modal";
-import { useUser } from "@clerk/nextjs";
-import { toast } from "sonner";
 
 export const SearchList = ({ query }) => {
   const router = useRouter();
@@ -47,14 +47,14 @@ export const SearchList = ({ query }) => {
         </div>
       )}
       {data?.data.map((item, idx) => (
-        <div key={idx} className="flex p-2">
+        <div key={idx} className="flex p-2 ">
           <div
             role="button"
             onClick={() => {
               router.push(`/anime/details/${item.mal_id}`);
               searchModal.onClose();
             }}
-            className="flex-1  hover:rounded-sm hover:bg-slate-200 dark:hover:bg-slate-600"
+            className="flex-1"
           >
             <div className="flex  items-center gap-x-5">
               <ImageComponent
@@ -95,7 +95,7 @@ export const SearchList = ({ query }) => {
       {query && (
         <div
           role="button"
-          className="flex items-center gap-x-5 p-2 text-xs hover:rounded-sm hover:bg-slate-200 dark:hover:bg-slate-600 sm:text-sm"
+          className="flex items-center gap-x-5 p-2 text-xs  sm:text-sm"
           onClick={() => {
             router.push(`/anime/results?q=${query}`);
             searchModal.onClose();

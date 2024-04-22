@@ -12,6 +12,7 @@ export async function generateMetadata({ params }) {
 }
 const Page = async ({ params }) => {
   const detailsAnime = await getDetailAnimeById(params.id);
+
   if (!detailsAnime)
     return (
       <div className="pt-5">
