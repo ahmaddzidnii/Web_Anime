@@ -34,8 +34,8 @@ model AnimeList {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
-  owner_id String
-  owner User @relation(fields: [owner_id],references: [id],onDelete: Cascade)
+  user_id String
+  user User @relation(fields: [user_id],references: [id],onDelete: Cascade)
 }
 
 enum Status {

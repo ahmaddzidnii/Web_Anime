@@ -90,8 +90,10 @@ export async function POST(request) {
 
     const existingList = await prisma.animeList.count({
       where: {
-        owner_id: user.id,
         anime_id: anime_id,
+        user: {
+          id: user.id,
+        },
       },
     });
 
@@ -114,11 +116,17 @@ export async function POST(request) {
       watched_episode: watchedEpisode,
       start_watch: start_watch,
       end_watch: end_watch,
-      owner_id: user.id,
     };
 
     await prisma.animeList.create({
-      data,
+      data: {
+        ...data,
+        user: {
+          connect: {
+            id: user.id,
+          },
+        },
+      },
     });
 
     return NextResponse.json({ success: true });
@@ -145,7 +153,7 @@ export async function DELETE(request) {
     await prisma.animeList.delete({
       where: {
         id,
-        owner: {
+        user: {
           user_id: userId,
         },
       },
@@ -194,7 +202,7 @@ export async function PUT(request) {
     const animeList = await prisma.animeList.findUnique({
       where: {
         id,
-        owner: {
+        user: {
           user_id: userId,
         },
       },
@@ -233,7 +241,7 @@ export async function PUT(request) {
     await prisma.animeList.update({
       where: {
         id: id,
-        owner: {
+        user: {
           user_id: userId,
         },
       },

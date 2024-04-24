@@ -34,7 +34,7 @@ export async function GET(request, context) {
     }
 
     const whereCondition = {
-      owner: {
+      user: {
         id: user.id,
       },
       ...(status && status !== "ALL" ? { status: status } : {}),
