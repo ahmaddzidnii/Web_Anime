@@ -37,25 +37,27 @@ export const TitlesSection = ({ titles }) => {
               <span className="text-slate-600">{title.title}</span>
             </p>
           ))}
-        <div className="mt-4 cursor-pointer text-sm text-slate-900">
-          {isExpanded ? (
-            <p
-              className="flex items-center gap-x-2"
-              onClick={() => setIsExpanded(false)}
-            >
-              <MdKeyboardArrowUp className="h-5 w-5" />
-              less title
-            </p>
-          ) : (
-            <p
-              className="flex items-center gap-x-2"
-              onClick={() => setIsExpanded(true)}
-            >
-              <MdKeyboardArrowDown className="h-5 w-5" />
-              more title
-            </p>
-          )}
-        </div>
+        {groupedTitles.length > 2 && (
+          <div className="mt-4 cursor-pointer text-sm text-slate-900">
+            {isExpanded ? (
+              <p
+                className="flex items-center gap-x-2"
+                onClick={() => setIsExpanded(false)}
+              >
+                <MdKeyboardArrowUp className="h-5 w-5" />
+                less title
+              </p>
+            ) : (
+              <p
+                className="flex items-center gap-x-2"
+                onClick={() => setIsExpanded(true)}
+              >
+                <MdKeyboardArrowDown className="h-5 w-5" />
+                more title
+              </p>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
