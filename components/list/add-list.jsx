@@ -32,7 +32,7 @@ export const AddList = ({ data, withText = false }) => {
       onClick={onAddToList}
       disabled={!isMounted}
       className={withText && "w-full gap-x-3 text-sm sm:text-lg"}
-      variant={withText ? "outline" : "ghost"}
+      variant={withText ? "default" : "ghost"}
     >
       <MdFormatListBulletedAdd className=" h-6 w-6" />
       {withText && <span className="text-sm">Tambahkan ke list</span>}
