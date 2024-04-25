@@ -45,7 +45,7 @@ export const TitlesSection = ({ titles }) => {
                 onClick={() => setIsExpanded(false)}
               >
                 <MdKeyboardArrowUp className="h-5 w-5" />
-                less title
+                Less title
               </p>
             ) : (
               <p
@@ -53,7 +53,7 @@ export const TitlesSection = ({ titles }) => {
                 onClick={() => setIsExpanded(true)}
               >
                 <MdKeyboardArrowDown className="h-5 w-5" />
-                more title
+                More title
               </p>
             )}
           </div>
