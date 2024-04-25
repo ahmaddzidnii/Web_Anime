@@ -51,7 +51,9 @@ export const DetailComponent = ({ api }) => {
       </div>
       <div className="mt-5 w-full rounded-lg bg-slate-300 p-5  text-slate-800">
         <h1 className="text-xl font-bold">Sinopsis :</h1>
-        <p className="text-justify">{api.synopsis}</p>
+        <p className="text-justify">
+          {api.synopsis.replace(/\[Written by MAL Rewrite\]/, "")}
+        </p>
       </div>
       <div className="mt-5 w-full rounded-lg bg-slate-300 p-5  text-slate-800">
         <h1 className="text-xl font-bold">Character :</h1>
