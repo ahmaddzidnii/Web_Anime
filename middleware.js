@@ -7,7 +7,7 @@ export default authMiddleware({
   // publicRoutes: (req) => {
   //   return !req.url.includes("/list");
   // },
-  publicRoutes: ["/anime/details/(.*)", "/", "/anime"],
+  publicRoutes: ["/anime/details/(.*)", "/", "/anime","api/webhooks/(.*)"],
 });
 
 export const config = {
