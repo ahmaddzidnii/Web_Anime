@@ -1,5 +1,7 @@
 import { Webhook } from "svix";
+import * as Sentry from "@sentry/nextjs";
 import { headers } from "next/headers";
+
 import { prisma } from "@/lib/prisma";
 
 export async function POST(req) {
@@ -44,38 +46,56 @@ export async function POST(req) {
   const { id } = evt.data;
   const eventType = evt.type;
 
-  console.log(`Received event ${eventType} with id ${id}`);
+  // console.log(`Received event ${eventType} with id ${id}`);
 
   if (eventType === "user.created") {
-    await prisma.user.create({
-      data: {
-        user_id: payload.data.id,
-        username: payload.data.username,
-        email: payload.data.email_addresses[0].email_address,
-        image_url: payload.data.image_url,
-      },
-    });
+    try {
+      await prisma.user.create({
+        data: {
+          user_id: payload.data.id,
+          username: payload.data.username,
+          email: payload.data.email_addresses[0].email_address,
+          image_url: payload.data.image_url,
+        },
+      });
+      console.log(`Created user with id ${payload.data.id}`);
+    } catch (error) {
+      console.log(error);
+      Sentry.captureException(error);
+    }
   }
 
   if (eventType === "user.updated") {
-    await prisma.user.update({
-      where: {
-        user_id: id,
-      },
-      data: {
-        username: payload.data.username,
-        email: payload.data.email_addresses[0].email_address,
-        image_url: payload.data.image_url,
-      },
-    });
+    try {
+      await prisma.user.update({
+        where: {
+          user_id: id,
+        },
+        data: {
+          username: payload.data.username,
+          email: payload.data.email_addresses[0].email_address,
+          image_url: payload.data.image_url,
+        },
+      });
+      console.log(`Updated user with id ${payload.data.id}`);
+    } catch (error) {
+      console.log(error);
+      Sentry.captureException(error);
+    }
   }
 
   if (eventType === "user.deleted") {
-    await prisma.user.delete({
-      where: {
-        user_id: id,
-      },
-    });
+    try {
+      await prisma.user.delete({
+        where: {
+          user_id: id,
+        },
+      });
+      console.log(`Deleted user with id ${payload.data.id}`);
+    } catch (error) {
+      console.log(error);
+      Sentry.captureException(error);
+    }
   }
 
   return new Response("", { status: 200 });
