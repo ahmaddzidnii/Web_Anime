@@ -1,6 +1,7 @@
+import { Suspense } from "react";
+
 import { YtIframe } from "@/components/iframe/yt";
 import { CharactersComponent } from "./characther-component";
-import { Suspense } from "react";
 
 export const DetailComponent = ({ api }) => {
   return (
@@ -52,12 +53,14 @@ export const DetailComponent = ({ api }) => {
       <div className="mt-5 w-full rounded-lg bg-slate-300 p-5  text-slate-800">
         <h1 className="text-xl font-bold">Sinopsis :</h1>
         <p className="text-justify">
-          {api.synopsis.replace(/\[Written by MAL Rewrite\]/, "")}
+          {api.synopsis
+            ? api.synopsis.replace(/\[Written by MAL Rewrite\]/, "")
+            : "Tidak ada data sinopsis.."}
         </p>
       </div>
       <div className="mt-5 w-full rounded-lg bg-slate-300 p-5  text-slate-800">
         <h1 className="text-xl font-bold">Character :</h1>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div>Loading karakter..</div>}>
           <CharactersComponent data={api} />
         </Suspense>
       </div>
