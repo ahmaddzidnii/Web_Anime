@@ -198,7 +198,7 @@ export const ModalAddList = () => {
               </InputDate>
             </div>
           </div>
-          <SubmitAddList data={dataAnime} />
+          <SubmitAddList data={dataAnime} isLoadingFetchData={isLoading} />
         </div>
         <DialogClose asChild>
           <Button
