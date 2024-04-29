@@ -43,6 +43,7 @@ export const TitlesSection = ({ titles }) => {
               <p
                 className="flex items-center gap-x-2"
                 onClick={() => setIsExpanded(false)}
+                title="Less title"
               >
                 <MdKeyboardArrowUp className="h-5 w-5" />
                 Less title
@@ -51,6 +52,7 @@ export const TitlesSection = ({ titles }) => {
               <p
                 className="flex items-center gap-x-2"
                 onClick={() => setIsExpanded(true)}
+                title="More title"
               >
                 <MdKeyboardArrowDown className="h-5 w-5" />
                 More title

@@ -14,7 +14,7 @@ export const YtIframe = ({ id, title }) => {
   }, []);
 
   if (!isMounted) {
-    return <Skeleton className="h-[300px] w-full" />;
+    return <Skeleton className="h-[200px] w-full" />;
   }
   return (
     <div className="overflow-hidden rounded-lg">

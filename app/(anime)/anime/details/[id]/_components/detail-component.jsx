@@ -1,6 +1,5 @@
 import { Suspense } from "react";
 
-import { YtIframe } from "@/components/iframe/yt";
 import { CharactersComponent } from "./characther-component";
 
 export const DetailComponent = ({ api }) => {
@@ -12,8 +11,14 @@ export const DetailComponent = ({ api }) => {
             <span className="w-full rounded-lg bg-gray-600 px-3  text-slate-100">
               Score
             </span>
-            <h1 className="text-2xl font-bold text-slate-800">{api.score}</h1>
-            <p className="text-xs text-slate-800">{api.scored_by} users</p>
+            {api.score ? (
+              <h1 className="text-2xl font-bold text-slate-800">{api.score}</h1>
+            ) : (
+              <h1 className="text-2xl font-extrabold text-slate-800">N/A</h1>
+            )}
+            <p className="text-xs text-slate-800">
+              {api.scored ? api.scored_by : null} users
+            </p>
           </div>
           <div className="grid w-3/4 grid-rows-3 text-center text-sm text-slate-800 sm:grid-cols-3 sm:items-center lg:text-lg">
             <h1>
@@ -46,9 +51,6 @@ export const DetailComponent = ({ api }) => {
               })}
           </div>
         </div>
-        {api?.trailer.youtube_id && (
-          <YtIframe id={api?.trailer.youtube_id} title={api?.title_japanese} />
-        )}
       </div>
       <div className="mt-5 w-full rounded-lg bg-slate-300 p-5  text-slate-800">
         <h1 className="text-xl font-bold">Sinopsis :</h1>
