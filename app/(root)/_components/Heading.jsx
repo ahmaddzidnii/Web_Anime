@@ -7,11 +7,11 @@ const Heading = () => {
   return (
     <div className="max-w-3xl space-y-4">
       <h1 className="text-3xl font-bold sm:text-5xl md:text-6xl">
-        Temukan anime favorit Anda, Welcome to
-        <span className="font-bold">ahmadzidni.site</span>
+        Temukan anime favorit Anda, Welcome to &nbsp;
+        <span className="font-bold">Animefy</span>
       </h1>
       <h3 className="text-base font-medium sm:text-xl md:text-2xl">
-        ahmadzidni.site menggunakan API dari
+        Animefy menggunakan API dari
         <a className="ml-1 underline" href="https://jikan.moe/" target="_blank">
           Jikan API
         </a>
@@ -23,7 +23,7 @@ const Heading = () => {
         </Button>
         <Button variant="outline">
           <a target="_blank" href="https://docs.api.jikan.moe/">
-            Jikan API v4
+            Jikan API
           </a>
           <ArrowRight className="ml-2 h-5 w-4" />
         </Button>

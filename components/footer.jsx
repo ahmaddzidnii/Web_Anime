@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/logo";
+import Link from "next/link";
 
 export const Footer = () => {
   return (
@@ -7,7 +8,10 @@ export const Footer = () => {
       <div className="container-custom flex items-center justify-center md:justify-between">
         <Logo />
         <div className=" text-center text-muted-foreground">
-          made with ❤️ by ahmaddzidnii
+          made with ❤️ by &nbsp;
+          <Link target="_blank" href="https://github.com/ahmaddzidnii">
+            ahmaddzidnii
+          </Link>
         </div>
       </div>
     </footer>

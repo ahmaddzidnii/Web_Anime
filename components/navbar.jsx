@@ -29,9 +29,7 @@ export const Navbar = () => {
               width="40"
               alt="logo"
             />
-            <p className={cn("hidden font-semibold sm:block")}>
-              ahmadzidni.site
-            </p>
+            <p className={cn("hidden font-semibold sm:block")}>Animefy</p>
           </div>
         </Link>
         <div className="ml-4 flex flex-1 items-center justify-end gap-x-2 md:ml-0 md:gap-x-5">

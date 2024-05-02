@@ -19,7 +19,7 @@ export const Logo = () => {
         width="40"
         alt="logo"
       />
-      <p className={cn("font-semibold")}>ahmadzidni.site</p>
+      <p className={cn("font-semibold")}>Animefy</p>
     </div>
   );
 };

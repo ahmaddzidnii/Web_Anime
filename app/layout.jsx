@@ -20,8 +20,8 @@ const poppins = Poppins({
 
 export const metadata = {
   title: {
-    template: "%s | ahmadzidni.site",
-    default: "ahmadzidni.site",
+    template: "%s | Animefy",
+    default: "Animefy",
   },
 };
 
