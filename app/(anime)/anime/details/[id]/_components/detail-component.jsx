@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { Base64 } from "js-base64";
 
 import { CharactersComponent } from "./characther-component";
+import { Loader } from "@/components/loader";
 
 export const DetailComponent = ({ apiBase64 }) => {
   const api = JSON.parse(Base64.decode(apiBase64));
@@ -36,7 +37,7 @@ export const DetailComponent = ({ apiBase64 }) => {
         </div>
       </div>
 
-      <div className="mt-5 flex flex-col  gap-5">
+      {/* <div className="mt-5 flex flex-col  gap-5">
         <div className="w-full  rounded-lg bg-slate-300 p-5">
           <h1 className="mb-3 text-xl font-bold  text-slate-800">Genre:</h1>
           <div className="grid w-full  grid-rows-1 gap-4 ">
@@ -53,7 +54,8 @@ export const DetailComponent = ({ apiBase64 }) => {
               })}
           </div>
         </div>
-      </div>
+      </div> */}
+
       <div className="mt-5 w-full rounded-lg bg-slate-300 p-5  text-slate-800">
         <h1 className="text-xl font-bold">Sinopsis :</h1>
         <p className="text-justify">
@@ -64,7 +66,13 @@ export const DetailComponent = ({ apiBase64 }) => {
       </div>
       <div className="mt-5 w-full rounded-lg bg-slate-300 p-5  text-slate-800">
         <h1 className="text-xl font-bold">Character :</h1>
-        <Suspense fallback={<div>Loading karakter..</div>}>
+        <Suspense
+          fallback={
+            <div className="flex h-[400px] w-full justify-center pt-5">
+              <Loader />
+            </div>
+          }
+        >
           <CharactersComponent id={api.mal_id} />
         </Suspense>
       </div>

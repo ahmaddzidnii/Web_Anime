@@ -89,8 +89,18 @@ const Page = async ({ params }) => {
                     <span className="text-slate-600">{api?.type}</span>
                   </p>
                   <p className="text-sm text-slate-900">
+                    <span className="font-semibold">Genres</span> :
+                    <span className="text-slate-600">
+                      {api?.genres.map((g) => g.name).join(", ")}
+                    </span>
+                  </p>
+                  <p className="text-sm text-slate-900">
                     <span className="font-semibold">Episodes</span> :
                     <span className="text-slate-600">{api?.episodes}</span>
+                  </p>
+                  <p className="text-sm text-slate-900">
+                    <span className="font-semibold">Duration</span> :
+                    <span className="text-slate-600">{api?.duration}</span>
                   </p>
                   <p className="text-sm text-slate-900">
                     <span className="font-semibold">Status</span> :
@@ -99,6 +109,12 @@ const Page = async ({ params }) => {
                   <p className="text-sm text-slate-900">
                     <span className="font-semibold">Aired</span> :
                     <span className="text-slate-600">{api?.aired.string}</span>
+                  </p>
+                  <p className="text-sm text-slate-900">
+                    <span className="font-semibold">Producers</span> :
+                    <span className="text-slate-600">
+                      {api?.producers.map((p) => p.name).join(", ")}
+                    </span>
                   </p>
                   <p className="text-sm text-slate-900">
                     <span className="font-semibold">Rating</span> :
