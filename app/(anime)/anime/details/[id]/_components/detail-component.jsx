@@ -1,8 +1,10 @@
 import { Suspense } from "react";
+import { Base64 } from "js-base64";
 
 import { CharactersComponent } from "./characther-component";
 
-export const DetailComponent = ({ api }) => {
+export const DetailComponent = ({ apiBase64 }) => {
+  const api = JSON.parse(Base64.decode(apiBase64));
   return (
     <>
       <div className="w-full rounded-lg bg-slate-300 py-5">
@@ -63,7 +65,7 @@ export const DetailComponent = ({ api }) => {
       <div className="mt-5 w-full rounded-lg bg-slate-300 p-5  text-slate-800">
         <h1 className="text-xl font-bold">Character :</h1>
         <Suspense fallback={<div>Loading karakter..</div>}>
-          <CharactersComponent data={api} />
+          <CharactersComponent id={api.mal_id} />
         </Suspense>
       </div>
     </>
