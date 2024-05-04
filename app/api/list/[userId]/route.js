@@ -2,6 +2,7 @@ import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 import { prisma } from "@/lib/prisma";
+import { Base64 } from "js-base64";
 
 export async function GET(request, context) {
   const { userId } = auth();
@@ -49,7 +50,11 @@ export async function GET(request, context) {
       orderBy: orderCondition,
     });
 
-    return NextResponse.json(lists);
+    const listBase64 = Base64.encode(JSON.stringify(lists), true);
+
+    return Response.json({
+      lists: listBase64,
+    });
   } catch (error) {
     console.log(error);
     return NextResponse.json(
