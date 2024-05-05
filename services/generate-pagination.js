@@ -1,3 +1,12 @@
+/**
+ * Generates pagination based on the current page, total pages, and maximum pages to show.
+ *
+ * @param {number} currentPage - The current page number.
+ * @param {number} totalPages - The total number of pages available.
+ * @param {number} maxPagesToShow - The maximum number of pages to display.
+ * @return {array} An array of page numbers for pagination.
+ */
+
 export function generatePagination({
   currentPage,
   totalPages,

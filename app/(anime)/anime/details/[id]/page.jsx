@@ -1,13 +1,13 @@
 import { GiPeriscope } from "react-icons/gi";
+import { Base64 } from "js-base64";
 
-import { getDetailAnimeById } from "@/services/api";
+import { getDetailAnimeById } from "@/services/anime.service";
 
 import { DetailComponent } from "./_components/detail-component";
 import { AddList } from "@/components/list/add-list";
 import { TitlesSection } from "./_components/titles-section";
 import { Separator } from "@/components/ui/separator";
 import { YtIframe } from "@/components/iframe/yt";
-import { Base64 } from "js-base64";
 
 export async function generateMetadata({ params }) {
   const detailsAnime = await getDetailAnimeById(params.id);

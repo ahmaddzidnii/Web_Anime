@@ -1,7 +1,7 @@
 import { GiPeriscope } from "react-icons/gi";
 import { Suspense } from "react";
 
-import { getAnimeQuery } from "@/services/api";
+import { getAnimeQuery } from "@/services/anime.service";
 import { PaginationCustom } from "@/components/pagination";
 import { CardAnime } from "@/components/card-anime";
 
