@@ -1,3 +1,5 @@
+import { env } from "@/utils/load-env";
+
 export default function robots() {
   return {
     rules: {
@@ -5,6 +7,6 @@ export default function robots() {
       allow: "/",
       disallow: "/list",
     },
-    sitemap: `${process.env.NEXT_PUBLIC_BASE_URL}/sitemap.xml`,
+    sitemap: `${env("NEXT_PUBLIC_BASE_URL")}/sitemap.xml`,
   };
 }

@@ -1,7 +1,8 @@
+import { env } from "@/utils/load-env";
 import axios from "axios";
 
 export default async function sitemap() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const baseUrl = env("NEXT_PUBLIC_BASE_URL");
 
   const { data: animes } = await axios.get(
     `https://api.jikan.moe/v4/top/anime?sfw=true`,

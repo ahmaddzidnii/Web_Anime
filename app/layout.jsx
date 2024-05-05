@@ -23,6 +23,9 @@ export const metadata = {
     template: "%s | Animefy",
     default: "Animefy",
   },
+  other: {
+    "dicoding:email": "zdngaming312@gmail.com",
+  },
 };
 
 export default function RootLayout({ children }) {
