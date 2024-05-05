@@ -12,7 +12,7 @@ Selamat datang di List Anime! Proyek ini bertujuan menyediakan platform yang men
 
 ## Cara Menggunakan
 
-1. Kunjungi [List Anime Website](https://anime.ahmadzidni.site) untuk menjelajahi anime.
+1. Kunjungi [List Anime Website](https://anime.ahmadzidni.my.id) untuk menjelajahi anime.
 2. Gunakan fitur pencarian untuk menemukan anime yang Anda cari.
 3. Jelajahi bagian-bagian seperti detail, karakter, episode, rekomendasi, dan ulasan.
 
