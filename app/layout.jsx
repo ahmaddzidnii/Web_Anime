@@ -1,5 +1,4 @@
 import { Poppins } from "next/font/google";
-import NextTopLoader from "nextjs-toploader";
 import { Suspense } from "react";
 
 import "swiper/css";
@@ -12,6 +11,7 @@ import { ModalProvider } from "@/providers/modal-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { ClerkCustomProvider } from "@/providers/clerk-provider";
 import { TanstackProvider } from "@/providers/tanstack-provider";
+import { ProgressBarProvider } from "@/providers/progress-bar-provider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -40,12 +40,13 @@ export default function RootLayout({ children }) {
             disableTransitionOnChange
             storageKey="theme"
           >
-            <NextTopLoader showSpinner={false} height={4} />
             <ClerkCustomProvider>
               <TanstackProvider>
-                <ModalProvider />
-                <Toaster />
-                {children}
+                <ProgressBarProvider>
+                  <ModalProvider />
+                  <Toaster />
+                  {children}
+                </ProgressBarProvider>
               </TanstackProvider>
             </ClerkCustomProvider>
           </ThemeProvider>

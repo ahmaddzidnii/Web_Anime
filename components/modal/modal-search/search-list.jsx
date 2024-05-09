@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter } from "next-nprogress-bar";
 import { useQuery } from "@tanstack/react-query";
 import { SearchCheck } from "lucide-react";
 import { MdFormatListBulletedAdd } from "react-icons/md";
@@ -51,7 +51,9 @@ export const SearchList = ({ query }) => {
           <div
             role="button"
             onClick={() => {
-              router.push(`/anime/details/${item.mal_id}`);
+              router.push(`/anime/details/${item.mal_id}`, {
+                scroll: false,
+              });
               searchModal.onClose();
             }}
             className="flex-1"
