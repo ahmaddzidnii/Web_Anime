@@ -1,32 +1,239 @@
-# List Anime
+a<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 
-<!-- ![List Anime Logo](link/to/logo.png) -->
+<a name="readme-top"></a>
 
-Selamat datang di List Anime! Proyek ini bertujuan menyediakan platform yang menyenangkan untuk menjelajahi dan menemukan informasi tentang anime favorit Anda. Temukan ratusan judul anime, lihat detail, karakter, episode, dan nikmati pengalaman menonton yang lebih baik.
+<!--
+*** Thanks for checking out the Best-README-Template. If you have a suggestion
+*** that would make this better, please fork the repo and create a pull request
+*** or simply open an issue with the tag "enhancement".
+*** Don't forget to give the project a star!
+*** Thanks again! Now go create something AMAZING! :D
+-->
 
-## Fitur Utama
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
 
-- **Pencarian Cepat:** Temukan anime favorit Anda dengan mudah melalui fitur pencarian yang canggih.
-- **Navigasi Mudah:** Jelajahi berbagai bagian seperti detail, karakter, episode, rekomendasi, dan ulasan dengan navigasi tab yang intuitif.
-- **Desain Responsif:** Nikmati tampilan yang rapi dan responsif di perangkat apa pun.
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-## Cara Menggunakan
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/ahmaddzidnii/Web_Anime">
+    <img src="https://anime.ahmadzidni.my.id/logo-dark.svg" alt="Logo" width="80" height="80">
+  </a>
 
-1. Kunjungi [List Anime Website](https://anime.ahmadzidni.my.id) untuk menjelajahi anime.
-2. Gunakan fitur pencarian untuk menemukan anime yang Anda cari.
-3. Jelajahi bagian-bagian seperti detail, karakter, episode, rekomendasi, dan ulasan.
+Live Production: [https://anime.ahmadzidni.my.id](https://anime.ahmadzidni.my.id)
 
-## Instalasi Lokal
+<h3 align="center">Web List Anime & Search Anime</h3>
+  <p align="center">
+    Proyek web list anime menggunakan open API dari <a href="https://docs.api.jikan.moe/">Jikan API</a> dengan fitur autentikasi Clerk menyediakan pengalaman interaktif bagi pengguna untuk mengeksplorasi dan mengelola daftar anime favorit mereka. Pengguna dapat menyimpan progress anime yang mereka tonton. Aplikasi ini juga terdapat fitur pencarian memungkinkan pengguna untuk mencari anime berdasarkan judul tertentu. Ketika pengguna memilih anime dari daftar, mereka diarahkan ke halaman detail yang menampilkan sinopsis, tanggal rilis, jumlah episode, dan skor rating.
+  </p>
+</div>
 
-Jika Anda ingin menjalankan List Anime secara lokal:
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
 
-```bash
-git clone https://github.com/ahmaddzidnii/Web_Anime.git
-cd Web_Anime
-npm install
-npm start
-```
+<!-- ABOUT THE PROJECT -->
 
-Terima kasih telah menggunakan List Anime!
+## About The Project
 
-Selamat Menonton! 🎉
+[![Product Name Screen Shot][product-screenshot]](https://firebasestorage.googleapis.com/v0/b/apptugas-4da52.appspot.com/o/images%2Fgithub-assets%2Fproject-anime-web.png?alt=media&token=f18b853e-df29-45fd-aa2d-bd49af8779a2)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Built With
+
+- [![Next][Next.js]][Next-url]
+- [![React][React.js]][React-url]
+- [![Tailwind Css][Tailwind-CSS]][Tailwind-CSS-url]
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- GETTING STARTED -->
+
+## Getting Started
+
+This is an example of how you may give instructions on setting up your project locally.
+To get a local copy up and running follow these simple example steps.
+
+### Prerequisites
+
+This is an example of how to list things you need to use the software and how to install them.
+
+- npm
+  ```sh
+  npm install npm@latest -g
+  ```
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/ahmaddzidnii/Web_Anime.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+   or
+   ```sh
+   pnpm install
+   ```
+   or
+   ```sh
+   yarn install
+   ```
+3. rename `.env.example` to `.env` and change with your credentials
+
+   ```conf
+   NEXT_PUBLIC_BASE_URL =YOUR_BASE_URL
+   NEXT_PUBLIC_ANIME_BASE_URL =https://api.jikan.moe/v4
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=YOUR_CLERK_PUBLISHABLE_KEY
+   CLERK_SECRET_KEY=YOUR_CLERK_SECRET_KEY
+   NEXT_PUBLIC_CLERK_SIGN_IN_URL=/auth/login
+   NEXT_PUBLIC_CLERK_SIGN_UP_URL=/auth/register
+   NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/anime
+   NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/anime
+   CLERK_WEBHOOKS_SECRET = YOUR_CLERK_WEBHOOKS_SECRET
+   DATABASE_URL=YOUR_DATABASE_URL
+   SENTRY_AUTH_TOKEN=YOUR_SENTRY_AUTH_TOKEN
+   ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- USAGE EXAMPLES -->
+
+## Usage
+
+1. run in dev environment
+   ```sh
+   npm dev
+   ```
+   or
+   ```sh
+   pnpm dev
+   ```
+   or
+   ```sh
+   yarn dev
+   ```
+2. run in production environment
+   ```sh
+   npm build && npm start
+   ```
+   or
+   ```sh
+   pnpm build && pnpm start
+   ```
+   or
+   ```sh
+   yarn build && yarn start
+   ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+See the [open issues](https://github.com/ahmaddzidnii/Web_Anime/issues) for a full list of proposed features (and known issues).
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- CONTRIBUTING -->
+
+## Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- LICENSE -->
+
+## License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- CONTACT -->
+
+## Contact
+
+Ahmad Zidni - [@ahmadzidni1]https://www.instagram.com/ahmadzidni1/)
+
+Project Link: [https://github.com/ahmaddzidnii/Web_Anime](https://github.com/ahmaddzidnii/Web_Anime)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- ACKNOWLEDGMENTS -->
+
+<!-- ## Acknowledgments
+
+- []()
+- []()
+- []() -->
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[contributors-shield]: https://img.shields.io/github/contributors/ahmaddzidnii/Web_Anime.svg?style=for-the-badge
+[contributors-url]: https://github.com/ahmaddzidnii/Web_Anime/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/ahmaddzidnii/Web_Anime.svg?style=for-the-badge
+[forks-url]: https://github.com/ahmaddzidnii/Web_Anime/network/members
+[stars-shield]: https://img.shields.io/github/stars/ahmaddzidnii/Web_Anime.svg?style=for-the-badge
+[stars-url]: https://github.com/ahmaddzidnii/Web_Anime/stargazers
+[issues-shield]: https://img.shields.io/github/issues/ahmaddzidnii/Web_Anime.svg?style=for-the-badge
+[issues-url]: https://github.com/ahmaddzidnii/Web_Anime/issues
+[license-shield]: https://img.shields.io/github/license/ahmaddzidnii/Web_Anime.svg?style=for-the-badge
+[license-url]: https://github.com/ahmaddzidnii/Web_Anime/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/ahmad-zidni-hidayat/
+[product-screenshot]: images/screenshot.png
+[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
+[Next-url]: https://nextjs.org/
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+[Tailwind-CSS]: https://img.shields.io/badge/Tailwindcss-20232A?style=for-the-badge&logo=tailwindcss&logoColor=61DAFB
+[Tailwind-CSS-url]: https://tailwindcss.com/
