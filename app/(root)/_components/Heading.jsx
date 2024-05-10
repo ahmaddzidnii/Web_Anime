@@ -10,12 +10,12 @@ const Heading = () => {
         Temukan anime favorit Anda, Welcome to &nbsp;
         <span className="font-bold">Animefy</span>
       </h1>
-      <h3 className="text-base font-medium sm:text-xl md:text-2xl">
+      <p className="text-base font-medium sm:text-xl md:text-2xl">
         Animefy menggunakan API dari
         <a className="ml-1 underline" href="https://jikan.moe/" target="_blank">
           Jikan API
         </a>
-      </h3>
+      </p>
 
       <div className="flex justify-center gap-5">
         <Button asChild>

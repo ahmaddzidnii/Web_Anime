@@ -23,6 +23,7 @@ export const metadata = {
     template: "%s | Animefy",
     default: "Animefy",
   },
+  description: "Website Anime Paling Lengkap dan Terpopuler",
   other: {
     "dicoding:email": "zdngaming312@gmail.com",
   },
@@ -30,7 +31,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html className="min-w-[300px]" suppressHydrationWarning={true}>
+    <html className="min-w-[300px]" lang="id" suppressHydrationWarning={true}>
       <body className={poppins.className} suppressHydrationWarning={true}>
         <Suspense fallback={<></>}>
           <ThemeProvider
