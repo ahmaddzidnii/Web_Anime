@@ -1,4 +1,4 @@
-a<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
+<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 
 <a name="readme-top"></a>
 
@@ -26,11 +26,12 @@ a<!-- Improved compatibility of back to top link: See: https://github.com/othnei
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
+
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/ahmaddzidnii/Web_Anime">
-    <img src="https://anime.ahmadzidni.my.id/logo-dark.svg" alt="Logo" width="80" height="80">
+    <img src="https://ui-avatars.com/api/?name=Web%20Anime&rounded=true" alt="Logo" width="80" height="80">
   </a>
 
 Live Production: [https://anime.ahmadzidni.my.id](https://anime.ahmadzidni.my.id)
@@ -59,11 +60,9 @@ Live Production: [https://anime.ahmadzidni.my.id](https://anime.ahmadzidni.my.id
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -71,7 +70,7 @@ Live Production: [https://anime.ahmadzidni.my.id](https://anime.ahmadzidni.my.id
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://firebasestorage.googleapis.com/v0/b/apptugas-4da52.appspot.com/o/images%2Fgithub-assets%2Fproject-anime-web.png?alt=media&token=f18b853e-df29-45fd-aa2d-bd49af8779a2)
+![project-anime-web](https://github.com/ahmaddzidnii/Web_Anime/assets/138422717/88281809-b498-452f-9eae-44b4f8b2299c)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
