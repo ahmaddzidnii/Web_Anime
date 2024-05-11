@@ -79,10 +79,10 @@ Live Production: [https://anime.ahmadzidni.my.id](https://anime.ahmadzidni.my.id
 - [![Next][Next.js]][Next-url]
 - [![React][React.js]][React-url]
 - [![Clerk][Clerk]][Clerk-url]
+- [![PostgreSQL][PostgreSQL]][PostgreSQL-url]
 - [![Prisma ORM][Prisma]][Prisma-url]
 - [![Tailwind Css][Tailwind-CSS]][Tailwind-CSS-url]
 - [![Shadcn UI][ShadcnUI]][ShadcnUI-url]
-
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -111,7 +111,7 @@ Before running this project locally there are several requirements that must be 
   ```
 - Create instance in [clerk](https://clerk.com/) dashboard
 - Create instance in [sentry](https://sentry.io/) dashboard
-- Database setup, in this case I use Postgree SQL, i hosted in [NeonDB](https://neon.tech/)
+- Database setup, in this case I use PostgreSQL, i hosted in [NeonDB](https://neon.tech/)
 
 
 ### Installation
@@ -120,7 +120,11 @@ Before running this project locally there are several requirements that must be 
    ```sh
    git clone https://github.com/ahmaddzidnii/Web_Anime.git
    ```
-2. Install NPM packages
+2. Change directory
+   ```bash
+   cd Web_Anime
+   ```
+3. Install NPM packages
    ```sh
    npm install
    ```
@@ -132,14 +136,9 @@ Before running this project locally there are several requirements that must be 
    ```sh
    yarn install
    ```
-3. Change directory
-   ```bash
-     cd Web_Anime
-   ```
 4. Rename `.env.example` to `.env` and change with your credentials
-
    ```bash
-     sudo mv .env.example .env
+   sudo mv .env.example .env
    ```
 
    ```conf
@@ -157,12 +156,16 @@ Before running this project locally there are several requirements that must be 
    ```
 5. Then run the migration on your database through Prisma ORM by typing the command,
    ```sh
-      npx prisma migrate dev
+   npx prisma migrate dev
     ```
    or
-     ```sh
-      npx prisma db push
-    ```
+   ```sh
+   npx prisma db push
+   ```
+6. Finally, generate prisma client by typing the command,
+   ```sh
+   npx prisma generate
+   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -272,5 +275,7 @@ Project Link: [https://github.com/ahmaddzidnii/Web_Anime](https://github.com/ahm
 [Clerk-url]: https://clerk.com/
 [ShadcnUI]: https://img.shields.io/badge/shadcn%20ui-20232A?style=for-the-badge&logo=shadcnui&logoColor=61DAFB
 [ShadcnUI-url]: https://ui.shadcn.com/
-[Prisma]: https://img.shields.io/badge/prisma-20232A?style=for-the-badge&logo=prisma&logoColor=61DAFB
+[Prisma]: https://img.shields.io/badge/prisma%20ORM-20232A?style=for-the-badge&logo=prisma&logoColor=61DAFB
 [Prisma-url]: https://www.prisma.io/
+[PostgreSQL]: https://img.shields.io/badge/PostgreSQL-20232A?style=for-the-badge&logo=PostgreSQL&logoColor=61DAFB
+[PostgreSQL-url]: https://www.postgresql.org/
