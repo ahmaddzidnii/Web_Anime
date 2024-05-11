@@ -78,7 +78,11 @@ Live Production: [https://anime.ahmadzidni.my.id](https://anime.ahmadzidni.my.id
 
 - [![Next][Next.js]][Next-url]
 - [![React][React.js]][React-url]
+- [![Clerk][Clerk]][Clerk-url]
+- [![Prisma ORM][Prisma]][Prisma-url]
 - [![Tailwind Css][Tailwind-CSS]][Tailwind-CSS-url]
+- [![Shadcn UI][ShadcnUI]][ShadcnUI-url]
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -91,12 +95,24 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+Before running this project locally there are several requirements that must be fulfilled including,
 
-- npm
+- npm or another package manager such as pnpm, yarn etc.
   ```sh
   npm install npm@latest -g
   ```
+  or
+  ```sh
+  npm install pnpm -g
+  ```
+  or
+  ```sh
+  npm install yarn -g
+  ```
+- Create instance in [clerk](https://clerk.com/) dashboard
+- Create instance in [sentry](https://sentry.io/) dashboard
+- Database setup, in this case I use Postgree SQL, i hosted in [NeonDB](https://neon.tech/)
+
 
 ### Installation
 
@@ -116,7 +132,15 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    yarn install
    ```
-3. rename `.env.example` to `.env` and change with your credentials
+3. Change directory
+   ```bash
+     cd Web_Anime
+   ```
+4. Rename `.env.example` to `.env` and change with your credentials
+
+   ```bash
+     sudo mv .env.example .env
+   ```
 
    ```conf
    NEXT_PUBLIC_BASE_URL =YOUR_BASE_URL
@@ -131,6 +155,14 @@ This is an example of how to list things you need to use the software and how to
    DATABASE_URL=YOUR_DATABASE_URL
    SENTRY_AUTH_TOKEN=YOUR_SENTRY_AUTH_TOKEN
    ```
+5. Then run the migration on your database through Prisma ORM by typing the command,
+   ```sh
+      npx prisma migrate dev
+    ```
+   or
+     ```sh
+      npx prisma db push
+    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -138,7 +170,7 @@ This is an example of how to list things you need to use the software and how to
 
 ## Usage
 
-1. run in dev environment
+1. Run in dev environment
    ```sh
    npm dev
    ```
@@ -150,7 +182,7 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    yarn dev
    ```
-2. run in production environment
+2. Run in production environment
    ```sh
    npm build && npm start
    ```
@@ -198,7 +230,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Contact
 
-Ahmad Zidni - [@ahmadzidni1]https://www.instagram.com/ahmadzidni1/)
+Ahmad Zidni - [@ahmadzidni1](https://www.instagram.com/ahmadzidni1/)
 
 Project Link: [https://github.com/ahmaddzidnii/Web_Anime](https://github.com/ahmaddzidnii/Web_Anime)
 
@@ -236,3 +268,9 @@ Project Link: [https://github.com/ahmaddzidnii/Web_Anime](https://github.com/ahm
 [React-url]: https://reactjs.org/
 [Tailwind-CSS]: https://img.shields.io/badge/Tailwindcss-20232A?style=for-the-badge&logo=tailwindcss&logoColor=61DAFB
 [Tailwind-CSS-url]: https://tailwindcss.com/
+[Clerk]: https://img.shields.io/badge/Clerk-20232A?style=for-the-badge&logo=clerk&logoColor=61DAFB
+[Clerk-url]: https://clerk.com/
+[ShadcnUI]: https://img.shields.io/badge/shadcn%20ui-20232A?style=for-the-badge&logo=shadcnui&logoColor=61DAFB
+[ShadcnUI-url]: https://ui.shadcn.com/
+[Prisma]: https://img.shields.io/badge/prisma-20232A?style=for-the-badge&logo=prisma&logoColor=61DAFB
+[Prisma-url]: https://www.prisma.io/
