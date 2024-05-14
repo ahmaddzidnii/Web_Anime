@@ -26,7 +26,6 @@
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -110,9 +109,8 @@ Before running this project locally there are several requirements that must be 
   npm install yarn -g
   ```
 - Create instance in [clerk](https://clerk.com/) dashboard
-- Create instance in [sentry](https://sentry.io/) dashboard
+- Setup webhook in clerk [see docs](https://clerk.com/docs/integrations/webhooks/overview)
 - Database setup, in this case I use PostgreSQL, i hosted in [NeonDB](https://neon.tech/)
-
 
 ### Installation
 
@@ -137,6 +135,7 @@ Before running this project locally there are several requirements that must be 
    yarn install
    ```
 4. Rename `.env.example` to `.env` and change with your credentials
+
    ```bash
    sudo mv .env.example .env
    ```
@@ -152,12 +151,12 @@ Before running this project locally there are several requirements that must be 
    NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/anime
    CLERK_WEBHOOKS_SECRET = YOUR_CLERK_WEBHOOKS_SECRET
    DATABASE_URL=YOUR_DATABASE_URL
-   SENTRY_AUTH_TOKEN=YOUR_SENTRY_AUTH_TOKEN
    ```
+
 5. Then run the migration on your database through Prisma ORM by typing the command,
    ```sh
    npx prisma migrate dev
-    ```
+   ```
    or
    ```sh
    npx prisma db push

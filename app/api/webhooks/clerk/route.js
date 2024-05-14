@@ -1,5 +1,4 @@
 import { Webhook } from "svix";
-import * as Sentry from "@sentry/nextjs";
 import { headers } from "next/headers";
 
 import { prisma } from "@/lib/prisma";
@@ -61,7 +60,6 @@ export async function POST(req) {
       console.log(`Created user with id ${payload.data.id}`);
     } catch (error) {
       console.log(error);
-      Sentry.captureException(error);
     }
   }
 
@@ -80,7 +78,6 @@ export async function POST(req) {
       console.log(`Updated user with id ${payload.data.id}`);
     } catch (error) {
       console.log(error);
-      Sentry.captureException(error);
     }
   }
 
@@ -94,7 +91,6 @@ export async function POST(req) {
       console.log(`Deleted user with id ${payload.data.id}`);
     } catch (error) {
       console.log(error);
-      Sentry.captureException(error);
     }
   }
 

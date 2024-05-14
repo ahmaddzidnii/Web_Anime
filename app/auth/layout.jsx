@@ -1,6 +1,7 @@
+import Image from "next/image";
+
 import logoImageLight from "@/public/logo-dark.svg";
 import logoImageDark from "@/public/logo.svg";
-import Image from "next/image";
 const AuthLayout = ({ children }) => {
   return (
     <div className="grid min-h-screen grid-cols-1  lg:grid-cols-2">
